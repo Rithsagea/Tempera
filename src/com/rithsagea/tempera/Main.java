@@ -13,6 +13,7 @@ public class Main {
 	//EPIC
 	final Item DURENDAL = new Item("Durendal", new StatContainer(15, 5, 0));
 	final Item MORALTA = new Item("Moralta", new StatContainer(20, 0, 0));
+	final Item GOUJIAN = new Item("Goujian", new StatContainer(15, 0, 5));
 	
 	final Item EITR = new Item("Eitr", new StatContainer(0, 15, 5));
 	final Item ADAMANT = new Item("Adamant", new StatContainer(0, 20, 0));
@@ -20,6 +21,9 @@ public class Main {
 	//RARE
 	final Item DAMSTEELSWORD = new Item("Damascus Steel Sword", new StatContainer(5, 5, 0));
 	final Item RUNEDBLADE = new Item("Runed Blade", new StatContainer(5, 0, 5));
+	
+	final Item COBALTSHIELD = new Item("Cobalt Shield", new StatContainer(0, 5, 5));
+	final Item PERMAFROSTSHIELD = new Item("Permafrost Shield", new StatContainer(0, 10, 0));
 	
 	final Item PINECONEBOW = new Item("Pinecone Bow", new StatContainer(5, 5, 0));
 	final Item VINEBOW = new Item("Vine Bow", new StatContainer(5, 0, 5));
