@@ -35,6 +35,18 @@ public class Main {
 	static final Item CRYSTAL = new Item(Rarity.COMMON, ItemType.SUBSTANCE, "Crystal", new StatContainer(0, 5, 0));
 	static final Item HONEY = new Item(Rarity.COMMON, ItemType.SUBSTANCE, "Honey", new StatContainer(0, 0, 5));
 	
+	//Monsters
+	//5
+	static final Monster HYDRA = new Monster("Hydra", new StatContainer(30, 30, 30));
+	
+	//4
+	
+	//3
+	
+	//2
+	
+	//1
+	
 	public static void registerItems() {
 		//LEGENDARY
 		ItemRegistry.registerItems(
