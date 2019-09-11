@@ -1,9 +1,12 @@
 package com.rithsagea.tempera;
 
+import java.util.HashMap;
+
 public class Player {
-	
+	public int coins = 0;
 	public StatContainer stats = new StatContainer(0, 0, 0);
-	public Item heldItem = null;
+	public final Item[] inventory = new Item[20];
+	public HashMap<ItemType, Item> equippedItems = new HashMap<ItemType, Item>();
 	
 	public Player(StatContainer stats) {
 		this.stats = stats;
@@ -14,9 +17,40 @@ public class Player {
 		monster.stats.health -= Math.max(0,  stats.attack - monster.stats.defense);
 	}
 	
-	public void equipItem(Item item) {
-		stats.subtract(item.statBonus);
-		heldItem = item;
-		stats.add(item.statBonus);
+	/**
+	 * 
+	 * @param item	The item to pickup
+	 * @return		Whether the player can pickup the item (inventory full or not)
+	 */
+	public boolean pickupItem(Item item) {
+		for(int x = 0; x < 20; x++) {
+			if(inventory[x] == null) {
+				inventory[x] = item;
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void equipItem(int slot) {
+		if(inventory[slot] == null)
+			return;
+		ItemType type = inventory[slot].type;
+		Item oldItem = equippedItems.get(type);
+		stats.subtract(oldItem.statBonus);
+		equippedItems.put(type, inventory[slot]);
+		stats.add(inventory[slot].statBonus);
+		inventory[slot] = oldItem;
+	}
+	
+	public void throwItem(int slot) {
+		inventory[slot] = null;
+	}
+	
+	public void sellItem(int slot) {
+		if(inventory[slot] == null)
+			return;
+		coins += inventory[slot].rarity.getCost();
+		inventory[slot] = null;
 	}
 }
