@@ -36,16 +36,23 @@ public class Main {
 	static final Item HONEY = new Item(Rarity.COMMON, ItemType.SUBSTANCE, "Honey", new StatContainer(0, 0, 5));
 	
 	//Monsters
-	//5
-	static final Monster HYDRA = new Monster("Hydra", new StatContainer(30, 30, 30));
+	//5 - 50 base
+	static final Monster HYDRA = new Monster("Hydra", new StatContainer(20, 10, 20));
+	static final Monster OROCHI = new Monster("Orochi", new StatContainer(20, 10, 20));
 	
-	//4
+	//4 - 40 base
+	static final Monster DIREWOLF = new Monster("Direwolf", new StatContainer(20, 5, 25));
+	static final Monster BASILISK = new Monster("Basilisk", new StatContainer(20, 10, 10));
 	
-	//3
+	//3 - 30 base
+	static final Monster ORC = new Monster("Orc", new StatContainer(10, 5, 15));
 	
-	//2
+	//2 - 20 base
+	static final Monster ZOMBIE = new Monster("Zombie", new StatContainer(5, 0, 15));
+	static final Monster SKELETON = new Monster("Skeleton", new StatContainer(5, 0, 15));
 	
-	//1
+	//1 - 10 base
+	static final Monster SLIME = new Monster("Slime", new StatContainer(0, 0, 10));
 	
 	public static void registerItems() {
 		//LEGENDARY
