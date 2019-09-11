@@ -46,6 +46,7 @@ public class Main {
 	
 	//3 - 30 base
 	static final Monster ORC = new Monster("Orc", new StatContainer(10, 5, 15));
+	static final Monster GOBLIN = new Monster("Goblin", new StatContainer(10, 5, 15));
 	
 	//2 - 20 base
 	static final Monster ZOMBIE = new Monster("Zombie", new StatContainer(5, 0, 15));
@@ -53,6 +54,11 @@ public class Main {
 	
 	//1 - 10 base
 	static final Monster SLIME = new Monster("Slime", new StatContainer(0, 0, 10));
+	static final Monster SNAKE = new Monster("Snake", new StatContainer(2, 0, 8));
+	static final Monster RAT = new Monster("Rat", new StatContainer(1, 0, 9));
+	static final Monster SPIDER = new Monster("Spider", new StatContainer(1, 0, 9));
+	static final Monster CENTIPEDE = new Monster("Centipede", new StatContainer(1, 1, 8));
+	static final Monster CRAB = new Monster("Crab", new StatContainer(1, 2, 7));
 	
 	public static void registerItems() {
 		//LEGENDARY
