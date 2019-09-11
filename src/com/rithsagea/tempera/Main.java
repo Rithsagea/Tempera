@@ -39,14 +39,22 @@ public class Main {
 	//5 - 50 base
 	static final Monster HYDRA = new Monster("Hydra", new StatContainer(20, 10, 20));
 	static final Monster OROCHI = new Monster("Orochi", new StatContainer(20, 10, 20));
+	static final Monster LEVIATHAN = new Monster("Leviathan", new StatContainer(15, 15, 20));
+	static final Monster PHOENIX = new Monster("Phoenix", new StatContainer(30, 5, 15));
+	static final Monster YATAGARASU =  new Monster("Yatagarasu", new StatContainer(30, 5, 15));
 	
 	//4 - 40 base
 	static final Monster DIREWOLF = new Monster("Direwolf", new StatContainer(20, 5, 25));
 	static final Monster BASILISK = new Monster("Basilisk", new StatContainer(20, 10, 10));
+	static final Monster VAMPIRE = new Monster("Vampire", new StatContainer(5, 15, 20));
+	static final Monster SHOGGOTH = new Monster("Shoggoth", new StatContainer(10, 10, 20));
+	static final Monster KAPPA = new Monster("Kappa", new StatContainer(5, 15, 20));
 	
 	//3 - 30 base
 	static final Monster ORC = new Monster("Orc", new StatContainer(10, 5, 15));
 	static final Monster GOBLIN = new Monster("Goblin", new StatContainer(10, 5, 15));
+	static final Monster MANDRAKE = new Monster("Mandrake", new StatContainer(25, 0, 5));
+	static final Monster GOLEM = new Monster("Golem", new StatContainer(5, 10, 15)); //not from lotr
 	
 	//2 - 20 base
 	static final Monster ZOMBIE = new Monster("Zombie", new StatContainer(5, 0, 15));
@@ -54,7 +62,7 @@ public class Main {
 	
 	//1 - 10 base
 	static final Monster SLIME = new Monster("Slime", new StatContainer(0, 0, 10));
-	static final Monster SNAKE = new Monster("Snake", new StatContainer(2, 0, 8));
+	static final Monster SNAKE = new Monster("Snake", new StatContainer(2, 0, 8)); //it's not poisonous
 	static final Monster RAT = new Monster("Rat", new StatContainer(1, 0, 9));
 	static final Monster SPIDER = new Monster("Spider", new StatContainer(1, 0, 9));
 	static final Monster CENTIPEDE = new Monster("Centipede", new StatContainer(1, 1, 8));
