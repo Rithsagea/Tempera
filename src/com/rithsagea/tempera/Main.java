@@ -1,6 +1,5 @@
 package com.rithsagea.tempera;
 
-import com.rithsagea.tempera.item.Item;
 import com.rithsagea.tempera.item.ItemRegistry;
 import com.rithsagea.tempera.stat.MonsterRegistry;
 
