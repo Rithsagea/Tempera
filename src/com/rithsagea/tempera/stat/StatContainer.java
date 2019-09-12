@@ -1,4 +1,4 @@
-package com.rithsagea.tempera;
+package com.rithsagea.tempera.stat;
 
 public class StatContainer {
 	public int attack;

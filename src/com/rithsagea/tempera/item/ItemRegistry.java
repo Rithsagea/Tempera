@@ -1,4 +1,4 @@
-package com.rithsagea.tempera;
+package com.rithsagea.tempera.item;
 
 import java.util.ArrayList;
 import java.util.List;

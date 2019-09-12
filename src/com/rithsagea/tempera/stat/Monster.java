@@ -1,4 +1,4 @@
-package com.rithsagea.tempera;
+package com.rithsagea.tempera.stat;
 
 public class Monster {
 	public StatContainer stats;

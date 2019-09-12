@@ -1,4 +1,6 @@
-package com.rithsagea.tempera;
+package com.rithsagea.tempera.item;
+
+import com.rithsagea.tempera.stat.StatContainer;
 
 public class Item {
 	public StatContainer statBonus;

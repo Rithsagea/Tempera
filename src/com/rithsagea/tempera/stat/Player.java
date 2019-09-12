@@ -1,6 +1,9 @@
-package com.rithsagea.tempera;
+package com.rithsagea.tempera.stat;
 
 import java.util.HashMap;
+
+import com.rithsagea.tempera.item.Item;
+import com.rithsagea.tempera.item.ItemType;
 
 public class Player {
 	public int coins = 0;

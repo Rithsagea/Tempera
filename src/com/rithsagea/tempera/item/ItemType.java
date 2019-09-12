@@ -1,4 +1,4 @@
-package com.rithsagea.tempera;
+package com.rithsagea.tempera.item;
 
 public enum ItemType {
 	MAINHAND,
