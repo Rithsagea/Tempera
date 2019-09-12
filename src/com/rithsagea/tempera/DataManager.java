@@ -145,5 +145,6 @@ public class DataManager {
 				RAT,
 				SPIDER,
 				CRAB);
+		MonsterRegistry.init();
 	}
 }
