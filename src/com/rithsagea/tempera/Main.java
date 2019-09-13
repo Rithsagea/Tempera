@@ -11,7 +11,7 @@ public class Main {
 		System.out.println("-=-=- Items -=-=-");
 		ItemRegistry.printItems();
 		
-		System.out.println("-=-=- Monsters -=-=-");
+		System.out.println("\n-=-=- Monsters -=-=-");
 		MonsterRegistry.printMonsters();
 		
 		ItemRegistry.rollTest(20);

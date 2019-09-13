@@ -3,9 +3,7 @@ package com.rithsagea.tempera;
 import com.rithsagea.tempera.item.Item;
 import com.rithsagea.tempera.item.ItemRegistry;
 import com.rithsagea.tempera.item.ItemType;
-import com.rithsagea.tempera.item.Rarity;
 import com.rithsagea.tempera.stat.Monster;
-import com.rithsagea.tempera.stat.MonsterRarity;
 import com.rithsagea.tempera.stat.MonsterRegistry;
 import com.rithsagea.tempera.stat.StatContainer;
 
@@ -46,35 +44,35 @@ public class DataManager {
 	
 	//Monsters
 	//5 - 50 base
-	static final Monster HYDRA = new Monster("Hydra", MonsterRarity.LEGENDARY, new StatContainer(20, 10, 20));
-	static final Monster OROCHI = new Monster("Orochi", MonsterRarity.LEGENDARY, new StatContainer(20, 10, 20));
-	static final Monster LEVIATHAN = new Monster("Leviathan", MonsterRarity.LEGENDARY, new StatContainer(15, 15, 20));
-	static final Monster PHOENIX = new Monster("Phoenix", MonsterRarity.LEGENDARY, new StatContainer(30, 5, 15));
-	static final Monster YATAGARASU =  new Monster("Yatagarasu", MonsterRarity.LEGENDARY, new StatContainer(30, 5, 15));
+	static final Monster HYDRA = new Monster("Hydra", Rarity.LEGENDARY, new StatContainer(20, 10, 20));
+	static final Monster OROCHI = new Monster("Orochi", Rarity.LEGENDARY, new StatContainer(20, 10, 20));
+	static final Monster LEVIATHAN = new Monster("Leviathan", Rarity.LEGENDARY, new StatContainer(15, 15, 20));
+	static final Monster PHOENIX = new Monster("Phoenix", Rarity.LEGENDARY, new StatContainer(30, 5, 15));
+	static final Monster YATAGARASU =  new Monster("Yatagarasu", Rarity.LEGENDARY, new StatContainer(30, 5, 15));
 	
 	//4 - 40 base
-	static final Monster DIREWOLF = new Monster("Direwolf", MonsterRarity.EPIC, new StatContainer(20, 5, 25));
-	static final Monster BASILISK = new Monster("Basilisk", MonsterRarity.EPIC, new StatContainer(20, 10, 10));
-	static final Monster VAMPIRE = new Monster("Vampire", MonsterRarity.EPIC, new StatContainer(5, 15, 20));
-	static final Monster SHOGGOTH = new Monster("Shoggoth", MonsterRarity.EPIC, new StatContainer(10, 10, 20));
-	static final Monster KAPPA = new Monster("Kappa", MonsterRarity.EPIC, new StatContainer(5, 15, 20));
+	static final Monster DIREWOLF = new Monster("Direwolf", Rarity.EPIC, new StatContainer(20, 5, 25));
+	static final Monster BASILISK = new Monster("Basilisk", Rarity.EPIC, new StatContainer(20, 10, 10));
+	static final Monster VAMPIRE = new Monster("Vampire", Rarity.EPIC, new StatContainer(5, 15, 20));
+	static final Monster SHOGGOTH = new Monster("Shoggoth", Rarity.EPIC, new StatContainer(10, 10, 20));
+	static final Monster KAPPA = new Monster("Kappa", Rarity.EPIC, new StatContainer(5, 15, 20));
 	
 	//3 - 30 base
-	static final Monster ORC = new Monster("Orc", MonsterRarity.RARE, new StatContainer(10, 5, 15));
-	static final Monster GOBLIN = new Monster("Goblin", MonsterRarity.RARE, new StatContainer(10, 5, 15));
-	static final Monster MANDRAKE = new Monster("Mandrake", MonsterRarity.RARE, new StatContainer(25, 0, 5));
-	static final Monster GOLEM = new Monster("Golem", MonsterRarity.RARE, new StatContainer(5, 10, 15)); //not from lotr
+	static final Monster ORC = new Monster("Orc", Rarity.RARE, new StatContainer(10, 5, 15));
+	static final Monster GOBLIN = new Monster("Goblin", Rarity.RARE, new StatContainer(10, 5, 15));
+	static final Monster MANDRAKE = new Monster("Mandrake", Rarity.RARE, new StatContainer(25, 0, 5));
+	static final Monster GOLEM = new Monster("Golem", Rarity.RARE, new StatContainer(5, 10, 15)); //not from lotr
 	
 	//2 - 20 base
-	static final Monster ZOMBIE = new Monster("Zombie", MonsterRarity.UNCOMMON, new StatContainer(5, 0, 15));
-	static final Monster SKELETON = new Monster("Skeleton", MonsterRarity.UNCOMMON, new StatContainer(5, 0, 15));
+	static final Monster ZOMBIE = new Monster("Zombie", Rarity.UNCOMMON, new StatContainer(5, 0, 15));
+	static final Monster SKELETON = new Monster("Skeleton", Rarity.UNCOMMON, new StatContainer(5, 0, 15));
 	
 	//1 - 10 base
-	static final Monster SLIME = new Monster("Slime", MonsterRarity.COMMON, new StatContainer(0, 0, 10));
-	static final Monster SNAKE = new Monster("Snake", MonsterRarity.COMMON, new StatContainer(2, 0, 8)); //it's not poisonous
-	static final Monster RAT = new Monster("Rat", MonsterRarity.COMMON, new StatContainer(1, 0, 9));
-	static final Monster SPIDER = new Monster("Spider", MonsterRarity.COMMON, new StatContainer(1, 0, 9));
-	static final Monster CRAB = new Monster("Crab", MonsterRarity.COMMON, new StatContainer(1, 2, 7));
+	static final Monster SLIME = new Monster("Slime", Rarity.COMMON, new StatContainer(0, 0, 10));
+	static final Monster SNAKE = new Monster("Snake", Rarity.COMMON, new StatContainer(2, 0, 8)); //it's not poisonous
+	static final Monster RAT = new Monster("Rat", Rarity.COMMON, new StatContainer(1, 0, 9));
+	static final Monster SPIDER = new Monster("Spider", Rarity.COMMON, new StatContainer(1, 0, 9));
+	static final Monster CRAB = new Monster("Crab", Rarity.COMMON, new StatContainer(1, 2, 7));
 	
 	public static void registerItems() {
 		//LEGENDARY
