@@ -51,14 +51,14 @@ public class ItemRegistry {
 	}
 	
 	public static void rollTest(int rolls) {
-		System.out.println("\n\nBegin Roll\n------------------------------------------");
+		System.out.println("\n\n-=-=- Item Roll Test -=-=-\n");
 		Item item;
 		int cost = 0;
 		
 		for(int x = 0; x < rolls; x++) {
 			item = ItemRegistry.getItem();
 			cost += item.rarity.getCost();
-			System.out.println(ItemRegistry.getItem().name);
+			System.out.format("[%s] %s\n", item.rarity.name(), item.name);
 		}
 		
 		System.out.format("\nTotal Coins: %d", cost);

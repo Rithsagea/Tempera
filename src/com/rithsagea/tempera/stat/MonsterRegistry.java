@@ -48,4 +48,14 @@ public class MonsterRegistry {
 			System.out.println(monsters[x].name);
 		}
 	}
+	
+	public static void rollTest(int rolls) {
+		System.out.println("\n\n-=-=- Monster Roll Test -=-=-\n");
+		Monster monster;
+		
+		for(int x = 0; x < rolls; x++) {
+			monster = MonsterRegistry.getMonster();
+			System.out.format("[%s] %s\n", monster.rarity.name(), monster.name);
+		}
+	}
 }
