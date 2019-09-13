@@ -35,7 +35,7 @@ public class ItemRegistry {
 	}
 	
 	public static Item getItem() {
-		int total = rand.nextInt(totalWeight);
+		int total = rand.nextInt(totalWeight + 1);
 		for(int x = 0; x < length; x++) {
 			total -= items[x].rarity.getWeight();
 			if(total <= 0)

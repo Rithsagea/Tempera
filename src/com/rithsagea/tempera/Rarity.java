@@ -2,10 +2,10 @@ package com.rithsagea.tempera;
 
 public enum Rarity {
 	LEGENDARY(1, 1000),
-	EPIC(2, 250),
-	RARE(8, 50),
-	UNCOMMON(16, 10),
-	COMMON(64, 1);
+	EPIC(2, 500),
+	RARE(4, 250),
+	UNCOMMON(8, 50),
+	COMMON(16, 10);
 	
 	private int weight = 0;
 	private int cost = 0;
