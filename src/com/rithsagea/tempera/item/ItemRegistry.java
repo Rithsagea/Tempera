@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class ItemRegistry {
+	
 	private static List<Item> registry = new ArrayList<Item>();
 	
 	private static Item[] items;
@@ -25,7 +26,7 @@ public class ItemRegistry {
 	}
 	
 	public static void init() {
-		rand = new Random(System.currentTimeMillis());
+		rand = new Random(new Random(System.currentTimeMillis()).nextInt());
 		length = registry.size();
 		items = new Item[length];
 		items = registry.toArray(items);

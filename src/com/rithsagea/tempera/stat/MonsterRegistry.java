@@ -24,7 +24,7 @@ public class MonsterRegistry {
 	}
 	
 	public static void init() {
-		rand = new Random(System.currentTimeMillis());
+		rand = new Random(new Random(System.currentTimeMillis()).nextInt());
 		length = registry.size();
 		monsters = new Monster[length];
 		monsters = registry.toArray(monsters);
