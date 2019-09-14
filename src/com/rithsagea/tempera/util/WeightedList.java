@@ -23,7 +23,7 @@ public class WeightedList<T> {
 	protected int totalWeight;
 	protected int elements;
 	
-	public void addElement(T element, int weight) {
+	public void put(T element, int weight) {
 		Node<T> node = new Node<T>(element, weight);
 		top.child = node;
 		top = node;
@@ -36,7 +36,7 @@ public class WeightedList<T> {
 		
 		while(temp != null) {
 			elements++;
-			totalWeight = temp.weight;
+			totalWeight += temp.weight;
 			temp = temp.child;
 		}
 	}
@@ -47,9 +47,9 @@ public class WeightedList<T> {
 		
 		while(temp != null) {
 			value -= temp.weight;
+			temp = temp.child;
 			if(value <= 0)
 				return temp.element;
-			temp = temp.child;
 		}
 		
 		return null;

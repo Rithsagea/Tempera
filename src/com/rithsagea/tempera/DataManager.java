@@ -103,8 +103,6 @@ public class DataManager {
 				MAGMA,
 				CRYSTAL,
 				HONEY);
-		
-		ItemRegistry.init();
 	}
 	
 	public static void registerMonsters() {
@@ -143,6 +141,5 @@ public class DataManager {
 				RAT,
 				SPIDER,
 				CRAB);
-		MonsterRegistry.init();
 	}
 }

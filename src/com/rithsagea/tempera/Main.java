@@ -5,6 +5,9 @@ public class Main {
 	public static void main(String args[]) {
 		DataManager.registerItems();
 		DataManager.registerMonsters();
+		
+		
+		
 		/*
 		System.out.println("-=-=- Items -=-=-");
 		ItemRegistry.printItems();

@@ -49,11 +49,4 @@ public class Player {
 	public void throwItem(int slot) {
 		inventory[slot] = null;
 	}
-	
-	public void sellItem(int slot) {
-		if(inventory[slot] == null)
-			return;
-		coins += inventory[slot].rarity.getCost();
-		inventory[slot] = null;
-	}
 }
