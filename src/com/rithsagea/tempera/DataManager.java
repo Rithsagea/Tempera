@@ -1,10 +1,10 @@
 package com.rithsagea.tempera;
 
 import com.rithsagea.tempera.item.Item;
-import com.rithsagea.tempera.item.ItemRegistry;
 import com.rithsagea.tempera.item.ItemType;
+import com.rithsagea.tempera.registry.ItemRegistry;
+import com.rithsagea.tempera.registry.MonsterRegistry;
 import com.rithsagea.tempera.stat.Monster;
-import com.rithsagea.tempera.stat.MonsterRegistry;
 import com.rithsagea.tempera.stat.StatContainer;
 
 public class DataManager {

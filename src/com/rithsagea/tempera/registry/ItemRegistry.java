@@ -1,8 +1,10 @@
-package com.rithsagea.tempera.item;
+package com.rithsagea.tempera.registry;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import com.rithsagea.tempera.item.Item;
 
 public class ItemRegistry {
 	

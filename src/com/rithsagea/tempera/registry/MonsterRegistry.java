@@ -1,8 +1,10 @@
-package com.rithsagea.tempera.stat;
+package com.rithsagea.tempera.registry;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import com.rithsagea.tempera.stat.Monster;
 
 public class MonsterRegistry {
 	private static List<Monster> registry = new ArrayList<Monster>();
