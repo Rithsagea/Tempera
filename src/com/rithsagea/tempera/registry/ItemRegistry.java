@@ -1,5 +1,7 @@
 package com.rithsagea.tempera.registry;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import com.rithsagea.tempera.item.Item;
@@ -20,5 +22,13 @@ public class ItemRegistry {
 	
 	public static Item getItem(String name) {
 		return registry.get(name);
+	}
+	
+	public static void printItems() {
+		ArrayList<Item> l = new ArrayList<Item>(registry.values());
+		Collections.sort(l);
+		for(Item item : l) {
+			System.out.format("[%s] %s\n", item.rarity, item);
+		}
 	}
 }
