@@ -191,6 +191,17 @@ public class DataManager {
 		RAREDROPS.put(HONEY, 4);
 		RAREDROPS.put(MAGMA, 4);
 		
+		UNCOMMONDROPS.put(COBALTSHIELD, 1);
+		UNCOMMONDROPS.put(DAMSTEELSWORD, 1);
+		UNCOMMONDROPS.put(GLASSBOW, 1);
+		UNCOMMONDROPS.put(PERMAFROSTSHIELD, 1);
+		UNCOMMONDROPS.put(PINECONEBOW, 1);
+		UNCOMMONDROPS.put(RUNEDBLADE, 1);
+		UNCOMMONDROPS.put(VINEBOW, 1);
+		
+		UNCOMMONDROPS.put(CRYSTAL, 8);
+		UNCOMMONDROPS.put(HONEY, 8);
+		UNCOMMONDROPS.put(MAGMA, 8);
 		
 		COMMONDROPS.put(CRYSTAL, 1);
 		COMMONDROPS.put(HONEY, 1);
@@ -200,17 +211,18 @@ public class DataManager {
 	public static Item getLoot(Rarity rarity) {
 		switch(rarity) {
 			case COMMON: return COMMONDROPS.getElement();
+			case UNCOMMON: return UNCOMMONDROPS.getElement();
+			case RARE: return RAREDROPS.getElement();
 			case EPIC: return EPICDROPS.getElement();
 			case LEGENDARY: return LEGENDARYDROPS.getElement();
-			case RARE: return RAREDROPS.getElement();
-			case UNCOMMON: return UNCOMMONDROPS.getElement();		
 		}
 		return null;
 	}
 	
 	public static void rollLootTest(Rarity rarity) {
 		Item item = HONEY;
-		System.out.format("-=-=- Roll Test <%s> -=-=-\n", rarity.toString());
+		System.out.format("\n-=-=- Roll Test <%s> -=-=-\n", rarity.toString());
+		
 		for(int x = 0; x < 20; x++) {
 			item = getLoot(rarity);
 			System.out.format("[%s] %s\n", item.rarity, item);
