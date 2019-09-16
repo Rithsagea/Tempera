@@ -1,7 +1,4 @@
-package com.rithsagea.tempera;
-
-import com.rithsagea.tempera.stat.Monster;
-import com.rithsagea.tempera.stat.Player;
+package com.rithsagea.tempera.stat;
 
 public class CombatManager {
 	
