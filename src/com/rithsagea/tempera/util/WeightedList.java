@@ -18,40 +18,30 @@ public class WeightedList<T> {
 	
 	private final Node<T> root = new Node<T>(null, 0);
 	private Node<T> top = root;
-	private Random rand;
+	private Random rand = new Random(System.currentTimeMillis());
 	
-	protected int totalWeight;
-	protected int elements;
+	protected int totalWeight = 0;
+	protected int elements = 0;
 	
 	public void put(T element, int weight) {
+		totalWeight += weight;
+		elements++;
 		Node<T> node = new Node<T>(element, weight);
 		top.child = node;
 		top = node;
-	}
-	
-	public void init() {
-		rand = new Random(System.currentTimeMillis());
-		totalWeight = 0;
-		Node<T> temp = root;
-		
-		while(temp != null) {
-			elements++;
-			totalWeight += temp.weight;
-			temp = temp.child;
-		}
 	}
 	
 	public T getElement() {
 		int value = rand.nextInt(totalWeight);
 		Node<T> temp = root;
 		
-		while(temp != null) {
+		while(temp.child != null) {
 			value -= temp.weight;
 			temp = temp.child;
 			if(value <= 0)
 				return temp.element;
 		}
 		
-		return null;
+		return temp.element;
 	}
 }
