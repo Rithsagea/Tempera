@@ -6,6 +6,7 @@ import com.rithsagea.tempera.registry.ItemRegistry;
 import com.rithsagea.tempera.registry.MonsterRegistry;
 import com.rithsagea.tempera.stat.Monster;
 import com.rithsagea.tempera.stat.StatContainer;
+import com.rithsagea.tempera.util.WeightedList;
 
 public class DataManager {
 	//Items
@@ -74,6 +75,12 @@ public class DataManager {
 	static final Monster SPIDER = new Monster("Spider", Rarity.COMMON, new StatContainer(1, 0, 9));
 	static final Monster CRAB = new Monster("Crab", Rarity.COMMON, new StatContainer(1, 2, 7));
 	
+	public static final WeightedList<Item> LEGENDARYDROPS = new WeightedList<Item>();
+	public static final WeightedList<Item> EPICDROPS = new WeightedList<Item>();
+	public static final WeightedList<Item> RAREDROPS = new WeightedList<Item>();
+	public static final WeightedList<Item> UNCOMMONDROPS = new WeightedList<Item>();
+	public static final WeightedList<Item> COMMONDROPS = new WeightedList<Item>();
+	
 	public static void registerItems() {
 		//LEGENDARY
 		ItemRegistry.registerItems(
@@ -141,5 +148,52 @@ public class DataManager {
 				RAT,
 				SPIDER,
 				CRAB);
+	}
+	
+	public static void registerLoot() {
+		LEGENDARYDROPS.put(AEGIS, 1);
+		LEGENDARYDROPS.put(EXCALIBUR, 1);
+		LEGENDARYDROPS.put(KUSANAGI, 1);
+		LEGENDARYDROPS.put(PHILOSTONE, 1);
+		LEGENDARYDROPS.put(TYRFING, 1);
+		
+		LEGENDARYDROPS.put(ADAMANT, 4);
+		LEGENDARYDROPS.put(DURENDAL, 4);
+		LEGENDARYDROPS.put(EITR, 4);
+		LEGENDARYDROPS.put(GOUJIAN, 4);
+		LEGENDARYDROPS.put(MORALTA, 4);
+		
+		
+		EPICDROPS.put(ADAMANT, 1);
+		EPICDROPS.put(DURENDAL, 1);
+		EPICDROPS.put(EITR, 1);
+		EPICDROPS.put(GOUJIAN, 1);
+		EPICDROPS.put(MORALTA, 1);
+		
+		EPICDROPS.put(COBALTSHIELD, 4);
+		EPICDROPS.put(DAMSTEELSWORD, 4);
+		EPICDROPS.put(GLASSBOW, 4);
+		EPICDROPS.put(PERMAFROSTSHIELD, 4);
+		EPICDROPS.put(PINECONEBOW, 4);
+		EPICDROPS.put(RUNEDBLADE, 4);
+		EPICDROPS.put(VINEBOW, 4);
+		
+		
+		RAREDROPS.put(COBALTSHIELD, 1);
+		RAREDROPS.put(DAMSTEELSWORD, 1);
+		RAREDROPS.put(GLASSBOW, 1);
+		RAREDROPS.put(PERMAFROSTSHIELD, 1);
+		RAREDROPS.put(PINECONEBOW, 1);
+		RAREDROPS.put(RUNEDBLADE, 1);
+		RAREDROPS.put(VINEBOW, 1);
+		
+		RAREDROPS.put(CRYSTAL, 4);
+		RAREDROPS.put(HONEY, 4);
+		RAREDROPS.put(MAGMA, 4);
+		
+		
+		COMMONDROPS.put(CRYSTAL, 1);
+		COMMONDROPS.put(HONEY, 1);
+		COMMONDROPS.put(MAGMA, 1);
 	}
 }
