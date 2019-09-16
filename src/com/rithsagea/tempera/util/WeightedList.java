@@ -18,7 +18,7 @@ public class WeightedList<T> {
 	
 	private final Node<T> root = new Node<T>(null, 0);
 	private Node<T> top = root;
-	private Random rand = new Random(System.currentTimeMillis());
+	private Random rand = new Random();
 	
 	protected int totalWeight = 0;
 	protected int elements = 0;
@@ -42,6 +42,6 @@ public class WeightedList<T> {
 				return temp.element;
 		}
 		
-		return temp.element;
+		return null;
 	}
 }
