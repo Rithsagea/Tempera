@@ -81,6 +81,10 @@ public class DataManager {
 	static final WeightedList<Item> UNCOMMONDROPS = new WeightedList<Item>();
 	static final WeightedList<Item> COMMONDROPS = new WeightedList<Item>();
 	
+	static final WeightedList<Monster> CERES = new WeightedList<Monster>(); //Beginner area
+	static final WeightedList<Monster> NEBULA = new WeightedList<Monster>(); //Midgame
+	static final WeightedList<Monster> ANDROMEDA = new WeightedList<Monster>(); //Endgame
+	
 	public static void registerItems() {
 		//LEGENDARY
 		ItemRegistry.registerItems(
@@ -220,12 +224,61 @@ public class DataManager {
 	}
 	
 	public static void rollLootTest(Rarity rarity) {
-		Item item = HONEY;
-		System.out.format("\n-=-=- Roll Test <%s> -=-=-\n", rarity.toString());
+		Item item;
+		System.out.format("\n-=-=- Roll Test [%s] -=-=-\n", rarity.toString());
 		
 		for(int x = 0; x < 20; x++) {
 			item = getLoot(rarity);
 			System.out.format("[%s] %s\n", item.rarity, item);
+		}
+	}
+	
+	public static void registerSpawns() {
+		CERES.put(CRAB, 4);
+		CERES.put(RAT, 4);
+		CERES.put(SLIME, 4);
+		CERES.put(SNAKE, 4);
+		CERES.put(SPIDER, 4);
+		
+		CERES.put(SKELETON, 1);
+		CERES.put(ZOMBIE, 1);
+		
+		
+		NEBULA.put(ORC, 4);
+		NEBULA.put(MANDRAKE, 4);
+		NEBULA.put(GOLEM, 4);
+		NEBULA.put(GOBLIN, 4);
+		NEBULA.put(DIREWOLF, 1);
+		
+		
+		ANDROMEDA.put(VAMPIRE, 8);
+		ANDROMEDA.put(SHOGGOTH, 8);
+		ANDROMEDA.put(KAPPA, 8);
+		ANDROMEDA.put(BASILISK, 8);
+		
+		ANDROMEDA.put(YATAGARASU, 1);
+		ANDROMEDA.put(PHOENIX, 1);
+		ANDROMEDA.put(OROCHI, 1);
+		ANDROMEDA.put(LEVIATHAN, 1);
+		ANDROMEDA.put(HYDRA, 1);
+	}
+	
+	public static Monster getMonster(Area area) {
+		switch(area) {
+			case CERES: return CERES.getElement();
+			case NEBULA: return NEBULA.getElement();
+			case ANDROMEDA: return ANDROMEDA.getElement();
+		}
+		return null;
+	}
+	
+	public static void rollSpawnTest(Area area) {
+		Monster monster;
+		System.out.format("\n-=-=- Roll Test [%s] -=-=-\n", area);
+		
+		for(int x = 0; x < 20; x++) {
+			monster = getMonster(area);
+			System.out.format("[%s] %s\n", monster.rarity, monster);
 		}
 	}
 }

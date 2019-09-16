@@ -9,7 +9,7 @@ public class Main {
 		DataManager.registerItems();
 		DataManager.registerMonsters();
 		DataManager.registerLoot();
-		
+		DataManager.registerSpawns();
 		
 		System.out.println("-=-=- Items -=-=-");
 		ItemRegistry.printItems();
@@ -23,10 +23,8 @@ public class Main {
 		DataManager.rollLootTest(Rarity.EPIC);
 		DataManager.rollLootTest(Rarity.LEGENDARY);
 		
-		/*
-		ItemRegistry.rollTest(20);
-		MonsterRegistry.rollTest(20);
-		
-		*/
+		DataManager.rollSpawnTest(Area.CERES);
+		DataManager.rollSpawnTest(Area.NEBULA);
+		DataManager.rollSpawnTest(Area.ANDROMEDA);
 	}
 }
