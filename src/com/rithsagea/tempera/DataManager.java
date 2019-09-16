@@ -75,11 +75,11 @@ public class DataManager {
 	static final Monster SPIDER = new Monster("Spider", Rarity.COMMON, new StatContainer(1, 0, 9));
 	static final Monster CRAB = new Monster("Crab", Rarity.COMMON, new StatContainer(1, 2, 7));
 	
-	public static final WeightedList<Item> LEGENDARYDROPS = new WeightedList<Item>();
-	public static final WeightedList<Item> EPICDROPS = new WeightedList<Item>();
-	public static final WeightedList<Item> RAREDROPS = new WeightedList<Item>();
-	public static final WeightedList<Item> UNCOMMONDROPS = new WeightedList<Item>();
-	public static final WeightedList<Item> COMMONDROPS = new WeightedList<Item>();
+	static final WeightedList<Item> LEGENDARYDROPS = new WeightedList<Item>();
+	static final WeightedList<Item> EPICDROPS = new WeightedList<Item>();
+	static final WeightedList<Item> RAREDROPS = new WeightedList<Item>();
+	static final WeightedList<Item> UNCOMMONDROPS = new WeightedList<Item>();
+	static final WeightedList<Item> COMMONDROPS = new WeightedList<Item>();
 	
 	public static void registerItems() {
 		//LEGENDARY
@@ -195,5 +195,16 @@ public class DataManager {
 		COMMONDROPS.put(CRYSTAL, 1);
 		COMMONDROPS.put(HONEY, 1);
 		COMMONDROPS.put(MAGMA, 1);
+	}
+	
+	public static Item getLoot(Rarity rarity) {
+		switch(rarity) {
+			case COMMON: return COMMONDROPS.getElement();
+			case EPIC: return EPICDROPS.getElement();
+			case LEGENDARY: return LEGENDARYDROPS.getElement();
+			case RARE: return RAREDROPS.getElement();
+			case UNCOMMON: return UNCOMMONDROPS.getElement();
+			default: return HONEY;		
+		}
 	}
 }
