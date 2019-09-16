@@ -203,8 +203,17 @@ public class DataManager {
 			case EPIC: return EPICDROPS.getElement();
 			case LEGENDARY: return LEGENDARYDROPS.getElement();
 			case RARE: return RAREDROPS.getElement();
-			case UNCOMMON: return UNCOMMONDROPS.getElement();
-			default: return HONEY;		
+			case UNCOMMON: return UNCOMMONDROPS.getElement();		
+		}
+		return null;
+	}
+	
+	public static void rollLootTest(Rarity rarity) {
+		Item item = HONEY;
+		System.out.format("-=-=- Roll Test <%s> -=-=-\n", rarity.toString());
+		for(int x = 0; x < 20; x++) {
+			item = getLoot(rarity);
+			System.out.format("[%s] %s\n", item.rarity, item);
 		}
 	}
 }

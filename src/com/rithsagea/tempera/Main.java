@@ -17,6 +17,12 @@ public class Main {
 		System.out.println("\n-=-=- Monsters -=-=-");
 		MonsterRegistry.printMonsters();
 		
+		DataManager.rollLootTest(Rarity.COMMON);
+		DataManager.rollLootTest(Rarity.UNCOMMON);
+		DataManager.rollLootTest(Rarity.RARE);
+		DataManager.rollLootTest(Rarity.EPIC);
+		DataManager.rollLootTest(Rarity.LEGENDARY);
+		
 		/*
 		ItemRegistry.rollTest(20);
 		MonsterRegistry.rollTest(20);
