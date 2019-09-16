@@ -8,7 +8,7 @@ public class Main {
 	public static void main(String args[]) {
 		DataManager.registerItems();
 		DataManager.registerMonsters();
-		
+		DataManager.registerLoot();
 		
 		
 		System.out.println("-=-=- Items -=-=-");
