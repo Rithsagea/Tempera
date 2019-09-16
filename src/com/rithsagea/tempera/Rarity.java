@@ -1,9 +1,9 @@
 package com.rithsagea.tempera;
 
 public enum Rarity {
-	LEGENDARY,
-	EPIC,
-	RARE,
+	COMMON,
 	UNCOMMON,
-	COMMON;
+	RARE,
+	EPIC,
+	LEGENDARY;
 }
