@@ -1,5 +1,8 @@
 package com.rithsagea.tempera;
 
+import com.rithsagea.tempera.registry.ItemRegistry;
+import com.rithsagea.tempera.registry.MonsterRegistry;
+
 public class Main {
 	
 	public static void main(String args[]) {
@@ -8,13 +11,13 @@ public class Main {
 		
 		
 		
-		/*
 		System.out.println("-=-=- Items -=-=-");
 		ItemRegistry.printItems();
 		
 		System.out.println("\n-=-=- Monsters -=-=-");
 		MonsterRegistry.printMonsters();
 		
+		/*
 		ItemRegistry.rollTest(20);
 		MonsterRegistry.rollTest(20);
 		
