@@ -6,6 +6,7 @@ import com.rithsagea.tempera.registry.MonsterRegistry;
 public class Main {
 	
 	public static void main(String args[]) {
+		//Initialization
 		DataManager.registerItems();
 		DataManager.registerMonsters();
 		DataManager.registerLoot();
@@ -17,6 +18,7 @@ public class Main {
 		System.out.println("\n-=-=- Monsters -=-=-");
 		MonsterRegistry.printMonsters();
 		
+		//Random tests I can delete later
 		DataManager.rollLootTest(Rarity.COMMON);
 		DataManager.rollLootTest(Rarity.UNCOMMON);
 		DataManager.rollLootTest(Rarity.RARE);
