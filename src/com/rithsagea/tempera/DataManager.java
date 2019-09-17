@@ -234,27 +234,27 @@ public class DataManager {
 	}
 	
 	public static void registerSpawns() {
-		CERES.put(CRAB, 4);
-		CERES.put(RAT, 4);
-		CERES.put(SLIME, 4);
-		CERES.put(SNAKE, 4);
-		CERES.put(SPIDER, 4);
+		CERES.put(CRAB, 15);
+		CERES.put(RAT, 15);
+		CERES.put(SLIME, 15);
+		CERES.put(SNAKE, 15);
+		CERES.put(SPIDER, 15);
 		
-		CERES.put(SKELETON, 1);
-		CERES.put(ZOMBIE, 1);
+		CERES.put(SKELETON, 7);
+		CERES.put(ZOMBIE, 7);
 		
 		
-		NEBULA.put(ORC, 4);
-		NEBULA.put(MANDRAKE, 4);
-		NEBULA.put(GOLEM, 4);
-		NEBULA.put(GOBLIN, 4);
+		NEBULA.put(ORC, 8);
+		NEBULA.put(MANDRAKE, 8);
+		NEBULA.put(GOLEM, 8);
+		NEBULA.put(GOBLIN, 8);
 		NEBULA.put(DIREWOLF, 1);
 		
 		
-		ANDROMEDA.put(VAMPIRE, 8);
-		ANDROMEDA.put(SHOGGOTH, 8);
-		ANDROMEDA.put(KAPPA, 8);
-		ANDROMEDA.put(BASILISK, 8);
+		ANDROMEDA.put(VAMPIRE, 12);
+		ANDROMEDA.put(SHOGGOTH, 12);
+		ANDROMEDA.put(KAPPA, 12);
+		ANDROMEDA.put(BASILISK, 12);
 		
 		ANDROMEDA.put(YATAGARASU, 1);
 		ANDROMEDA.put(PHOENIX, 1);
