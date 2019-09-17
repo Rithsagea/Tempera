@@ -32,16 +32,15 @@ public class WeightedList<T> {
 	}
 	
 	public T getElement() {
-		int value = rand.nextInt(totalWeight);
+		int value = rand.nextInt(totalWeight) + 1;
 		Node<T> temp = root;
 		
 		while(temp.child != null) {
-			value -= temp.weight;
 			temp = temp.child;
+			value -= temp.weight;
 			if(value <= 0)
 				return temp.element;
 		}
-		
-		return null;
+		throw new NullPointerException("overflow");
 	}
 }
