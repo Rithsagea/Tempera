@@ -3,7 +3,10 @@ package com.rithsagea.tempera;
 import com.rithsagea.tempera.item.Item;
 import com.rithsagea.tempera.registry.ItemRegistry;
 import com.rithsagea.tempera.registry.MonsterRegistry;
+import com.rithsagea.tempera.stat.CombatManager;
 import com.rithsagea.tempera.stat.Monster;
+import com.rithsagea.tempera.stat.Player;
+import com.rithsagea.tempera.stat.StatContainer;
 
 public class Main {
 	
@@ -33,5 +36,13 @@ public class Main {
 		for(int x = 0; x < 5; x++) {
 			System.out.format("You have found %d %s\n", rarities[x], Rarity.values()[x]);
 		}
+		
+		System.out.print("\n\n\n\n");
+		
+		Monster monster = DataManager.getMonster(Area.NEBULA);
+		Player player = new Player("Rithsagea", new StatContainer(10, 10, 10));
+		
+		CombatManager manager = new CombatManager(player, monster);
+		manager.run();
 	}
 }
