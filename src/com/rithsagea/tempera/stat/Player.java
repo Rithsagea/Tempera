@@ -1,17 +1,16 @@
 package com.rithsagea.tempera.stat;
 
-import java.util.HashMap;
-
 import com.rithsagea.tempera.item.Item;
 import com.rithsagea.tempera.item.ItemType;
 
 public class Player {
 	public int coins = 0;
 	public StatContainer stats = new StatContainer(0, 0, 0);
-	public final Item[] inventory = new Item[20];
-	public HashMap<ItemType, Item> equippedItems = new HashMap<ItemType, Item>();
+	public final Item[] inventory = new Item[23];
+	public String name;
 	
-	public Player(StatContainer stats) {
+	public Player(String name, StatContainer stats) {
+		this.name = name;
 		this.stats = stats;
 	}
 	
@@ -39,14 +38,18 @@ public class Player {
 		if(inventory[slot] == null)
 			return;
 		ItemType type = inventory[slot].type;
-		Item oldItem = equippedItems.get(type);
+		Item oldItem = inventory[type.getSlot()];
 		stats.subtract(oldItem.statBonus);
-		equippedItems.put(type, inventory[slot]);
+		inventory[type.getSlot()] = inventory[slot];
 		stats.add(inventory[slot].statBonus);
 		inventory[slot] = oldItem;
 	}
 	
 	public void throwItem(int slot) {
 		inventory[slot] = null;
+	}
+	
+	public String toString() {
+		return name;
 	}
 }
