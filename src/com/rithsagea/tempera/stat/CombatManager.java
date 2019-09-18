@@ -1,7 +1,5 @@
 package com.rithsagea.tempera.stat;
 
-import java.util.Scanner;
-
 import com.rithsagea.tempera.DataManager;
 import com.rithsagea.tempera.item.Item;
 
