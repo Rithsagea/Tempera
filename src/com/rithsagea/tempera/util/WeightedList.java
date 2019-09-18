@@ -4,12 +4,12 @@ import java.util.Random;
 
 public class WeightedList<T> {
 	
-	private class Node<T> {
-		 public T element;
+	private class Node<K> {
+		 public K element;
 		 public int weight;
-		 public Node<T> child;
+		 public Node<K> child;
 		 
-		 public Node(T element, int weight) {
+		 public Node(K element, int weight) {
 			 this.element = element;
 			 this.weight = weight;
 			 this.child = null;
