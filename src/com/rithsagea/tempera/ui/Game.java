@@ -28,7 +28,7 @@ public class Game {
 			System.out.println("Assasin - Atk: 15  Def: 5  HP: 10");
 			System.out.println("Paladin - Atk: 5  Def: 15  HP: 10");
 			System.out.println("Mage - Atk: 20  Def: 5  HP: 5");
-			System.out.print("What class is your character:  ");
+			System.out.print("What class is your character: ");
 			try {
 				job = Job.valueOf(scanner.nextLine().toUpperCase());
 			} catch(IllegalArgumentException e) {
