@@ -30,4 +30,18 @@ public class StatContainer {
 		this.defense -= container.defense;
 		this.health -= container.health;
 	}
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("HP: ");
+		builder.append(health);
+		builder.append(" / ");
+		builder.append(mhealth);
+		builder.append("\nAtk: ");
+		builder.append(attack);
+		builder.append("\nDef: ");
+		builder.append(defense);
+		
+		return builder.toString();
+	}
 }
