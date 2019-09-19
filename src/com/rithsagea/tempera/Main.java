@@ -40,7 +40,22 @@ public class Main {
 //		CombatManager manager = new CombatManager(player, monster);
 //		manager.run();
 		
+		int option = 0;
 		Game window = new Game();
+		while(option != 3) { //exit
+			option = window.promptOption();
+			switch(option) {
+			case 0:
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				System.out.println("\n\n\n\nThank you for playing Project Tempera.");
+				break;
+			}
+		}
 		
 	}
 }
