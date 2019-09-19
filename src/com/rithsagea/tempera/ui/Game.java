@@ -18,7 +18,6 @@ public class Game {
 		player = new Player(name, job.getStats());
 		
 		System.out.format("\n-=-=- %s -=-=-\n%s", player.name, player.stats);
-		System.out.println(promptOption());
 	}
 	
 	public int promptOption() {
