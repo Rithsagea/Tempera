@@ -2,6 +2,7 @@ package com.rithsagea.tempera.ui;
 
 import java.util.Scanner;
 
+import com.rithsagea.tempera.item.ItemType;
 import com.rithsagea.tempera.stat.Job;
 import com.rithsagea.tempera.stat.Player;
 
@@ -44,6 +45,7 @@ public class Game {
 					break;
 				case 'e':
 					res = 3;
+					System.out.println("\n\n\n\nThank you for playing Project Tempera.");
 					break;
 				default:
 					System.out.println("\nThat is not a valid option. Please pick another one.\n");
@@ -69,5 +71,58 @@ public class Game {
 		}
 		
 		return job;
+	}
+	
+	public void promptInventory() {
+		System.out.println("Select an item: ");
+		for(int x = 0; x < 20; x++) {
+			
+		}
+	}
+	
+	public void run() {
+		switch(promptOption()) {
+		case 0:
+			player.stats.health = player.stats.mhealth;
+			System.out.format("%s has been fully rested. HP: %d/%d", player.name, player.stats.health, player.stats.mhealth);
+			break;
+		case 1:
+			System.out.println("-=-=- Inventory -=-=-");
+			System.out.format("Main Hand: %s\n", player.inventory[ItemType.MAINHAND.getSlot()]);
+			System.out.format("Off Hand: %s\n", player.inventory[ItemType.OFFHAND.getSlot()]);
+			System.out.format("Substance: %s\n\n", player.inventory[ItemType.SUBSTANCE.getSlot()]);
+			
+			for(int x = 0; x < 20; x++) {
+				System.out.format("[%d]	%s\n", x + 1, player.inventory[x]);
+			}
+			
+			System.out.print("\nWhich item would you like to interact with: ");
+			int slot = 0;
+			while(slot < 1 || slot > 20) {
+				slot = scanner.nextInt();
+				if(slot < 1 || slot > 20)
+					System.out.println("That is not a valid slot.");
+			}
+			if(player.inventory[slot] == null) {
+				System.out.println("That slot is empty.");
+			} else {
+				System.out.format("You have interacted with slot %d\n", slot);
+			}
+			//prompt player for what they want to do
+			//(equip item, throw away item, sort items)
+			break;
+		case 2:
+			System.out.println("-=-=- Areas -=-=-");
+			System.out.println("Ceres");
+			System.out.println("Nebula");
+			System.out.println("Andromeda");
+			System.out.print("\nWhich area would you like to explore: ");
+			//do some prompt loop here
+			//prompt area and run combat 
+			break;
+		case 3:
+			//save data, close game
+			break;
+		}
 	}
 }
