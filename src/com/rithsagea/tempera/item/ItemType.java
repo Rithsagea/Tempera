@@ -1,9 +1,9 @@
 package com.rithsagea.tempera.item;
 
 public enum ItemType {
-	MAINHAND(1),
-	OFFHAND(2),
-	SUBSTANCE(0);
+	MAINHAND(21),
+	OFFHAND(22),
+	SUBSTANCE(20);
 	
 	private int slot;
 	
