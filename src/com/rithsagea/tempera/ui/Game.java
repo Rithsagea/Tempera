@@ -95,6 +95,7 @@ public class Game {
 			System.out.format("%s has been fully rested. HP: %d/%d", player.name, player.stats.health, player.stats.mhealth);
 			break;
 		case 1:
+			//also display player stats somewhere
 			System.out.println("-=-=- Inventory -=-=-");
 			System.out.format("Main Hand: %s\n", player.inventory[ItemType.MAINHAND.getSlot()]);
 			System.out.format("Off Hand: %s\n", player.inventory[ItemType.OFFHAND.getSlot()]);
@@ -148,7 +149,11 @@ public class Game {
 			if(c == 'F') {
 				CombatManager manager = new CombatManager(player, monster);
 				Item item = manager.run();
-				player.pickupItem(item);
+				if(item == null) {
+					//deal with death
+				} else {
+					player.pickupItem(item);
+				}
 			} else {
 				System.out.format("You ran away from the %s", monster);
 			}
