@@ -2,6 +2,7 @@ package com.rithsagea.tempera.ui;
 
 import java.util.Scanner;
 
+import com.rithsagea.tempera.Area;
 import com.rithsagea.tempera.item.ItemType;
 import com.rithsagea.tempera.stat.Job;
 import com.rithsagea.tempera.stat.Player;
@@ -116,7 +117,16 @@ public class Game {
 			System.out.println("Ceres");
 			System.out.println("Nebula");
 			System.out.println("Andromeda");
-			System.out.print("\nWhich area would you like to explore: ");
+			Area area = null;
+			while(area  == null) {
+				System.out.print("Which area would you like to explore: ");
+				try {
+					area = Area.valueOf(scanner.nextLine().toUpperCase());
+				} catch(IllegalArgumentException e) {
+					System.out.println("That is not a valid area.");
+				}
+			}
+			System.out.format("You have went to %s", area);
 			//do some prompt loop here
 			//prompt area and run combat 
 			break;
