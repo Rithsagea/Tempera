@@ -40,6 +40,8 @@ public class Main {
 //		CombatManager manager = new CombatManager(player, monster);
 //		manager.run();
 		Game window = new Game();
-		window.run();
+		while(true) {
+			window.run();
+		}
 	}
 }
