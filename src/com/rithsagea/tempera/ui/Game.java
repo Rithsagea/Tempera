@@ -3,8 +3,12 @@ package com.rithsagea.tempera.ui;
 import java.util.Scanner;
 
 import com.rithsagea.tempera.Area;
+import com.rithsagea.tempera.DataManager;
+import com.rithsagea.tempera.item.Item;
 import com.rithsagea.tempera.item.ItemType;
+import com.rithsagea.tempera.stat.CombatManager;
 import com.rithsagea.tempera.stat.Job;
+import com.rithsagea.tempera.stat.Monster;
 import com.rithsagea.tempera.stat.Player;
 
 public class Game {
@@ -32,24 +36,27 @@ public class Game {
 			System.out.println("[S]earch");
 			System.out.println("[E]xit");
 			System.out.print("What would you like to do: ");
-			c = scanner.nextLine().charAt(0);
-			Character.toLowerCase(c);
-			switch(c) {
-				case 'r':
-					res = 0;
-					break;
-				case 'i':
-					res = 1;
-					break;
-				case 's':
-					res = 2;
-					break;
-				case 'e':
-					res = 3;
-					System.out.println("\n\n\n\nThank you for playing Project Tempera.");
-					break;
-				default:
-					System.out.println("\nThat is not a valid option. Please pick another one.\n");
+			try {
+				c = scanner.nextLine().charAt(0);
+				Character.toLowerCase(c);
+				switch(c) {
+					case 'r':
+						res = 0;
+						break;
+					case 'i':
+						res = 1;
+						break;
+					case 's':
+						res = 2;
+						break;
+					case 'e':
+						res = 3;
+						break;
+					default:
+						System.out.println("\nThat is not a valid option. Please pick another one.\n");
+				}
+			} catch(StringIndexOutOfBoundsException e) {
+				System.out.println("You cannot have an empty input");
 			}
 		}
 		return res;
@@ -104,7 +111,7 @@ public class Game {
 				if(slot < 1 || slot > 20)
 					System.out.println("That is not a valid slot.");
 			}
-			if(player.inventory[slot] == null) {
+			if(player.inventory[slot - 1] == null) {
 				System.out.println("That slot is empty.");
 			} else {
 				System.out.format("You have interacted with slot %d\n", slot);
@@ -113,7 +120,7 @@ public class Game {
 			//(equip item, throw away item, sort items)
 			break;
 		case 2:
-			System.out.println("-=-=- Areas -=-=-");
+			System.out.println("\n-=-=- Areas -=-=-");
 			System.out.println("Ceres");
 			System.out.println("Nebula");
 			System.out.println("Andromeda");
@@ -126,12 +133,33 @@ public class Game {
 					System.out.println("That is not a valid area.");
 				}
 			}
-			System.out.format("You have went to %s", area);
-			//do some prompt loop here
-			//prompt area and run combat 
+			System.out.format("You have went to %s\n\n", area);
+			Monster monster = DataManager.getMonster(area);
+			System.out.format("%s looks for a monster.\nRithsagea found a %s!\n\n", player, monster);
+			
+			System.out.format("-=-=- %s -=-=-\n%s\n\n", monster, monster.stats);
+			
+			char c = ' ';
+			while(c != 'R' && c != 'F') {
+				System.out.print("Would you like to [r]un, or [f]ight: ");
+				c = Character.toUpperCase(scanner.nextLine().charAt(0));
+			}
+			
+			if(c == 'F') {
+				CombatManager manager = new CombatManager(player, monster);
+				Item item = manager.run();
+				player.pickupItem(item);
+			} else {
+				System.out.format("You ran away from the %s", monster);
+			}
 			break;
 		case 3:
+			System.out.println("\n\n\n\nThank you for playing Project Tempera.");
+			System.exit(0);
 			//save data, close game
+			break;
+		default:
+			System.out.println("There was an error parsing the input");
 			break;
 		}
 	}
