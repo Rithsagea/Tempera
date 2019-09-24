@@ -23,7 +23,7 @@ public class Game {
 		
 		player = new Player(name, job.getStats());
 		
-		System.out.format("\n-=-=- %s -=-=-\n%s", player.name, player.stats);
+		System.out.format("\n-=-=- %s -=-=-\n%s\n", player.name, player.stats);
 	}
 	
 	public int promptOption() {
@@ -35,7 +35,7 @@ public class Game {
 			System.out.println("[I]nventory");
 			System.out.println("[S]earch");
 			System.out.println("[E]xit");
-			System.out.print("What would you like to do: ");
+			System.out.print("\nWhat would you like to do: ");
 			try {
 				c = scanner.nextLine().charAt(0);
 				Character.toLowerCase(c);
@@ -64,13 +64,13 @@ public class Game {
 	
 	public Job getJob() {
 		Job job = null;
+		System.out.println("\n-=-=- Classes -=-=-");
+		System.out.println("Warrior - Atk: 10  Def: 10  HP: 10");
+		System.out.println("Assasin - Atk: 15  Def: 5  HP: 10");
+		System.out.println("Paladin - Atk: 5  Def: 15  HP: 10");
+		System.out.println("Mage - Atk: 20  Def: 5  HP: 5");
 		while(job == null) {
-			System.out.println("\n-=-=- Classes -=-=-");
-			System.out.println("Warrior - Atk: 10  Def: 10  HP: 10");
-			System.out.println("Assasin - Atk: 15  Def: 5  HP: 10");
-			System.out.println("Paladin - Atk: 5  Def: 15  HP: 10");
-			System.out.println("Mage - Atk: 20  Def: 5  HP: 5");
-			System.out.print("What class is your character: ");
+			System.out.print("\nWhat class is your character: ");
 			try {
 				job = Job.valueOf(scanner.nextLine().toUpperCase());
 			} catch(IllegalArgumentException e) {
@@ -127,7 +127,7 @@ public class Game {
 			System.out.println("Andromeda");
 			Area area = null;
 			while(area  == null) {
-				System.out.print("Which area would you like to explore: ");
+				System.out.print("\nWhich area would you like to explore: ");
 				try {
 					area = Area.valueOf(scanner.nextLine().toUpperCase());
 				} catch(IllegalArgumentException e) {
@@ -138,7 +138,7 @@ public class Game {
 			Monster monster = DataManager.getMonster(area);
 			System.out.format("%s looks for a monster.\nRithsagea found a %s!\n\n", player, monster);
 			
-			System.out.format("-=-=- %s -=-=-\n%s\n\n", monster, monster.stats);
+			System.out.format("-=-=- %s -=-=-\nRarity: %s\n%s\n\n", monster, monster.rarity, monster.stats);
 			
 			char c = ' ';
 			while(c != 'R' && c != 'F') {
@@ -155,7 +155,7 @@ public class Game {
 					player.pickupItem(item);
 				}
 			} else {
-				System.out.format("You ran away from the %s", monster);
+				System.out.format("\nYou ran away from the %s\n", monster);
 			}
 			break;
 		case 3:
