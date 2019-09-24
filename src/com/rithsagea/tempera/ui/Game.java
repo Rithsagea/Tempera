@@ -155,6 +155,7 @@ public class Game {
 			}
 			System.out.format("You have went to %s\n\n", area);
 			Monster monster = DataManager.getMonster(area);
+			monster.stats.health = monster.stats.mhealth;
 			System.out.format("%s looks for a monster.\nRithsagea found a %s!\n\n", player, monster);
 			
 			System.out.format("-=-=- %s -=-=-\nRarity: %s\n%s\n\n", monster, monster.rarity, monster.stats);
