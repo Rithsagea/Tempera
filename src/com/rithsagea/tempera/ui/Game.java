@@ -115,7 +115,26 @@ public class Game {
 			if(player.inventory[slot - 1] == null) {
 				System.out.println("That slot is empty.");
 			} else {
-				System.out.format("You have interacted with slot %d\n", slot);
+				while(true) {
+					System.out.println("[E]quip [T]hrow away");
+					System.out.format("What would you like to do with the %s:", player.inventory[slot-1]);
+					try {
+						char c = Character.toUpperCase(scanner.nextLine().charAt(0));
+						switch(c) {
+							case 'E':
+								player.equipItem(slot - 1);
+								break;
+							case 'T':
+								player.throwItem(slot - 1);
+								break;
+							default:
+								System.out.println("That is not a valid option.");
+						}
+						break;
+					} catch(StringIndexOutOfBoundsException e) {
+						System.out.println("\n\nThere was an error parsing input");
+					}
+				}
 			}
 			//prompt player for what they want to do
 			//(equip item, throw away item, sort items)
@@ -150,7 +169,8 @@ public class Game {
 				CombatManager manager = new CombatManager(player, monster);
 				Item item = manager.run();
 				if(item == null) {
-					//deal with death
+					System.out.println("\n\n\nThank you for playing Project Tempera");
+					System.exit(0);
 				} else {
 					player.pickupItem(item);
 				}
