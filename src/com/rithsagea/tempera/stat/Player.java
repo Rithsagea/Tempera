@@ -39,7 +39,8 @@ public class Player {
 			return;
 		ItemType type = inventory[slot].type;
 		Item oldItem = inventory[type.getSlot()];
-		stats.subtract(oldItem.statBonus);
+		if(oldItem != null)
+			stats.subtract(oldItem.statBonus);
 		inventory[type.getSlot()] = inventory[slot];
 		stats.add(inventory[slot].statBonus);
 		inventory[slot] = oldItem;
