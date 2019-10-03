@@ -32,10 +32,18 @@ public class Vector implements Cloneable {
 	
 	//information about the vector
 	
+	/**
+	 * Gets the z coordinate of the vector
+	 * @return The z coordinate of the vector
+	 */
 	public double getX() {
 		return x;
 	}
 	
+	/**
+	 * Gets the y coordinate of the vector
+	 * @return The y coordinate of the vector
+	 */
 	public double getY() {
 		return y;
 	}
