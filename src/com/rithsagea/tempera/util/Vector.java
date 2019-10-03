@@ -1,6 +1,7 @@
 package com.rithsagea.tempera.util;
 
 public class Vector implements Cloneable {
+	
 	protected double x;
 	protected double y;
 	protected double z;
@@ -17,7 +18,6 @@ public class Vector implements Cloneable {
 		this.z = z;
 	}
 	
-	
 	/**
 	 * Create a vector with integer values
 	 * @param x	An integer that represents the vector's x coordinate
@@ -28,6 +28,10 @@ public class Vector implements Cloneable {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+	}
+	
+	public Vector clone() {
+		return new Vector(x, y, z);
 	}
 	
 	//information about the vector
@@ -64,19 +68,29 @@ public class Vector implements Cloneable {
 		return Math.sqrt(x * x + y * y + z * z);
 	}
 	
-	
-	
 	//basic operations
 	
 	/**
 	 * Adds a vector to this vector
 	 * @param vector The object that is being added to this vector
-	 * @return The resulting vector from the operation
+	 * @return This vector
 	 */
 	public Vector add(Vector vector) {
-		Vector result = new Vector(vector.x + x, vector.y + y, vector.z + z);
-		return result;
+		x += vector.x;
+		y += vector.y;
+		z += vector.z;
+		return this;
 	}
 	
-	
+	/**
+	 * Subtracts a vector from this vector
+	 * @param vector The object that is being subtracted from this vector
+	 * @return This vector
+	 */
+	public Vector subtract(Vector vector) {
+		x -= vector.x;
+		y -= vector.y;
+		z -= vector.z;
+		return this;
+	}
 }
