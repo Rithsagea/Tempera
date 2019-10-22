@@ -1,4 +1,4 @@
-package com.rithsagea.tempera.util;
+package com.tempera.vector;
 
 public class Vector implements Cloneable {
 	
