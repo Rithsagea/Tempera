@@ -1,5 +1,10 @@
 package com.tempera.vector;
 
+/**
+ * @author	Rithsagea
+ * @version	alpha.-1
+ * @since	2019-10-22
+ */
 public class Vector implements Cloneable {
 	
 	protected double x;
