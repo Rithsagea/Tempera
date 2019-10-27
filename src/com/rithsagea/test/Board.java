@@ -10,6 +10,12 @@ import javax.swing.JPanel;
 
 public class Board extends JPanel {
 	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6179423828128910723L;
+	
 	private ImageIcon icon;
 	private Point mouse;
 	
