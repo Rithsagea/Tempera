@@ -12,7 +12,19 @@ public class Player {
 		this.velocity = new Vector(0, 0, 0);
 	}
 	
-	public void addMomentum(Vector vector) {
-		velocity.add(vector);
+	public void setVelocity(Vector vector) {
+		velocity = vector;
+	}
+	
+	public Vector getVelocity() {
+		return velocity;
+	}
+	
+	public void updatePosition() {
+		position.subtract(velocity);
+	}
+	
+	public Vector getPosition() {
+		return position.clone();
 	}
 }

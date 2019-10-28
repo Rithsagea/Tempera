@@ -88,6 +88,20 @@ public class Vector implements Cloneable {
 	}
 	
 	/**
+	 * 
+	 * @param x	The x value to increment the vector by
+	 * @param y	The y value to increment the vector by
+	 * @param z	The z value to increment the vector by
+	 * @return	This vector
+	 */
+	public Vector add(float x, float y, float z) {
+		this.x += x;
+		this.y += y;
+		this.z += z;
+		return this;
+	}
+	
+	/**
 	 * Subtracts a vector from this vector
 	 * @param vector The object that is being subtracted from this vector
 	 * @return This vector
