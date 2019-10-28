@@ -39,6 +39,10 @@ public class Vector implements Cloneable {
 		return new Vector(x, y, z);
 	}
 	
+	public String toString() {
+		return String.format("(%f, %f, %f)", x, y, z);
+	}
+	
 	//information about the vector
 	
 	/**

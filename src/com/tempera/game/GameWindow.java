@@ -1,23 +1,59 @@
 package com.tempera.game;
 
-import javax.swing.JFrame;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class GameWindow {
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import com.tempera.entity.Player;
+import com.tempera.vector.Vector;
+
+public class GameWindow extends JFrame implements KeyListener {
+
+	private static final long serialVersionUID = -7296143310032123444L;
+	private static Player player = new Player(new Vector(1080 / 2, 720 / 2, 0));
 	
-	private JFrame frame;
-	private WorldDisplay worldDisplay;
 	
 	public GameWindow() {
-		frame = new JFrame("Project Tempera");
-		worldDisplay = new WorldDisplay();
+		super("Project Tempera");
 		
-		frame.setSize(1080, 720);
-		frame.setVisible(true);
-		frame.setLayout(null);
+		JPanel panel = new JPanel() {
+			
+			private ImageIcon image = new ImageIcon("src/resources/sans.png");
+			
+			@Override
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Vector pos = player.getPosition();
+				g.drawImage(image.getImage(), (int) pos.getX(), (int) pos.getY(), null);
+			}
+		};
+		
+		pack();
+		setSize(1080, 720);
+		setVisible(true);
+		
+		addKeyListener(this);
+		add(panel);
 	}
 	
-	public void runTick() {
-		worldDisplay.tick();
-		frame.repaint();
+	@Override
+	public void keyTyped(KeyEvent e) { }
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+		
+		if(key == KeyEvent.VK_D) player.getPosition().add(5, 0, 0);
+		if(key == KeyEvent.VK_A) player.getPosition().add(-5, 0, 0);
+		if(key == KeyEvent.VK_W) player.getPosition().add(0, 5, 0);
+		if(key == KeyEvent.VK_S) player.getPosition().add(0, -5, 0);
 	}
+
+	@Override
+	public void keyReleased(KeyEvent e) { }
+
 }

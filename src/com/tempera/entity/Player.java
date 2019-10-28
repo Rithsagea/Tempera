@@ -25,6 +25,6 @@ public class Player {
 	}
 	
 	public Vector getPosition() {
-		return position.clone();
+		return position;
 	}
 }
