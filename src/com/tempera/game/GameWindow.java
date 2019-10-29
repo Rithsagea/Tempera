@@ -40,6 +40,10 @@ public class GameWindow extends JFrame implements KeyListener {
 		add(panel);
 	}
 	
+	public static void tick() {
+		player.updatePosition();
+	}
+	
 	@Override
 	public void keyTyped(KeyEvent e) { }
 
@@ -47,10 +51,23 @@ public class GameWindow extends JFrame implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		
-		if(key == KeyEvent.VK_D) player.getPosition().add(5, 0, 0);
-		if(key == KeyEvent.VK_A) player.getPosition().add(-5, 0, 0);
-		if(key == KeyEvent.VK_W) player.getPosition().add(0, 5, 0);
-		if(key == KeyEvent.VK_S) player.getPosition().add(0, -5, 0);
+		if(key == KeyEvent.VK_D) { 
+			player.getVelocity().setX(5);;
+			System.out.println("RIGHT");
+		}
+		if(key == KeyEvent.VK_A) {
+			player.getVelocity().setX(-5);;
+			System.out.println("LEFT");
+		}
+		if(key == KeyEvent.VK_W) {
+			player.getVelocity().setY(-5);;
+			System.out.println("UP");
+		}
+		if(key == KeyEvent.VK_S) {
+			player.getVelocity().setY(5);
+			System.out.println("DOWN");
+		}
+		System.out.println(player.getPosition());
 	}
 
 	@Override
