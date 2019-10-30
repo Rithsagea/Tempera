@@ -6,11 +6,11 @@ public class Main {
 	
 	public static void main(String[] args) {
 		window = new GameWindow();
-		long time = System.currentTimeMillis();
+		long nextTick = System.currentTimeMillis();
 		while(true) {
-			if(time + 10000 > System.currentTimeMillis()) {
+			if(nextTick < System.currentTimeMillis()) {
 				GameWindow.tick();
-				time = System.currentTimeMillis();
+				nextTick = System.currentTimeMillis() + 1000 / 50;
 			}
 			window.repaint();
 		}
