@@ -54,7 +54,8 @@ public class GameWindow extends JFrame {
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
 			velocity.setX(Math.max(velocity.getX() * 1.5, 1));
 		//add friction (remember, negative)
-		
+		velocity.setX(velocity.getX() * 0.95);
+                velocity.setY(velocity.getY() * 0.95);
 		//cap velocity here
 		velocity.setY(MathUtils.clamp(velocity.getY(), -10, 10));
 		velocity.setX(MathUtils.clamp(velocity.getX(), -10, 10));
