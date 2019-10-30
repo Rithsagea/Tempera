@@ -20,8 +20,13 @@ public class Player {
 		return velocity;
 	}
 	
+	//change this later
+	public double getAcceleration() {
+		return 1.5;
+	}
+	
 	public void updatePosition() {
-		position.subtract(velocity);
+		position.add(velocity);
 	}
 	
 	public Vector getPosition() {

@@ -98,7 +98,7 @@ public class Vector implements Cloneable {
 	 * @param z	The z value to increment the vector by
 	 * @return	This vector
 	 */
-	public Vector add(float x, float y, float z) {
+	public Vector add(double x, double y, double z) {
 		this.x += x;
 		this.y += y;
 		this.z += z;
@@ -127,5 +127,17 @@ public class Vector implements Cloneable {
 	
 	public void setZ(double z) {
 		this.z = z;
+	}
+	
+	public void addX(double x) {
+		this.x += x;
+	}
+	
+	public void addY(double y) {
+		this.y += y;
+	}
+	
+	public void addZ(double z) {
+		this.z += z;
 	}
 }

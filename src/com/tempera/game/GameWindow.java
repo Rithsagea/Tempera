@@ -1,21 +1,21 @@
 package com.tempera.game;
 
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.sun.glass.events.KeyEvent;
 import com.tempera.entity.Player;
+import com.tempera.keyboard.KeyboardData;
+import com.tempera.util.MathUtils;
 import com.tempera.vector.Vector;
 
-public class GameWindow extends JFrame implements KeyListener {
+public class GameWindow extends JFrame {
 
 	private static final long serialVersionUID = -7296143310032123444L;
 	private static Player player = new Player(new Vector(1080 / 2, 720 / 2, 0));
-	
 	
 	public GameWindow() {
 		super("Project Tempera");
@@ -36,41 +36,29 @@ public class GameWindow extends JFrame implements KeyListener {
 		setSize(1080, 720);
 		setVisible(true);
 		
-		addKeyListener(this);
+		addKeyListener(new KeyboardData());
 		add(panel);
 	}
 	
 	public static void tick() {
+		Vector velocity = player.getVelocity();
+		
+		//movement
+		//check keys
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
+			velocity.setY(Math.min(velocity.getY() * 1.5, -1));
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_DOWN)) 
+			velocity.setY(Math.max(velocity.getY() * 1.5, 1));
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT))
+			velocity.setX(Math.min(velocity.getX() * 1.5, -1));
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
+			velocity.setX(Math.max(velocity.getX() * 1.5, 1));
+		//add friction (remember, negative)
+		
+		//cap velocity here
+		velocity.setY(MathUtils.clamp(velocity.getY(), -10, 10));
+		velocity.setX(MathUtils.clamp(velocity.getX(), -10, 10));
+		
 		player.updatePosition();
 	}
-	
-	@Override
-	public void keyTyped(KeyEvent e) { }
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		int key = e.getKeyCode();
-		
-		if(key == KeyEvent.VK_D) { 
-			player.getVelocity().setX(5);;
-			System.out.println("RIGHT");
-		}
-		if(key == KeyEvent.VK_A) {
-			player.getVelocity().setX(-5);;
-			System.out.println("LEFT");
-		}
-		if(key == KeyEvent.VK_W) {
-			player.getVelocity().setY(-5);;
-			System.out.println("UP");
-		}
-		if(key == KeyEvent.VK_S) {
-			player.getVelocity().setY(5);
-			System.out.println("DOWN");
-		}
-		System.out.println(player.getPosition());
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) { }
-
 }
