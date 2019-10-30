@@ -10,7 +10,7 @@ public class Main {
 		while(true) {
 			if(nextTick < System.currentTimeMillis()) {
 				GameWindow.tick();
-				nextTick = System.currentTimeMillis() + 1000 / 50;
+				nextTick = System.currentTimeMillis() + 1000 / 60; //60 ticks per second
 			}
 			window.repaint();
 		}
