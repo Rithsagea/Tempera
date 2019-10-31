@@ -22,7 +22,7 @@ public class GameWindow extends JFrame {
 		
 		JPanel panel = new JPanel() {
 			
-			private ImageIcon image = new ImageIcon("src/resources/sans.png");
+			private ImageIcon image = new ImageIcon("src/resources/frog.png");
 			
 			@Override
 			public void paintComponent(Graphics g) {
@@ -46,19 +46,19 @@ public class GameWindow extends JFrame {
 		//movement
 		//check keys
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
-			velocity.setY(Math.min(velocity.getY() * 1.5, -0.5));
+			velocity.setY(Math.min(velocity.getY() * player.getAcceleration(), -0.5));
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_DOWN)) 
-			velocity.setY(Math.max(velocity.getY() * 1.5, 0.5));
+			velocity.setY(Math.max(velocity.getY() * player.getAcceleration(), 0.5));
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT))
-			velocity.setX(Math.min(velocity.getX() * 1.5, -0.5));
+			velocity.setX(Math.min(velocity.getX() * player.getAcceleration(), -0.5));
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
-			velocity.setX(Math.max(velocity.getX() * 1.5, 0.5));
+			velocity.setX(Math.max(velocity.getX() * player.getAcceleration(), 0.5));
 		//add friction (remember, negative)
-		velocity.setX(velocity.getX() * 0.95);
-                velocity.setY(velocity.getY() * 0.95);
+		velocity.setX(velocity.getX() * 0.90);
+		velocity.setY(velocity.getY() * 0.90);
 		//cap velocity here
-		velocity.setY(MathUtils.clamp(velocity.getY(), -10, 10));
-		velocity.setX(MathUtils.clamp(velocity.getX(), -10, 10));
+		velocity.setY(MathUtils.clamp(velocity.getY(), -5, 5));
+		velocity.setX(MathUtils.clamp(velocity.getX(), -5, 5));
 		
 		player.updatePosition();
 	}

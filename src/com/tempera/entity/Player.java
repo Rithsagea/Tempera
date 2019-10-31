@@ -22,7 +22,7 @@ public class Player {
 	
 	//change this later
 	public double getAcceleration() {
-		return 1.5;
+		return 2;
 	}
 	
 	public void updatePosition() {
