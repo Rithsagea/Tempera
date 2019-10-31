@@ -117,6 +117,13 @@ public class Vector implements Cloneable {
 		return this;
 	}
 	
+	public Vector multiply (double scalar) {
+		x *= scalar;
+		y *= scalar;
+		z *= scalar;
+		return this;
+	}
+	
 	public void setX(double x) {
 		this.x = x;
 	}
