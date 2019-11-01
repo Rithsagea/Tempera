@@ -28,7 +28,7 @@ public class GameWindow extends JFrame {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				Vector pos = player.getPosition();
-				g.drawImage(image.getImage(), (int) pos.getX(), (int) pos.getY(), null);
+				g.drawImage(image.getImage(), (int) pos.x, (int) pos.y, null);
 			}
 		};
 		
@@ -46,19 +46,19 @@ public class GameWindow extends JFrame {
 		//movement
 		//check keys
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
-			velocity.setY(Math.min(velocity.getY() * player.getAcceleration(), -0.5));
+			velocity.y = (Math.min(velocity.y * player.getAcceleration(), -0.5));
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_DOWN)) 
-			velocity.setY(Math.max(velocity.getY() * player.getAcceleration(), 0.5));
+			velocity.y = (Math.max(velocity.y * player.getAcceleration(), 0.5));
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT))
-			velocity.setX(Math.min(velocity.getX() * player.getAcceleration(), -0.5));
+			velocity.x = (Math.min(velocity.x * player.getAcceleration(), -0.5));
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
-			velocity.setX(Math.max(velocity.getX() * player.getAcceleration(), 0.5));
+			velocity.x = (Math.max(velocity.x * player.getAcceleration(), 0.5));
 		//add friction (remember, negative)
-		velocity.setX(velocity.getX() * 0.90);
-		velocity.setY(velocity.getY() * 0.90);
+		velocity.x = (velocity.x * 0.90);
+		velocity.y = (velocity.y * 0.90);
 		//cap velocity here
-		velocity.setY(MathUtils.clamp(velocity.getY(), -5, 5));
-		velocity.setX(MathUtils.clamp(velocity.getX(), -5, 5));
+		velocity.y = (MathUtils.clamp(velocity.y, -5, 5));
+		velocity.x = (MathUtils.clamp(velocity.x, -5, 5));
 		
 		player.updatePosition();
 	}

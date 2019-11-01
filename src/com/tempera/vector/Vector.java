@@ -7,9 +7,9 @@ package com.tempera.vector;
  */
 public class Vector implements Cloneable {
 	
-	protected double x;
-	protected double y;
-	protected double z;
+	public double x;
+	public double y;
+	public double z;
 	
 	/**
 	 * Create a vector with double values
@@ -44,30 +44,6 @@ public class Vector implements Cloneable {
 	}
 	
 	//information about the vector
-	
-	/**
-	 * Gets the z coordinate of the vector
-	 * @return The z coordinate of the vector
-	 */
-	public double getX() {
-		return x;
-	}
-	
-	/**
-	 * Gets the y coordinate of the vector
-	 * @return The y coordinate of the vector
-	 */
-	public double getY() {
-		return y;
-	}
-	
-	/**
-	 * Gets the z coordinate of the vector
-	 * @return The z coordinate of the vector
-	 */
-	public double getZ() {
-		return z;
-	}
 	
 	/**
 	 * Gets the magnitude of the vector
@@ -122,29 +98,5 @@ public class Vector implements Cloneable {
 		y *= scalar;
 		z *= scalar;
 		return this;
-	}
-	
-	public void setX(double x) {
-		this.x = x;
-	}
-	
-	public void setY(double y) {
-		this.y = y;
-	}
-	
-	public void setZ(double z) {
-		this.z = z;
-	}
-	
-	public void addX(double x) {
-		this.x += x;
-	}
-	
-	public void addY(double y) {
-		this.y += y;
-	}
-	
-	public void addZ(double z) {
-		this.z += z;
 	}
 }
