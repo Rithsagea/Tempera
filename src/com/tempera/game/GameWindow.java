@@ -20,6 +20,7 @@ public class GameWindow extends JFrame {
 	public GameWindow() {
 		super("Project Tempera");
 		
+		//TODO replace this with Sprite
 		JPanel panel = new JPanel() {
 			
 			private ImageIcon image = new ImageIcon("src/resources/frog.png");

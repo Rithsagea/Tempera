@@ -3,7 +3,7 @@ package com.tempera.util;
 import java.util.Random;
 
 public class WeightedList<T> {
-	
+	//TODO compare this with dartboard algorithm
 	private class Node {
 		 public T element;
 		 public int weight;

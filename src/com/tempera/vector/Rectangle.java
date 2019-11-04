@@ -18,6 +18,9 @@ public class Rectangle {
 	
 	/**
 	 * Checks whether 2 rectangles are intersecting
+	 * 
+	 * TODO try to optimize the large amount of addition being done 
+	 * 		a lot of the compares only have to be done once
 	 */
 	public boolean isIntersecting(Rectangle r) {
 		return (MathUtils.between(x + width, r.x, r.x + r.width)

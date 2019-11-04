@@ -4,6 +4,8 @@ import com.tempera.vector.Vector;
 
 public class Player {
 	
+	//TODO make all the movement stuff be moved into an interface or seperate class
+	
 	private Vector position;
 	private Vector velocity;
 	

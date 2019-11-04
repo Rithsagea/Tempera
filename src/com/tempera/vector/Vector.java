@@ -54,7 +54,7 @@ public class Vector implements Cloneable {
 	}
 	
 	//basic operations
-	
+	//TODO should these be immutable?
 	/**
 	 * Adds a vector to this vector
 	 * @param vector The object that is being added to this vector
