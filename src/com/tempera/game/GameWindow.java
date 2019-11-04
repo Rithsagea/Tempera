@@ -1,12 +1,12 @@
 package com.tempera.game;
 
+import java.awt.event.KeyEvent;
 import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.sun.glass.events.KeyEvent;
 import com.tempera.entity.Player;
 import com.tempera.keyboard.KeyboardData;
 import com.tempera.util.MathUtils;
