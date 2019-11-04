@@ -23,6 +23,11 @@ public class WeightedList<T> {
 	protected int totalWeight = 0;
 	protected int elements = 0;
 	
+	/**
+	 * Add an element to the WeightedList
+	 * @param element	The element to add to the weighted list
+	 * @param weight	The weight of the given element
+	 */
 	public void put(T element, int weight) {
 		totalWeight += weight;
 		elements++;
@@ -31,6 +36,10 @@ public class WeightedList<T> {
 		top = node;
 	}
 	
+	/**
+	 * 
+	 * @return	A randomly chosen element from the weighted list
+	 */
 	public T getElement() {
 		int value = rand.nextInt(totalWeight) + 1;
 		Node temp = root;
