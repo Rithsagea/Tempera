@@ -93,6 +93,11 @@ public class Vector implements Cloneable {
 		return this;
 	}
 	
+	/**
+	 * Multiplies the vector by a scalar
+	 * @param scalar	The scalar to multiply the vector by
+	 * @return	This vector
+	 */
 	public Vector multiply (double scalar) {
 		x *= scalar;
 		y *= scalar;
