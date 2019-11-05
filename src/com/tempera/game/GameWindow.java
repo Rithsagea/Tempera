@@ -1,21 +1,19 @@
 package com.tempera.game;
 
-import java.awt.event.KeyEvent;
 import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.tempera.entity.Player;
 import com.tempera.keyboard.KeyboardData;
-import com.tempera.util.MathUtils;
-import com.tempera.vector.Vector;
+import com.tempera.vector.Rectangle;
 
 public class GameWindow extends JFrame {
 
 	private static final long serialVersionUID = -7296143310032123444L;
-	private static Player player = new Player(new Vector(1080 / 2, 720 / 2, 0));
+	private static Rectangle rect1 = new Rectangle(540, 360, 100, 100);
+	private static Rectangle rect2 = new Rectangle(560, 380, 400, 50);
 	
 	public GameWindow() {
 		super("Project Tempera");
@@ -23,13 +21,15 @@ public class GameWindow extends JFrame {
 		//TODO replace this with Sprite
 		JPanel panel = new JPanel() {
 			
-			private ImageIcon image = new ImageIcon("src/resources/frog.png");
+			private ImageIcon image1 = new ImageIcon("src/resources/background1.png");
+			private ImageIcon image2 = new ImageIcon("src/resources/background2.png");
 			
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				Vector pos = player.getPosition();
-				g.drawImage(image.getImage(), (int) pos.x, (int) pos.y, null);
+				g.drawImage(image1.getImage(), (int)rect1.x, (int)rect1.y, (int)rect1.length, (int)rect1.width, null);
+				g.drawImage(image2.getImage(), (int)rect2.x, (int)rect2.y, (int)rect2.length, (int)rect2.width, null);
+				System.out.println(rect1.isIntersecting(rect2));
 			}
 		};
 		
@@ -42,6 +42,7 @@ public class GameWindow extends JFrame {
 	}
 	
 	public static void tick() {
+		/*
 		Vector velocity = player.getVelocity();
 		
 		//movement
@@ -62,5 +63,6 @@ public class GameWindow extends JFrame {
 		velocity.x = (MathUtils.clamp(velocity.x, -5, 5));
 		
 		player.updatePosition();
+		*/
 	}
 }
