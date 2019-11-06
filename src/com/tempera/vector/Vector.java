@@ -37,7 +37,7 @@ public class Vector implements Cloneable {
 	}
 	
 	public String toString() {
-		return String.format("(%f, %f)", x, y);
+		return String.format("(%.4f, %.4f)", x, y);
 	}
 	
 	//information about the vector
@@ -67,10 +67,9 @@ public class Vector implements Cloneable {
 	 * 
 	 * @param x	The x value to increment the vector by
 	 * @param y	The y value to increment the vector by
-	 * @param z	The z value to increment the vector by
 	 * @return	This vector
 	 */
-	public Vector add(double x, double y, double z) {
+	public Vector add(double x, double y) {
 		this.x += x;
 		this.y += y;
 		return this;
