@@ -4,14 +4,14 @@ public class Rectangle {
 	
 	public double x;
 	public double y;
+	public double height;
 	public double width;
-	public double length;
 	
-	public Rectangle(double x, double y, double length, double width) {
+	public Rectangle(double x, double y, double width, double height) {
 		this.x = x;
 		this.y = y;
-		this.length = length;
 		this.width = width;
+		this.height = height;
 	}
 	
 	/**
@@ -24,12 +24,12 @@ public class Rectangle {
 		//taken from geeksforgeeks
 		
 		//check if rectangle is above top edge of other rectangle
-		if(y < r.y + r.width && r.y > y + width) {
+		if(y < r.y + r.height && r.y > y + height) {
 			System.out.println("above");
 			return false;
 		}
 		//check if rectangle is left of other left edge of rectangle
-		if(x > r.x + r.length && r.x > x + length) {
+		if(x > r.x + r.width && r.x > x + width) {
 			System.out.println("left");
 			return false;
 		}

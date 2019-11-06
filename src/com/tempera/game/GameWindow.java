@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.tempera.entity.Player;
+import com.tempera.graphics.Sprite;
 import com.tempera.keyboard.KeyboardData;
 import com.tempera.vector.Vector;
 
@@ -21,25 +22,18 @@ public class GameWindow extends JFrame {
 	private static final long accelerationRate = 3;
 	
 	private static final Player player = new Player(new Vector(540, 360));
-	private static Image image;
+	private static final Sprite sprite = new Sprite("src/resources/frog.png");
 	private static JLabel label;
 	
 	public GameWindow() {
 		super("Project Tempera");
-		
-		try {
-			image = ImageIO.read(new File("src/resources/frog.png"));
-		} catch (IOException e) {
-			System.out.println("File frog.png is missing!");
-			System.exit(ERROR);
-		}
 		
 		//TODO replace this with Sprite
 		JPanel panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				g.drawImage(image, (int)player.position.x, (int)player.position.y, null);
+				sprite.draw(g);
 			}
 		};
 		
@@ -66,6 +60,8 @@ public class GameWindow extends JFrame {
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
 			player.velocity.add(accelerationRate, 0);
 		player.updatePosition();
+		sprite.x = player.position.x;
+		sprite.y = player.position.y;
 		label.setText(String.format("<html>Position: %s<br/>Velocity: %s</html>", player.position, player.velocity));
 	}
 }
