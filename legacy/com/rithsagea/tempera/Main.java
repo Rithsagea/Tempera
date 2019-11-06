@@ -3,6 +3,7 @@ package com.rithsagea.tempera;
 import com.rithsagea.tempera.ui.Game;
 
 public class Main {
+	/*
 	
 	public static void main(String args[]) {
 		//Initialization
@@ -44,4 +45,5 @@ public class Main {
 			window.run();
 		}
 	}
+	*/
 }
