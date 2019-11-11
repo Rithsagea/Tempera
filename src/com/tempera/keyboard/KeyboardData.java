@@ -21,6 +21,8 @@ public class KeyboardData implements KeyListener {
 	}
 	
 	public static boolean isKeyPressed(int keyCode) {
-		return keyData.get(keyCode);
+		if(keyData.containsKey(keyCode))
+			return keyData.get(keyCode);
+		return false;
 	}
 }
