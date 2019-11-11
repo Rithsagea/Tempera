@@ -10,6 +10,9 @@ public class Vector implements Cloneable {
 	public double x;
 	public double y;
 	
+	public double theta;
+	public double radius;
+	
 	/**
 	 * Create a vector with double values
 	 * @param x	An double that represents the vector's x coordinate
@@ -95,5 +98,37 @@ public class Vector implements Cloneable {
 		x *= scalar;
 		y *= scalar;
 		return this;
+	}
+	
+	//fancy rectangular polar stuff
+	public void calculatePolar() {
+		radius = magnitude();
+		theta = Math.atan(y / x);
+	}
+	
+	public void calculateCartesian() {
+		x = Math.cos(theta) * radius;
+		y = Math.sin(theta) * radius;
+	}
+	
+	/**
+	 * 
+	 * @param theta	The angle to rotate the vector by (radians)
+	 * @return		This vector
+	 */
+	public Vector rotateRadians(double theta) {
+		calculatePolar();
+		this.theta += theta;
+		calculateCartesian();
+		return this;
+	}
+	
+	/**
+	 * 
+	 * @param theta	The angle to rotate the vector by (radians)
+	 * @return		This vector
+	 */
+	public Vector rotateDegrees(double theta) {
+		return rotateRadians(Math.toRadians(theta));
 	}
 }
