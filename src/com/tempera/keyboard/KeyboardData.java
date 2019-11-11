@@ -8,13 +8,6 @@ public class KeyboardData implements KeyListener {
 	
 	private static final HashMap<Integer, Boolean> keyData = new HashMap<Integer, Boolean>();
 	
-	public KeyboardData() {
-		keyData.put(KeyEvent.VK_RIGHT, false);
-		keyData.put(KeyEvent.VK_LEFT, false);
-		keyData.put(KeyEvent.VK_UP, false);
-		keyData.put(KeyEvent.VK_DOWN, false);
-	}
-	
 	@Override
 	public void keyTyped(KeyEvent e) { }
 	
@@ -29,6 +22,8 @@ public class KeyboardData implements KeyListener {
 	}
 	
 	public static boolean isKeyPressed(int keyCode) {
-		return keyData.get(keyCode);
+		if(keyData.containsKey(keyCode))
+			return keyData.get(keyCode);
+		return false;
 	}
 }
