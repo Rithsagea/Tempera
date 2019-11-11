@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
+
 import com.tempera.vector.Rectangle;
 
 public class Sprite extends Rectangle {
@@ -20,8 +22,7 @@ public class Sprite extends Rectangle {
 	 * @param filePath	The file which contains the image for this sprite
 	 */
 	public void setImage(String filePath) {
-		Toolkit t = Toolkit.getDefaultToolkit();
-		image = t.getImage(filePath);
+		image = new ImageIcon(filePath).getImage(); //TODO use better solution
 		width = image.getWidth(null);
 		height = image.getHeight(null);
 		System.out.format("(%.2f, %.2f)", width, height);
