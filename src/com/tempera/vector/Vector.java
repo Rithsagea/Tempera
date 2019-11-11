@@ -131,4 +131,11 @@ public class Vector implements Cloneable {
 	public Vector rotateDegrees(double theta) {
 		return rotateRadians(Math.toRadians(theta));
 	}
+	
+	public Vector addRadius(double r) {
+		calculatePolar();
+		radius += r;
+		calculateCartesian();
+		return this;
+	}
 }
