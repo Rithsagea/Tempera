@@ -1,66 +1,82 @@
 package com.tempera.game;
 
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.sun.glass.events.KeyEvent;
 import com.tempera.entity.Player;
+import com.tempera.graphics.Sprite;
 import com.tempera.keyboard.KeyboardData;
-import com.tempera.util.MathUtils;
 import com.tempera.vector.Vector;
 
 public class GameWindow extends JFrame {
 
 	private static final long serialVersionUID = -7296143310032123444L;
-	private static Player player = new Player(new Vector(1080 / 2, 720 / 2, 0));
+	private static final long accelerationRate = 3;
+	
+	private static final Player player = new Player(new Vector(540, 360));
+	private static final Sprite sprite = new Sprite("src/resources/frog.png");
+	private static JLabel label;
 	
 	public GameWindow() {
 		super("Project Tempera");
 		
 		//TODO replace this with Sprite
 		JPanel panel = new JPanel() {
-			
-			private ImageIcon image = new ImageIcon("src/resources/frog.png");
-			
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				Vector pos = player.getPosition();
-				g.drawImage(image.getImage(), (int) pos.x, (int) pos.y, null);
+				sprite.draw(g);
 			}
 		};
+		
+		label = new JLabel("dummytext");
 		
 		pack();
 		setSize(1080, 720);
 		setVisible(true);
 		
 		addKeyListener(new KeyboardData());
+		panel.add(label);
 		add(panel);
 	}
 	
 	public static void tick() {
-		Vector velocity = player.getVelocity();
-		
 		//movement
-		//check keys
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
-			velocity.y = (Math.min(velocity.y * player.getAcceleration(), -0.5));
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_DOWN)) 
-			velocity.y = (Math.max(velocity.y * player.getAcceleration(), 0.5));
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT))
-			velocity.x = (Math.min(velocity.x * player.getAcceleration(), -0.5));
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
-			velocity.x = (Math.max(velocity.x * player.getAcceleration(), 0.5));
-		//add friction (remember, negative)
-		velocity.x = (velocity.x * 0.90);
-		velocity.y = (velocity.y * 0.90);
-		//cap velocity here
-		velocity.y = (MathUtils.clamp(velocity.y, -5, 5));
-		velocity.x = (MathUtils.clamp(velocity.x, -5, 5));
+		moveAcceleration();
+		//moveCardinal();
 		
+		
+		sprite.x = player.position.x;
+		sprite.y = player.position.y;
+		label.setText(String.format("<html>Position: %s<br/>Velocity: %s</html>", player.position, player.velocity));
+	}
+	
+	public static void moveAcceleration() {
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT))
+			player.velocity.rotateDegrees(1);
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT))
+			player.velocity.rotateDegrees(-1);
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
+			player.velocity.addRadius(1);
+	}
+	
+	public static void moveCardinal() {
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
+			player.velocity.add(0, -accelerationRate);
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_DOWN)) 
+			player.velocity.add(0, accelerationRate);
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT))
+			player.velocity.add(-accelerationRate, 0);
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
+			player.velocity.add(accelerationRate, 0);
 		player.updatePosition();
 	}
 }

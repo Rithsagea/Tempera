@@ -2,36 +2,9 @@ package com.tempera.entity;
 
 import com.tempera.vector.Vector;
 
-public class Player {
-	
-	//TODO make all the movement stuff be moved into an interface or seperate class
-	
-	private Vector position;
-	private Vector velocity;
-	
+public class Player extends PhysicsObject {
 	public Player(Vector position) {
-		this.position = position;
-		this.velocity = new Vector(0, 0, 0);
-	}
-	
-	public void setVelocity(Vector vector) {
-		velocity = vector;
-	}
-	
-	public Vector getVelocity() {
-		return velocity;
-	}
-	
-	//change this later
-	public double getAcceleration() {
-		return 2;
-	}
-	
-	public void updatePosition() {
-		position.add(velocity);
-	}
-	
-	public Vector getPosition() {
-		return position;
+		this.position = position.clone();
+		this.friction = 0.8;
 	}
 }

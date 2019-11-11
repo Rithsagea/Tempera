@@ -1,19 +1,17 @@
 package com.tempera.vector;
 
-import com.tempera.util.MathUtils;
-
 public class Rectangle {
 	
 	public double x;
 	public double y;
+	public double height;
 	public double width;
-	public double length;
 	
-	public Rectangle(double x, double y, double width, double length) {
+	public Rectangle(double x, double y, double width, double height) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
-		this.length = length;
+		this.height = height;
 	}
 	
 	/**
@@ -23,9 +21,18 @@ public class Rectangle {
 	 * 		a lot of the compares only have to be done once
 	 */
 	public boolean isIntersecting(Rectangle r) {
-		return (MathUtils.between(x + width, r.x, r.x + r.width)
-				|| MathUtils.between(x, r.x, r.x + r.width))
-				&& (MathUtils.between(y + length, r.y, r.y + r.length)
-				|| MathUtils.between(y, r.y, r.y + r.length)); 
+		//taken from geeksforgeeks
+		
+		//check if rectangle is above top edge of other rectangle
+		if(y < r.y + r.height && r.y > y + height) {
+			System.out.println("above");
+			return false;
+		}
+		//check if rectangle is left of other left edge of rectangle
+		if(x > r.x + r.width && r.x > x + width) {
+			System.out.println("left");
+			return false;
+		}
+		return true;
 	}
 }
