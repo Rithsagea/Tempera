@@ -50,7 +50,25 @@ public class GameWindow extends JFrame {
 	
 	public static void tick() {
 		//movement
-		//check keys
+		moveAcceleration();
+		//moveCardinal();
+		
+		
+		sprite.x = player.position.x;
+		sprite.y = player.position.y;
+		label.setText(String.format("<html>Position: %s<br/>Velocity: %s</html>", player.position, player.velocity));
+	}
+	
+	public static void moveAcceleration() {
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT))
+			player.velocity.rotateDegrees(1);
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT))
+			player.velocity.rotateDegrees(-1);
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
+			player.velocity.addRadius(1);
+	}
+	
+	public static void moveCardinal() {
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
 			player.velocity.add(0, -accelerationRate);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_DOWN)) 
@@ -60,8 +78,5 @@ public class GameWindow extends JFrame {
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
 			player.velocity.add(accelerationRate, 0);
 		player.updatePosition();
-		sprite.x = player.position.x;
-		sprite.y = player.position.y;
-		label.setText(String.format("<html>Position: %s<br/>Velocity: %s</html>", player.position, player.velocity));
 	}
 }
