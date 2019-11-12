@@ -6,12 +6,14 @@ public class Rectangle {
 	public double y;
 	public double height;
 	public double width;
+	public double angle;	//pull test
 	
-	public Rectangle(double x, double y, double width, double height) {
+	public Rectangle(double x, double y, double width, double height, double angle) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.angle = angle;
 	}
 	
 	/**
