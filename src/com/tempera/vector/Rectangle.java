@@ -6,6 +6,9 @@ public class Rectangle {
 	public double y;
 	public double height;
 	public double width;
+	/**
+	 * The rectangles rotation based on the top left point in radians
+	 */
 	public double angle;
 	
 	public Rectangle(double x, double y, double width, double height, double angle) {
@@ -13,7 +16,7 @@ public class Rectangle {
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		this.angle = Math.toRadians(angle);	//assuming angle is input in degrees
+		this.angle = angle;
 	}
 	
 	/**
