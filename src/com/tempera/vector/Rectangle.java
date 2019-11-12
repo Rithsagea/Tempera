@@ -55,7 +55,7 @@ public class Rectangle {
 	private boolean isOverlapping(Vector[] points, Vector[] rpoints) {
 		int i;
 		int j;
-		boolean result = false;
+		boolean result;
 		for (int n = 0; n < 4; n++) {
 			result = false;
 			for (i = 0, j = points.length - 1; i < points.length; j = i++) {
