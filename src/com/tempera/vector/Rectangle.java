@@ -25,7 +25,7 @@ public class Rectangle {
 		//get points of both rectangles
 		Vector[] points = new Vector[] {new Vector(x, y), new Vector(x + width, y), new Vector(x + width, y + height), new Vector(x, y + height)};
 		for (int i = 1; i < 4; i++) {
-			points[i] = points[i].subtract(new Vector(x, y)).rotateRadians(angle).add(new Vector(x, y));
+			points[i] = points[i].subtract(new Vector(x, y)).rotateRadians(angle).add(new Vector(x, y));	//brings polygon to origin, rotates, and back to x,y
 		}
 		
 		Vector[] rpoints = new Vector[] {new Vector(r.x, r.y), new Vector(r.x + r.width, r.y), new Vector(r.x + r.width, r.y + r.height), new Vector(r.x, r.y + r.height)};
@@ -52,7 +52,7 @@ public class Rectangle {
 	private boolean isOverlapping(Vector[] points, Vector[] rpoints) {
 		int i;
 		int j;
-		boolean result = false;
+		boolean result;
 		for (int n = 0; n < 4; n++) {
 			result = false;
 			for (i = 0, j = points.length - 1; i < points.length; j = i++) {
