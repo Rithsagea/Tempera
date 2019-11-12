@@ -103,10 +103,7 @@ public class Vector implements Cloneable {
 	//fancy rectangular polar stuff
 	public void calculatePolar() {
 		radius = magnitude();
-		if(x != 0)
-			theta = Math.atan(y / x);
-		else
-			theta = 0;
+		theta = Math.atan2(y, x);
 	}
 	
 	public void calculateCartesian() {
