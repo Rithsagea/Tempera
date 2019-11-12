@@ -26,39 +26,23 @@ public class Rectangle {
 	 */
 	public boolean isIntersecting(Rectangle r) {
 		//get points of both rectangles
-		double[] xPoints = new double[] {x, 
-				x + height * Math.cos(angle - Math.PI / 4), 
-				x + height * (Math.cos(angle) - Math.cos(angle - Math.PI / 2)), 
-				x + height * Math.cos(angle)};
-		double[] yPoints = new double[] {y, 
-				y + height * Math.sin(angle - Math.PI / 4), 
-				y + height * (Math.sin(angle) - Math.sin(angle - Math.PI / 2)),
-				y + height * Math.sin(angle)};
-		double[] rxPoints = new double[] {r.x, 
-				r.x + r.height * Math.cos(r.angle - Math.PI / 4), 
-				r.x + r.height * (Math.cos(r.angle) - Math.cos(r.angle - Math.PI / 2)), 
-				r.x + r.height * Math.cos(r.angle)};
-		double[] ryPoints = new double[] {y, 
-				r.y + r.height * Math.sin(r.angle - Math.PI / 4), 
-				r.y + r.height * (Math.sin(r.angle) - Math.sin(r.angle - Math.PI / 2)),
-				r.y + r.height * Math.sin(r.angle)};
-		
-		//check if vertices of other rectangle are in this one
-		for (int i = 0; i < 4; i++)
-		{
-			if (contains(rxPoints[i], ryPoints[i], xPoints, yPoints))
-			{
-				return true;
-			}
+		Vector[] points = new Vector[] {new Vector(x, y), new Vector(x + width, y), new Vector(x + width, y + height), new Vector(x, y + height)};
+		for (int i = 1; i < 4; i++) {
+			points[i] = points[i].subtract(new Vector(x, y)).rotateRadians(angle).add(new Vector(x, y));
 		}
 		
-		//check if vertices of this rectangle are in the other one
-		for (int i = 0; i < 4; i++)
-		{
-			if (contains(xPoints[i], yPoints[i], rxPoints, ryPoints))
-			{
-				return true;
-			}
+		Vector[] rpoints = new Vector[] {new Vector(r.x, r.y), new Vector(r.x + r.width, r.y), new Vector(r.x + r.width, r.y + r.height), new Vector(r.x, r.y + r.height)};
+		for (int i = 1; i < 4; i++) {
+			rpoints[i] = rpoints[i].subtract(new Vector(r.x,r.y)).rotateRadians(r.angle).add(new Vector(r.x, r.y));
+		}
+		
+		//check if vertices of either rectangle are in the other one
+		if (isOverlapping(points, rpoints)) {
+			return true;
+		}
+		
+		if (isOverlapping(rpoints, points)) {
+			return true;
 		}
 		
 		return false;
@@ -68,16 +52,22 @@ public class Rectangle {
 	 * to make life easier, taken from
 	 * https://web.archive.org/web/20161108113341/https://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
 	 */
-	private boolean contains(double x, double y, double[] xPoints, double[] yPoints) {
+	private boolean isOverlapping(Vector[] points, Vector[] rpoints) {
 		int i;
 		int j;
 		boolean result = false;
-		for (i = 0, j = 3; i < 4; j = i++) {
-			if ((yPoints[i] > y) != (yPoints[j] > y) &&
-					(x < (xPoints[j] - xPoints[i]) * (y - yPoints[i]) / (yPoints[j] - yPoints[i]) + xPoints[i])) {
-				result = !result;
+		for (int n = 0; n < 4; n++) {
+			result = false;
+			for (i = 0, j = points.length - 1; i < points.length; j = i++) {
+				if ((points[i].y > rpoints[n].y) != (points[j].y > rpoints[n].y) &&
+						(rpoints[n].x < (points[j].x - points[i].x) * (rpoints[n].y - points[i].y) / (points[j].y - points[i].y) + points[i].x)) {
+					result = !result;
+				}
+			}
+			if (result == true) {
+				return true;	//ends early so it doesn't have to check the rest
 			}
 		}
-		return result;
+		return false;
 	}
 }
