@@ -1,6 +1,8 @@
 package com.tempera.game;
 
 import java.awt.Graphics;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
@@ -46,14 +48,19 @@ public class GameWindow extends JFrame {
 	
 	public static void tick() {
 		//movement
-		moveAcceleration();
-//		moveCardinal();
+//		moveAcceleration();
+		moveCardinal();
 		
+		player.velocity.calculatePolar();
 		
 		sprite.x = player.position.x;
 		sprite.y = player.position.y;
 		
-		player.velocity.calculatePolar();
+		Point mouse = MouseInfo.getPointerInfo().getLocation();
+		Vector vector = new Vector(mouse.x, mouse.y).subtract(player.position);
+		vector.calculatePolar();
+		
+		sprite.angle = vector.theta;
 		
 		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f</html>", player.position, player.velocity, player.velocity.radius, Math.toDegrees(player.velocity.theta)));
 	}
