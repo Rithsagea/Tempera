@@ -23,14 +23,14 @@ public class Rectangle {
 	 */
 	public boolean isIntersecting(Rectangle r) {
 		//get points of both rectangles
-		Vector[] points = new Vector[] {new Vector(x, y), new Vector(x + width, y), new Vector(x + width, y + height), new Vector(x, y + height)};
+		Vector[] points = new Vector[] {new Vector(0, 0), new Vector(width, 0), new Vector(width, height), new Vector(0, height)};
 		for (int i = 1; i < 4; i++) {
-			points[i] = points[i].subtract(new Vector(x, y)).rotateRadians(angle).add(new Vector(x, y));	//brings polygon to origin, rotates, and back to x,y
+			points[i] = points[i].rotateRadians(angle).add(new Vector(x, y));	//starts polygon at origin, rotates, and back to x,y
 		}
 		
-		Vector[] rpoints = new Vector[] {new Vector(r.x, r.y), new Vector(r.x + r.width, r.y), new Vector(r.x + r.width, r.y + r.height), new Vector(r.x, r.y + r.height)};
+		Vector[] rpoints = new Vector[] {new Vector(0, 0), new Vector(r.width, 0), new Vector(r.width, r.height), new Vector(0, r.height)};
 		for (int i = 1; i < 4; i++) {
-			rpoints[i] = rpoints[i].subtract(new Vector(r.x,r.y)).rotateRadians(r.angle).add(new Vector(r.x, r.y));
+			rpoints[i] = rpoints[i].rotateRadians(r.angle).add(new Vector(r.x, r.y));
 		}
 		
 		//check if vertices of either rectangle are in the other one
