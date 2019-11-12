@@ -1,7 +1,9 @@
 package com.tempera.graphics;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.io.IOException;
 
@@ -12,6 +14,7 @@ import com.tempera.vector.Rectangle;
 public class Sprite extends Rectangle {
 	
 	protected Image image;
+	//protected AffineTransform transformation = new AffineTransform();
 	
 	public Sprite(String filePath) {
 		super(0, 0, 0, 0, 0);
@@ -39,6 +42,9 @@ public class Sprite extends Rectangle {
 	 * TODO make it not resize the image each time it gets drawn
 	 */
 	public void draw(Graphics g) {
-		g.drawImage(image, (int)x, (int)y, (int)width, (int)height, null);
+		AffineTransform transformation = new AffineTransform();
+		transformation.rotate(angle);
+		transformation.translate(x - width / 2, y - height / 2);
+		((Graphics2D)g).drawImage(image, transformation, null);
 	}
 }
