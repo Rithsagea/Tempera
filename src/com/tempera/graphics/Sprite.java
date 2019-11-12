@@ -13,7 +13,7 @@ public class Sprite extends Rectangle {
 	protected Image image;
 	
 	public Sprite(String filePath) {
-		super(0, 0, 0, 0);
+		super(0, 0, 0, 0, 0);
 		setImage(filePath);
 	}
 	
