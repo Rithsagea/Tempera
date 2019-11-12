@@ -46,13 +46,16 @@ public class GameWindow extends JFrame {
 	
 	public static void tick() {
 		//movement
-		moveAcceleration();
-		//moveCardinal();
+//		moveAcceleration();
+		moveCardinal();
 		
 		
 		sprite.x = player.position.x;
 		sprite.y = player.position.y;
-		label.setText(String.format("<html>Position: %s<br/>Velocity: %s</html>", player.position, player.velocity));
+		
+		player.velocity.calculatePolar();
+		
+		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f</html>", player.position, player.velocity, player.velocity.radius, Math.toDegrees(player.velocity.theta)));
 	}
 	
 	public static void moveAcceleration() {
