@@ -6,7 +6,7 @@ public class Rectangle {
 	public double y;
 	public double height;
 	public double width;
-	public double angle;	//pull test
+	public double angle;	//pull test 2
 	
 	public Rectangle(double x, double y, double width, double height, double angle) {
 		this.x = x;
