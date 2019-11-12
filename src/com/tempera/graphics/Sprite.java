@@ -2,9 +2,10 @@ package com.tempera.graphics;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
 
 import com.tempera.vector.Rectangle;
 
@@ -13,7 +14,7 @@ public class Sprite extends Rectangle {
 	protected Image image;
 	
 	public Sprite(String filePath) {
-		super(0, 0, 0, 0);
+		super(0, 0, 0, 0, 0);
 		setImage(filePath);
 	}
 	
@@ -22,7 +23,11 @@ public class Sprite extends Rectangle {
 	 * @param filePath	The file which contains the image for this sprite
 	 */
 	public void setImage(String filePath) {
-		image = new ImageIcon(filePath).getImage(); //TODO use better solution
+		try {
+			image = ImageIO.read(new File(filePath));
+		} catch (IOException e) {
+			System.out.println(filePath + " could not be found.");
+		}
 		width = image.getWidth(null);
 		height = image.getHeight(null);
 		System.out.format("(%.2f, %.2f)", width, height);
