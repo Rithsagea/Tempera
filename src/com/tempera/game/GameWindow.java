@@ -1,12 +1,8 @@
 package com.tempera.game;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -50,13 +46,16 @@ public class GameWindow extends JFrame {
 	
 	public static void tick() {
 		//movement
-		moveAcceleration();
-		//moveCardinal();
+//		moveAcceleration();
+		moveCardinal();
 		
 		
 		sprite.x = player.position.x;
 		sprite.y = player.position.y;
-		label.setText(String.format("<html>Position: %s<br/>Velocity: %s</html>", player.position, player.velocity));
+		
+		player.velocity.calculatePolar();
+		
+		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f</html>", player.position, player.velocity, player.velocity.radius, Math.toDegrees(player.velocity.theta)));
 	}
 	
 	public static void moveAcceleration() {
