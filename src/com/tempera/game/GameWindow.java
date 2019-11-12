@@ -46,8 +46,8 @@ public class GameWindow extends JFrame {
 	
 	public static void tick() {
 		//movement
-//		moveAcceleration();
-		moveCardinal();
+		moveAcceleration();
+//		moveCardinal();
 		
 		
 		sprite.x = player.position.x;
@@ -60,11 +60,12 @@ public class GameWindow extends JFrame {
 	
 	public static void moveAcceleration() {
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT))
-			player.velocity.rotateDegrees(1);
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT))
 			player.velocity.rotateDegrees(-1);
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT))
+			player.velocity.rotateDegrees(1);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
 			player.velocity.addRadius(1);
+		player.updatePosition();
 	}
 	
 	public static void moveCardinal() {
