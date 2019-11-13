@@ -1,4 +1,4 @@
-package com.tempera.keyboard;
+package com.tempera.input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
