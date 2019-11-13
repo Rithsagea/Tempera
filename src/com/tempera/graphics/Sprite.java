@@ -14,7 +14,6 @@ import com.tempera.vector.Rectangle;
 public class Sprite extends Rectangle {
 	
 	protected Image image;
-	//protected AffineTransform transformation = new AffineTransform();
 	
 	public Sprite(String filePath) {
 		super(0, 0, 0, 0, 0);
@@ -42,9 +41,19 @@ public class Sprite extends Rectangle {
 	 * TODO make it not resize the image each time it gets drawn
 	 */
 	public void draw(Graphics g) {
-		AffineTransform transformation = new AffineTransform();
-		transformation.rotate(angle);
-		transformation.translate(x - width / 2, y - height / 2);
-		((Graphics2D)g).drawImage(image, transformation, null);
+		AffineTransform rotation = new AffineTransform();
+		AffineTransform translation = new AffineTransform();
+		AffineTransform position = new AffineTransform();
+		
+		position.translate(x, y);
+		
+		rotation.rotate(angle + Math.PI / 2);
+		
+		translation.concatenate(rotation);
+		translation.translate(-width / 2, -height / 2);
+		
+		position.concatenate(translation);
+		
+		((Graphics2D)g).drawImage(image, position, null);
 	}
 }
