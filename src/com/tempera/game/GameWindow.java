@@ -1,8 +1,6 @@
 package com.tempera.game;
 
 import java.awt.Graphics;
-import java.awt.MouseInfo;
-import java.awt.Point;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
@@ -11,7 +9,8 @@ import javax.swing.JPanel;
 
 import com.tempera.entity.Player;
 import com.tempera.graphics.Sprite;
-import com.tempera.keyboard.KeyboardData;
+import com.tempera.input.KeyboardData;
+import com.tempera.input.MouseData;
 import com.tempera.vector.Vector;
 
 public class GameWindow extends JFrame {
@@ -22,6 +21,9 @@ public class GameWindow extends JFrame {
 	private static final Player player = new Player(new Vector(540, 360));
 	private static final Sprite sprite = new Sprite("src/resources/frog.png");
 	private static JLabel label;
+	
+	private static int mouseX = 0;
+	private static int mouseY = 0;
 	
 	public GameWindow() {
 		super("Project Tempera");
@@ -43,6 +45,7 @@ public class GameWindow extends JFrame {
 		
 		addKeyListener(new KeyboardData());
 		panel.add(label);
+		panel.addMouseMotionListener(new MouseData());
 		add(panel);
 	}
 	
@@ -50,16 +53,13 @@ public class GameWindow extends JFrame {
 		//movement
 //		moveAcceleration();
 		moveCardinal();
-		
 		player.velocity.calculatePolar();
 		
 		sprite.x = player.position.x;
 		sprite.y = player.position.y;
 		
-		Point mouse = MouseInfo.getPointerInfo().getLocation();
-		Vector vector = new Vector(mouse.x, mouse.y).subtract(player.position);
+		Vector vector = new Vector(MouseData.getX(), MouseData.getY()).subtract(player.position);
 		vector.calculatePolar();
-		
 		sprite.angle = vector.theta;
 		
 		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f</html>", player.position, player.velocity, player.velocity.radius, Math.toDegrees(player.velocity.theta)));
