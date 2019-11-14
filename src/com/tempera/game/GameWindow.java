@@ -58,8 +58,11 @@ public class GameWindow extends JFrame {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				player.velocity.setRadius(100);
-				player.velocity.setRadians(sprite.angle);
+				//TODO this is so bad. Make readable
+				Vector vector = new Vector(MouseData.getX(), MouseData.getY()).subtract(player.position);
+				vector.calculatePolar();
+				vector.setRadius(100);
+				player.velocity.add(vector);
 			}
 
 			@Override
@@ -80,12 +83,10 @@ public class GameWindow extends JFrame {
 		moveCardinal();
 		player.velocity.calculatePolar();
 		
+		sprite.angle = player.velocity.theta;
+		
 		sprite.x = player.position.x;
 		sprite.y = player.position.y;
-		
-		Vector vector = new Vector(MouseData.getX(), MouseData.getY()).subtract(player.position);
-		vector.calculatePolar();
-		sprite.angle = vector.theta;
 		
 		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f</html>", player.position, player.velocity, player.velocity.radius, Math.toDegrees(player.velocity.theta)));
 	}
