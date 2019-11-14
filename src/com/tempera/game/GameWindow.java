@@ -21,7 +21,7 @@ public class GameWindow extends JFrame {
 	private static final long accelerationRate = 3;
 	
 	private static final Player player = new Player(new Vector(540, 360));
-	private static final Sprite sprite = new Sprite("src/resources/frog.png");
+	private static final Sprite sprite = new Sprite("src/resources/sans.png");
 	private static JLabel label;
 	
 	private static MouseData mouse = new MouseData();
