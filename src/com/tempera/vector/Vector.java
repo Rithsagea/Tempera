@@ -22,6 +22,8 @@ public class Vector implements Cloneable {
 	public Vector(double x, double y) {
 		this.x = x;
 		this.y = y;
+		this.radius = Math.sqrt((x * x) + (y * y));
+		this.theta = Math.atan(y / x);
 	}
 	
 	/**
