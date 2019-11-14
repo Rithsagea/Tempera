@@ -28,8 +28,6 @@ public class GameWindow extends JFrame {
 	private static MouseData mouse = new MouseData();
 	private static KeyboardData keyboard = new KeyboardData();
 	
-	private static boolean intersecting = false;
-	
 	public GameWindow() {
 		super("Project Tempera");
 		
@@ -97,7 +95,7 @@ public class GameWindow extends JFrame {
 				player.velocity,
 				player.velocity.radius,
 				Math.toDegrees(player.velocity.theta),
-				intersecting));
+				sprite.isIntersecting(hitbox)));
 	}
 	
 	public static void moveAcceleration() {
