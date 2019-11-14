@@ -21,11 +21,14 @@ public class GameWindow extends JFrame {
 	private static final long accelerationRate = 3;
 	
 	private static final Player player = new Player(new Vector(540, 360));
-	private static final Sprite sprite = new Sprite("src/resources/sans.png");
+	private static final Sprite sprite = new Sprite("src/resources/frog.png");
+	private static final Sprite hitbox = new Sprite("src/resources/background1.png");
 	private static JLabel label;
 	
 	private static MouseData mouse = new MouseData();
 	private static KeyboardData keyboard = new KeyboardData();
+	
+	private static boolean intersecting = false;
 	
 	public GameWindow() {
 		super("Project Tempera");
@@ -37,6 +40,7 @@ public class GameWindow extends JFrame {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
+				hitbox.draw(g);
 				sprite.draw(g);
 			}
 		};
@@ -88,7 +92,12 @@ public class GameWindow extends JFrame {
 		sprite.x = player.position.x;
 		sprite.y = player.position.y;
 		
-		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f</html>", player.position, player.velocity, player.velocity.radius, Math.toDegrees(player.velocity.theta)));
+		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f<br/>TouchingBox: %b</html>",
+				player.position,
+				player.velocity,
+				player.velocity.radius,
+				Math.toDegrees(player.velocity.theta),
+				intersecting));
 	}
 	
 	public static void moveAcceleration() {
