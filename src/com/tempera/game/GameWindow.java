@@ -32,6 +32,8 @@ public class GameWindow extends JFrame {
 		
 		//TODO replace this with Sprite
 		JPanel panel = new JPanel() {
+			private static final long serialVersionUID = -6064113046027500937L;
+
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
