@@ -97,7 +97,7 @@ public class GameWindow extends JFrame {
 				player.velocity,
 				player.velocity.radius,
 				Math.toDegrees(player.velocity.theta),
-				intersecting));
+				sprite.isIntersecting(hitbox)));
 	}
 	
 	public static void moveAcceleration() {
