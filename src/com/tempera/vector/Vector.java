@@ -101,11 +101,17 @@ public class Vector implements Cloneable {
 	}
 	
 	//fancy rectangular polar stuff
+	/**
+	 * Calculates Polar coordinates based on the stored Cartesian coordinates
+	 */
 	public void calculatePolar() {
 		radius = magnitude();
 		theta = Math.atan2(y, x);
 	}
-	
+
+	/**
+	 * Calculates Cartesian coordinates based on the stored Polar coordinates
+	 */
 	public void calculateCartesian() {
 		if(Double.isNaN(theta))
 			theta = 0;
@@ -113,6 +119,11 @@ public class Vector implements Cloneable {
 		y = Math.sin(theta) * radius;
 	}
 	
+	/**
+	 * 
+	 * @param theta The value to set to theta in radians
+	 * @return		This vector
+	 */
 	public Vector setRadians(double theta) {
 		calculatePolar();
 		this.theta = theta;
@@ -120,18 +131,38 @@ public class Vector implements Cloneable {
 		return this;
 	}
 	
+	/**
+	 * 
+	 * @param theta The value to set to theta in degrees
+	 * @return		This vector
+	 */
 	public Vector setDegrees(double theta) {
 		return setRadians(Math.toRadians(theta));
 	}
 	
+	/**
+	 * 
+	 * @param theta	The value to add to theta in radians
+	 * @return		This vector
+	 */
 	public Vector rotateRadians(double theta) {
 		return setRadians(this.theta + theta);
 	}
 	
+	/**
+	 * 
+	 * @param theta The value to add to theta in degrees
+	 * @return		This vector
+	 */
 	public Vector rotateDegrees(double theta) {
 		return rotateRadians(Math.toRadians(theta));
 	}
 	
+	/**
+	 * 
+	 * @param r	The value to set the radius to
+	 * @return	This vector
+	 */
 	public Vector setRadius(double r) {
 		calculatePolar();
 		radius = r;
@@ -139,6 +170,11 @@ public class Vector implements Cloneable {
 		return this;
 	}
 	
+	/**
+	 * 
+	 * @param r	The value to add the the radius
+	 * @return	This vector
+	 */
 	public Vector addRadius(double r) {
 		return setRadius(radius + r);
 	}
