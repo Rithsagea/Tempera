@@ -1,6 +1,6 @@
 package com.rithsagea.tempera;
 
-import com.rithsagea.tempera.ui.Game;
+//import com.rithsagea.tempera.ui.Game;
 
 public class Main {
 	/*

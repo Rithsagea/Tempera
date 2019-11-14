@@ -1,6 +1,6 @@
 package com.rithsagea.test;
 
-import javax.swing.JFrame;
+//import javax.swing.JFrame;
 
 public class Main {
 	/*
