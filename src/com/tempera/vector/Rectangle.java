@@ -27,12 +27,12 @@ public class Rectangle {
 	public boolean isIntersecting(Rectangle r) {
 		//get points of both rectangles
 		Vector[] points = new Vector[] {new Vector(0, 0), new Vector(width, 0), new Vector(width, -height), new Vector(0, -height)};
-		for (int i = 1; i < 4; i++) {
+		for (int i = 0; i < 4; i++) {
 			points[i] = points[i].rotateRadians(angle).add(new Vector(x, y));	//starts polygon at origin, rotates, and back to x,y
 		}
 		
 		Vector[] rpoints = new Vector[] {new Vector(0, 0), new Vector(r.width, 0), new Vector(r.width, -r.height), new Vector(0, -r.height)};
-		for (int i = 1; i < 4; i++) {
+		for (int i = 0; i < 4; i++) {
 			rpoints[i] = rpoints[i].rotateRadians(r.angle).add(new Vector(r.x, r.y));
 		}
 		
