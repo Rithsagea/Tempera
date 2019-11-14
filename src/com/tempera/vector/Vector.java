@@ -113,31 +113,33 @@ public class Vector implements Cloneable {
 		y = Math.sin(theta) * radius;
 	}
 	
-	/**
-	 * 
-	 * @param theta	The angle to rotate the vector by (radians)
-	 * @return		This vector
-	 */
-	public Vector rotateRadians(double theta) {
+	public Vector setRadians(double theta) {
 		calculatePolar();
-		this.theta += theta;
+		this.theta = theta;
 		calculateCartesian();
 		return this;
 	}
 	
-	/**
-	 * 
-	 * @param theta	The angle to rotate the vector by (radians)
-	 * @return		This vector
-	 */
+	public Vector setDegrees(double theta) {
+		return setRadians(Math.toRadians(theta));
+	}
+	
+	public Vector rotateRadians(double theta) {
+		return setRadians(this.theta + theta);
+	}
+	
 	public Vector rotateDegrees(double theta) {
 		return rotateRadians(Math.toRadians(theta));
 	}
 	
-	public Vector addRadius(double r) {
+	public Vector setRadius(double r) {
 		calculatePolar();
-		radius += r;
+		radius = r;
 		calculateCartesian();
 		return this;
+	}
+	
+	public Vector addRadius(double r) {
+		return setRadius(radius + r);
 	}
 }
