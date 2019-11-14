@@ -2,6 +2,8 @@ package com.tempera.game;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,8 +24,8 @@ public class GameWindow extends JFrame {
 	private static final Sprite sprite = new Sprite("src/resources/frog.png");
 	private static JLabel label;
 	
-	private static int mouseX = 0;
-	private static int mouseY = 0;
+	private static MouseData mouse = new MouseData();
+	private static KeyboardData keyboard = new KeyboardData();
 	
 	public GameWindow() {
 		super("Project Tempera");
@@ -43,9 +45,30 @@ public class GameWindow extends JFrame {
 		setSize(1080, 720);
 		setVisible(true);
 		
-		addKeyListener(new KeyboardData());
+		addKeyListener(keyboard);
 		panel.add(label);
-		panel.addMouseMotionListener(new MouseData());
+		panel.addMouseMotionListener(mouse);
+		//TODO add some event handler for keyboard and mouse
+		panel.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				player.velocity.setRadius(100);
+				player.velocity.setRadians(sprite.angle);
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+
+			@Override
+			public void mouseExited(MouseEvent e) {}
+		});
 		add(panel);
 	}
 	
