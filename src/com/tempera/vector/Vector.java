@@ -22,6 +22,8 @@ public class Vector implements Cloneable {
 	public Vector(double x, double y) {
 		this.x = x;
 		this.y = y;
+		this.radius = Math.sqrt((x * x) + (y * y));
+		this.theta = Math.atan(y / x);
 	}
 	
 	/**
@@ -44,13 +46,62 @@ public class Vector implements Cloneable {
 	}
 	
 	//information about the vector
-	
-	/**
-	 * Gets the magnitude of the vector
-	 * @return	The magnitude of the vector
-	 */
 	public double magnitude() {
-		return Math.sqrt(x * x + y * y);
+		return radius;
+	}
+	
+	public double getX() {
+		return x;
+	}
+	
+	public double getY() {
+		return y;
+	}
+	
+	public double getRadius() {
+		return radius;
+	}
+	
+	public double getTheta() {
+		return theta;
+	}
+	
+	//setting values
+	public void setX(double x) {
+		this.x = x;
+		calculatePolar();
+	}
+	
+	public void setY(double y) {
+		this.y = y;
+		calculatePolar();
+	}
+	
+	public void setRadius(double radius) {
+		this.radius = radius;
+		calculateCartesian();
+	}
+	
+	public void setRadians(double theta) {
+		this.theta = theta;
+		calculateCartesian();
+	}
+	
+	public void setDegrees(double theta) {
+		setRadians(Math.toRadians(theta));
+	}
+	
+	//combined setting values (faster)
+	public void setCartesian(double x, double y) {
+		this.x = x;
+		this.y = y;
+		calculatePolar();
+	}
+	
+	public void setPolar(double radius, double theta) {
+		this.radius = radius;
+		this.theta = theta;
+		calculateCartesian();
 	}
 	
 	//basic operations
@@ -121,32 +172,12 @@ public class Vector implements Cloneable {
 	
 	/**
 	 * 
-	 * @param theta The value to set to theta in radians
-	 * @return		This vector
-	 */
-	public Vector setRadians(double theta) {
-		calculatePolar();
-		this.theta = theta;
-		calculateCartesian();
-		return this;
-	}
-	
-	/**
-	 * 
-	 * @param theta The value to set to theta in degrees
-	 * @return		This vector
-	 */
-	public Vector setDegrees(double theta) {
-		return setRadians(Math.toRadians(theta));
-	}
-	
-	/**
-	 * 
 	 * @param theta	The value to add to theta in radians
 	 * @return		This vector
 	 */
 	public Vector rotateRadians(double theta) {
-		return setRadians(this.theta + theta);
+		setRadians(this.theta + theta);
+		return this;
 	}
 	
 	/**
@@ -160,22 +191,11 @@ public class Vector implements Cloneable {
 	
 	/**
 	 * 
-	 * @param r	The value to set the radius to
-	 * @return	This vector
-	 */
-	public Vector setRadius(double r) {
-		calculatePolar();
-		radius = r;
-		calculateCartesian();
-		return this;
-	}
-	
-	/**
-	 * 
 	 * @param r	The value to add the the radius
 	 * @return	This vector
 	 */
 	public Vector addRadius(double r) {
-		return setRadius(radius + r);
+		setRadius(radius + r);
+		return this;
 	}
 }
