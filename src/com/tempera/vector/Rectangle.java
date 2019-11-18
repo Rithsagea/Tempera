@@ -1,7 +1,8 @@
 package com.tempera.vector;
 
 public class Rectangle {
-	
+	//TODO https://gamedevelopment.tutsplus.com/tutorials/collision-detection-using-the-separating-axis-theorem--gamedev-169
+	//use this for collision
 	public double x;
 	public double y;
 	public double height;
