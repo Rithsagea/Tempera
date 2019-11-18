@@ -22,19 +22,7 @@ public class Vector implements Cloneable {
 	public Vector(double x, double y) {
 		this.x = x;
 		this.y = y;
-		this.radius = Math.sqrt((x * x) + (y * y));
-		this.theta = Math.atan(y / x);
-	}
-	
-	/**
-	 * Create a vector with integer values
-	 * @param x	An integer that represents the vector's x coordinate
-	 * @param y An integer that represents the vector's y coordinate
-	 * @param z An integer that represents the vector's z coordinate
-	 */
-	public Vector(int x, int y) {
-		this.x = x;
-		this.y = y;
+		calculatePolar();
 	}
 	
 	public Vector clone() {
