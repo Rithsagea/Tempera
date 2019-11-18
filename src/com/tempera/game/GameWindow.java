@@ -28,8 +28,6 @@ public class GameWindow extends JFrame {
 	private static MouseData mouse = new MouseData();
 	private static KeyboardData keyboard = new KeyboardData();
 	
-	private static boolean intersecting = false;
-	
 	public GameWindow() {
 		super("Project Tempera");
 		
