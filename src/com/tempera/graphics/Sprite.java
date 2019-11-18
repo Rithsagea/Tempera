@@ -41,6 +41,8 @@ public class Sprite extends Rectangle {
 	 * TODO make it not resize the image each time it gets drawn
 	 */
 	public void draw(Graphics g) {
+		Graphics2D g2d = (Graphics2D)g;
+		
 		AffineTransform rotation = new AffineTransform();
 		AffineTransform translation = new AffineTransform();
 		AffineTransform position = new AffineTransform();
@@ -54,6 +56,13 @@ public class Sprite extends Rectangle {
 		
 		position.concatenate(translation);
 		
-		((Graphics2D)g).drawImage(image, position, null);
+		g2d.drawImage(image, position, null);
+		g2d.setTransform(position);
+		g2d.drawRect(0, 0, (int)width, (int)height);
+		
+		position.setToIdentity();
+		((Graphics2D)g).setTransform(position);
+		
+		
 	}
 }
