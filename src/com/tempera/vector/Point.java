@@ -25,9 +25,11 @@ public class Point {
 	
 	//Information
 	/**
-	 * 
+	 * Finds the distance squared from this point to another.
+	 * Use this instead of {@code distanceFrom} if the square
+	 * root isn't needed (it saves computations)
 	 * @param pt	the point to compare this point to 
-	 * @return		the distance between this point and {@code pt}
+	 * @return		the distance squared between this point and {@code pt}
 	 */
 	public double distanceSquaredFrom(Point pt) {
 		double xDist = pt.x - x;
@@ -39,24 +41,47 @@ public class Point {
 		return xDist + yDist;
 	}
 	
+	/**
+	 * Finds the distance between this point and another. Don't
+	 * use this if you are going to square the return value, as
+	 * square roots are pretty expensive.
+	 * @param point	the point to compare this point to
+	 * @return		the distance between this point and {@code pt}
+	 */
 	public double distanceFrom(Point point) {
 		return Math.sqrt(distanceSquaredFrom(point));
 	}
 	
 	//Setters
+	/**
+	 * 
+	 * @param x	the value to set the point's x coord to.
+	 */
 	public void setX(double x) {
 		this.x = x;
 	}
 	
+	/**
+	 * 
+	 * @param y	the value to set the point's y coord to.
+	 */
 	public void setY(double y) {
 		this.y = y;
 	}
 	
 	//Getters
+	/**
+	 * 
+	 * @return	this point's x coordinate
+	 */
 	public double getX() {
 		return x;
 	}
 	
+	/**
+	 * 
+	 * @return	this point's y coordinate
+	 */
 	public double getY() {
 		return y;
 	}
