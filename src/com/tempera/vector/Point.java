@@ -1,6 +1,6 @@
 package com.tempera.vector;
 
-public class Point {
+public class Point implements Cloneable {
 	
 	protected double x;
 	protected double y;
@@ -41,6 +41,16 @@ public class Point {
 		return xDist + yDist;
 	}
 	
+	public double distanceSquaredFrom(double x, double y) {
+		double xDist = this.x - x;
+		double yDist = this.y - y;
+		
+		xDist *= xDist;
+		yDist *= yDist;
+		
+		return xDist + yDist;
+	}
+	
 	/**
 	 * Finds the distance between this point and another. Don't
 	 * use this if you are going to square the return value, as
@@ -50,6 +60,10 @@ public class Point {
 	 */
 	public double distanceFrom(Point point) {
 		return Math.sqrt(distanceSquaredFrom(point));
+	}
+	
+	public double distanceFrom(double x, double y) {
+		return Math.sqrt(distanceSquaredFrom(x, y));
 	}
 	
 	//Setters
