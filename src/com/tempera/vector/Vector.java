@@ -35,7 +35,7 @@ public class Vector implements Cloneable {
 	
 	//information about the vector
 	public double magnitude() {
-		return radius;
+		return Math.sqrt(x * x + y * y);
 	}
 	
 	public double getX() {
