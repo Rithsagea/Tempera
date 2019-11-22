@@ -85,16 +85,16 @@ public class GameWindow extends JFrame {
 		moveCardinal();
 		player.velocity.calculatePolar();
 		
-		sprite.angle = player.velocity.theta;
+		sprite.angle = player.velocity.getAngle();
 		
-		sprite.x = player.position.x;
-		sprite.y = player.position.y;
+		sprite.x = player.position.getX();
+		sprite.y = player.position.getY();
 		
 		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f<br/>TouchingBox: %b</html>",
 				player.position,
 				player.velocity,
-				player.velocity.radius,
-				Math.toDegrees(player.velocity.theta),
+				player.velocity.getMagnitude(),
+				Math.toDegrees(player.velocity.getAngle()),
 				sprite.isIntersecting(hitbox)));
 	}
 	

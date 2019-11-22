@@ -1,5 +1,10 @@
 package com.tempera.vector;
 
+/**
+ * @author	Rithsagea
+ * @version	alpha.-1
+ * @since	2019-11-22
+ */
 public class Point implements Cloneable {
 	
 	protected double x;
@@ -26,10 +31,10 @@ public class Point implements Cloneable {
 	//Information
 	/**
 	 * Finds the distance squared from this point to another.
-	 * Use this instead of {@code distanceFrom} if the square
+	 * Use this instead of distanceFrom if the square
 	 * root isn't needed (it saves computations)
 	 * @param pt	the point to compare this point to 
-	 * @return		the distance squared between this point and {@code pt}
+	 * @return		the distance squared between this point and pt
 	 */
 	public double distanceSquaredFrom(Point pt) {
 		double xDist = pt.x - x;
@@ -41,6 +46,14 @@ public class Point implements Cloneable {
 		return xDist + yDist;
 	}
 	
+	/**
+	 * Finds the distance squared from this point to another.
+	 * Use this instead of distanceFrom if the square
+	 * root isn't needed (it saves computations)
+	 * @param x		the x coordinate to compare this point to
+	 * @param y		the y coordinate to compare this point to 
+	 * @return		the distance squared between this point and pt
+	 */
 	public double distanceSquaredFrom(double x, double y) {
 		double xDist = this.x - x;
 		double yDist = this.y - y;
@@ -56,12 +69,20 @@ public class Point implements Cloneable {
 	 * use this if you are going to square the return value, as
 	 * square roots are pretty expensive.
 	 * @param point	the point to compare this point to
-	 * @return		the distance between this point and {@code pt}
+	 * @return		the distance between this point and pt
 	 */
 	public double distanceFrom(Point point) {
 		return Math.sqrt(distanceSquaredFrom(point));
 	}
 	
+	/**
+	 * Finds the distance between this point and (x, y). Don't
+	 * use this if you are going to square the return value, as
+	 * square roots are pretty expensive
+	 * @param x		the x coordinate to compare this point to
+	 * @param y		the y coordinate to compare this point to
+	 * @return		the distance from this point to (x, y)
+	 */
 	public double distanceFrom(double x, double y) {
 		return Math.sqrt(distanceSquaredFrom(x, y));
 	}
@@ -69,7 +90,7 @@ public class Point implements Cloneable {
 	//Setters
 	/**
 	 * 
-	 * @param x	the value to set the point's x coord to.
+	 * @param x		the value to set the point's x coordinate to.
 	 */
 	public void setX(double x) {
 		this.x = x;
@@ -77,7 +98,7 @@ public class Point implements Cloneable {
 	
 	/**
 	 * 
-	 * @param y	the value to set the point's y coord to.
+	 * @param y		the value to set the point's y coordinate to.
 	 */
 	public void setY(double y) {
 		this.y = y;
@@ -86,7 +107,7 @@ public class Point implements Cloneable {
 	//Getters
 	/**
 	 * 
-	 * @return	this point's x coordinate
+	 * @return		this point's x coordinate
 	 */
 	public double getX() {
 		return x;
@@ -94,9 +115,11 @@ public class Point implements Cloneable {
 	
 	/**
 	 * 
-	 * @return	this point's y coordinate
+	 * @return		this point's y coordinate
 	 */
 	public double getY() {
 		return y;
 	}
+	
+	//Calculations
 }

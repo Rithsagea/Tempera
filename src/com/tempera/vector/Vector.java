@@ -3,7 +3,7 @@ package com.tempera.vector;
 /**
  * @author	Rithsagea
  * @version	alpha.-1
- * @since	2019-10-22
+ * @since	2019-11-22
  */
 public class Vector extends Point implements Cloneable {
 	
@@ -27,13 +27,26 @@ public class Vector extends Point implements Cloneable {
 		return new Vector(x, y);
 	}
 	
-	//Information
+	//Getters
 	public double getAngle() {
 		return angle;
 	}
 	
 	public double getMagnitude() {
 		return radius;
+	}
+	
+	//Setters
+	public void setAngle(double angle) {
+		calculatePolar();
+		this.angle = angle;
+		calculateComponent();
+	}
+	
+	public void setMagnitude(double magnitude) {
+		calculatePolar();
+		this.radius = magnitude;
+		calculateComponent();
 	}
 	
 	//Calculation
@@ -46,5 +59,4 @@ public class Vector extends Point implements Cloneable {
 		x = radius * Math.cos(angle);
 		y = radius * Math.sin(angle);
 	}
-	
 }
