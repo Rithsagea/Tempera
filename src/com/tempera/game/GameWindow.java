@@ -31,6 +31,11 @@ public class GameWindow extends JFrame {
 	public GameWindow() {
 		super("Project Tempera");
 		
+		hitbox.x = 752/2;
+		hitbox.y = 407/2;
+		
+		sprite.setOffset(Math.PI / 2);
+		
 		//TODO replace this with Sprite
 		JPanel panel = new JPanel() {
 			private static final long serialVersionUID = -6064113046027500937L;
@@ -61,9 +66,10 @@ public class GameWindow extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				//TODO this is so bad. Make readable
-				Vector vector = new Vector(MouseData.getX(), MouseData.getY()).subtract(player.position);
+				Vector vector = new Vector(MouseData.getX(), MouseData.getY());
+				vector.subtract(player.position);
 				vector.calculatePolar();
-				vector.setRadius(100);
+				vector.setMagnitude(100);
 				player.velocity.add(vector);
 			}
 
@@ -100,11 +106,11 @@ public class GameWindow extends JFrame {
 	
 	public static void moveAcceleration() {
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT))
-			player.velocity.rotateDegrees(-1);
+			player.velocity.addAngle(-1);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT))
-			player.velocity.rotateDegrees(1);
+			player.velocity.addAngle(1);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
-			player.velocity.addRadius(1);
+			player.velocity.addAngle(1);
 		player.updatePosition();
 	}
 	
