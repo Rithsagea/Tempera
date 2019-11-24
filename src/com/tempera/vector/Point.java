@@ -32,7 +32,7 @@ public class Point implements Cloneable {
 	/**
 	 * Finds the distance squared from this point to another.
 	 * Use this instead of distanceFrom if the square
-	 * root isn't needed (it saves computations)
+	 * root isn't needed. (it saves computations)
 	 * @param pt	the point to compare this point to 
 	 * @return		the distance squared between this point and pt
 	 */
@@ -49,7 +49,7 @@ public class Point implements Cloneable {
 	/**
 	 * Finds the distance squared from this point to another.
 	 * Use this instead of distanceFrom if the square
-	 * root isn't needed (it saves computations)
+	 * root isn't needed. (it saves computations)
 	 * @param x		the x coordinate to compare this point to
 	 * @param y		the y coordinate to compare this point to 
 	 * @return		the distance squared between this point and pt
@@ -78,7 +78,7 @@ public class Point implements Cloneable {
 	/**
 	 * Finds the distance between this point and (x, y). Don't
 	 * use this if you are going to square the return value, as
-	 * square roots are pretty expensive
+	 * square roots are pretty expensive.
 	 * @param x		the x coordinate to compare this point to
 	 * @param y		the y coordinate to compare this point to
 	 * @return		the distance from this point to (x, y)
@@ -122,4 +122,12 @@ public class Point implements Cloneable {
 	}
 	
 	//Calculations
+	/**
+	 * Finds the midpoint between 2 Points.
+	 * @param p		the point to compare with this point
+	 * @return		the midpoint of this point and p
+	 */
+	public Point getMidpoint(Point p) {
+		return new Point((x + p.x) / 2, (y + p.y) / 2);
+	}
 }
