@@ -20,11 +20,16 @@ public class Vector extends Point implements Cloneable {
 		super(x, y);
 		this.x = x;
 		this.y = y;
+		calculatePolar();
 	}
 	
 	//Object Methods
 	public Vector clone() {
 		return new Vector(x, y);
+	}
+	
+	public String toString() {
+		return String.format("(%.4f, %.4f)", x, y);
 	}
 	
 	//Getters
@@ -43,6 +48,12 @@ public class Vector extends Point implements Cloneable {
 		calculateComponent();
 	}
 	
+	public void addAngle(double angle) {	//pretty much duplicate code but shhh
+		calculatePolar();
+		this.angle += angle;
+		calculateComponent();
+	}
+	
 	public void setMagnitude(double magnitude) {
 		calculatePolar();
 		this.radius = magnitude;
@@ -51,12 +62,17 @@ public class Vector extends Point implements Cloneable {
 	
 	//Calculation
 	public void calculatePolar() {
-		radius = x * x + y * y;
+		radius = Math.sqrt(x * x + y * y);	//will remove sqrt later if necessary
 		angle = Math.atan2(y, x);
 	}
 	
 	public void calculateComponent() {
 		x = radius * Math.cos(angle);
 		y = radius * Math.sin(angle);
+	}
+	
+	public void add(double x, double y) {
+		this.x += x;
+		this.y += y;
 	}
 }
