@@ -30,7 +30,6 @@ public class Rectangle {
 	public boolean isIntersecting(Rectangle r) {
 		//get points of both rectangles
 		Vector[] points = new Vector[] {new Vector(0, 0), new Vector(width, 0), new Vector(width, -height), new Vector(0, -height)};
-		System.out.println(Arrays.toString(points));
 		for (int i = 0; i < 4; i++) {
 			points[i].addAngle(angle);
 			points[i].add(x, y);	//starts polygon at origin, rotates, and back to x,y
@@ -41,8 +40,6 @@ public class Rectangle {
 			rpoints[i].addAngle(r.angle);
 			rpoints[i].add(r.x, r.y);
 		}
-		
-		System.out.println(Arrays.toString(rpoints));
 		
 		//check if vertices of either rectangle are in the other one
 		if (isOverlapping(points, rpoints)) {
