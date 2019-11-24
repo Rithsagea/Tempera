@@ -14,10 +14,15 @@ import com.tempera.vector.Rectangle;
 public class Sprite extends Rectangle {
 	
 	protected Image image;
+	protected double angleOffset;
 	
 	public Sprite(String filePath) {
 		super(0, 0, 0, 0, 0);
 		setImage(filePath);
+	}
+	
+	public void setOffset(double offset) {
+		angleOffset = offset;
 	}
 	
 	/**
@@ -32,7 +37,7 @@ public class Sprite extends Rectangle {
 		}
 		width = image.getWidth(null);
 		height = image.getHeight(null);
-		System.out.format("(%.2f, %.2f)", width, height);
+//		System.out.format("(%.2f, %.2f)\n", width, height);
 	}
 	
 	/**
@@ -49,7 +54,7 @@ public class Sprite extends Rectangle {
 		
 		position.translate(x, y);
 		
-		rotation.rotate(angle + Math.PI / 2);
+		rotation.rotate(angle + angleOffset);
 		
 		translation.concatenate(rotation);
 		translation.translate(-width / 2, -height / 2);
@@ -61,8 +66,6 @@ public class Sprite extends Rectangle {
 		g2d.drawRect(0, 0, (int)width, (int)height);
 		
 		position.setToIdentity();
-		((Graphics2D)g).setTransform(position);
-		
-		
+		g2d.setTransform(position);
 	}
 }
