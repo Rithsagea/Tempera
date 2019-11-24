@@ -71,8 +71,34 @@ public class Vector extends Point implements Cloneable {
 		y = radius * Math.sin(angle);
 	}
 	
+	//Operators
+	public void add(Vector vector) {
+		x += vector.x;
+		y += vector.y;
+	}
+	
 	public void add(double x, double y) {
 		this.x += x;
 		this.y += y;
+	}
+	
+	public void subtract(Vector vector) {
+		x -= vector.x;
+		y -= vector.y;
+	}
+	
+	public void subtract(double x, double y) {
+		this.x -= x;
+		this.y -= y;
+	}
+	
+	public void multiply(double scalar) {
+		x *= scalar;
+		y *= scalar;
+	}
+	
+	public void divide(double scalar) {
+		x /= scalar;
+		y /= scalar;
 	}
 }
