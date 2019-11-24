@@ -44,6 +44,7 @@ public class GameWindow extends JFrame {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				hitbox.draw(g);
+				g.drawRect((int)hitbox.width / 2, -(int)hitbox.height / 2, (int)hitbox.width, (int)hitbox.height);	//remove later
 				sprite.draw(g);
 			}
 		};
