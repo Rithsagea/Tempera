@@ -3,15 +3,12 @@ package com.tempera.vector;
 /**
  * @author	Rithsagea
  * @version	alpha.-1
- * @since	2019-10-22
+ * @since	2019-11-22
  */
-public class Vector implements Cloneable {
+public class Vector extends Point implements Cloneable {
 	
-	public double x;
-	public double y;
-	
-	public double theta;
-	public double radius;
+	protected double angle;
+	protected double radius;
 	
 	/**
 	 * Create a vector with double values
@@ -20,11 +17,13 @@ public class Vector implements Cloneable {
 	 * @param z An double that represents the vector's z coordinate
 	 */
 	public Vector(double x, double y) {
+		super(x, y);
 		this.x = x;
 		this.y = y;
 		calculatePolar();
 	}
 	
+	//Object Methods
 	public Vector clone() {
 		return new Vector(x, y);
 	}
@@ -33,157 +32,73 @@ public class Vector implements Cloneable {
 		return String.format("(%.4f, %.4f)", x, y);
 	}
 	
-	//information about the vector
-	public double magnitude() {
-		return Math.sqrt(x * x + y * y);
+	//Getters
+	public double getAngle() {
+		return angle;
 	}
 	
-	public double getX() {
-		return x;
-	}
-	
-	public double getY() {
-		return y;
-	}
-	
-	public double getRadius() {
+	public double getMagnitude() {
 		return radius;
 	}
 	
-	public double getTheta() {
-		return theta;
-	}
-	
-	//setting values
-	public void setX(double x) {
-		this.x = x;
+	//Setters
+	public void setAngle(double angle) {
 		calculatePolar();
+		this.angle = angle;
+		calculateComponent();
 	}
 	
-	public void setY(double y) {
-		this.y = y;
+	public void addAngle(double angle) {	//pretty much duplicate code but shhh
 		calculatePolar();
+		this.angle += angle;
+		calculateComponent();
 	}
 	
-	public void setRadius(double radius) {
-		this.radius = radius;
-		calculateCartesian();
-	}
-	
-	public void setRadians(double theta) {
-		this.theta = theta;
-		calculateCartesian();
-	}
-	
-	public void setDegrees(double theta) {
-		setRadians(Math.toRadians(theta));
-	}
-	
-	//combined setting values (faster)
-	public void setCartesian(double x, double y) {
-		this.x = x;
-		this.y = y;
+	public void setMagnitude(double magnitude) {
 		calculatePolar();
+		this.radius = magnitude;
+		calculateComponent();
 	}
 	
-	public void setPolar(double radius, double theta) {
-		this.radius = radius;
-		this.theta = theta;
-		calculateCartesian();
+	//Calculation
+	public void calculatePolar() {
+		radius = Math.sqrt(x * x + y * y);	//will remove sqrt later if necessary
+		angle = Math.atan2(y, x);
 	}
 	
-	//basic operations
-	//TODO should these be immutable?
-	/**
-	 * Adds a vector to this vector
-	 * @param vector The object that is being added to this vector
-	 * @return This vector
-	 */
-	public Vector add(Vector vector) {
+	public void calculateComponent() {
+		x = radius * Math.cos(angle);
+		y = radius * Math.sin(angle);
+	}
+	
+	//Operators
+	public void add(Vector vector) {
 		x += vector.x;
 		y += vector.y;
-		return this;
 	}
 	
-	/**
-	 * 
-	 * @param x	The x value to increment the vector by
-	 * @param y	The y value to increment the vector by
-	 * @return	This vector
-	 */
-	public Vector add(double x, double y) {
+	public void add(double x, double y) {
 		this.x += x;
 		this.y += y;
-		return this;
 	}
 	
-	/**
-	 * Subtracts a vector from this vector
-	 * @param vector The object that is being subtracted from this vector
-	 * @return This vector
-	 */
-	public Vector subtract(Vector vector) {
+	public void subtract(Vector vector) {
 		x -= vector.x;
 		y -= vector.y;
-		return this;
 	}
 	
-	/**
-	 * Multiplies the vector by a scalar
-	 * @param scalar	The scalar to multiply the vector by
-	 * @return	This vector
-	 */
-	public Vector multiply (double scalar) {
+	public void subtract(double x, double y) {
+		this.x -= x;
+		this.y -= y;
+	}
+	
+	public void multiply(double scalar) {
 		x *= scalar;
 		y *= scalar;
-		return this;
 	}
 	
-	//fancy rectangular polar stuff
-	/**
-	 * Calculates Polar coordinates based on the stored Cartesian coordinates
-	 */
-	public void calculatePolar() {
-		radius = magnitude();
-		theta = Math.atan2(y, x);
-	}
-
-	/**
-	 * Calculates Cartesian coordinates based on the stored Polar coordinates
-	 */
-	public void calculateCartesian() {
-		if(Double.isNaN(theta))
-			theta = 0;
-		x = Math.cos(theta) * radius;
-		y = Math.sin(theta) * radius;
-	}
-	
-	/**
-	 * 
-	 * @param theta	The value to add to theta in radians
-	 * @return		This vector
-	 */
-	public Vector rotateRadians(double theta) {
-		setRadians(this.theta + theta);
-		return this;
-	}
-	
-	/**
-	 * 
-	 * @param theta The value to add to theta in degrees
-	 * @return		This vector
-	 */
-	public Vector rotateDegrees(double theta) {
-		return rotateRadians(Math.toRadians(theta));
-	}
-	
-	/**
-	 * 
-	 * @param r	The value to add the the radius
-	 * @return	This vector
-	 */
-	public Vector addRadius(double r) {
-		setRadius(radius + r);
-		return this;
+	public void divide(double scalar) {
+		x /= scalar;
+		y /= scalar;
 	}
 }

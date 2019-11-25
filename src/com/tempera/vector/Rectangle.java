@@ -1,5 +1,7 @@
 package com.tempera.vector;
 
+import java.util.Arrays;
+
 public class Rectangle {
 	//TODO https://gamedevelopment.tutsplus.com/tutorials/collision-detection-using-the-separating-axis-theorem--gamedev-169
 	//use this for collision
@@ -29,12 +31,14 @@ public class Rectangle {
 		//get points of both rectangles
 		Vector[] points = new Vector[] {new Vector(0, 0), new Vector(width, 0), new Vector(width, -height), new Vector(0, -height)};
 		for (int i = 0; i < 4; i++) {
-			points[i] = points[i].rotateRadians(angle).add(new Vector(x, y));	//starts polygon at origin, rotates, and back to x,y
+			points[i].addAngle(angle);
+			points[i].add(x, y);	//starts polygon at origin, rotates, and back to x,y
 		}
 		
 		Vector[] rpoints = new Vector[] {new Vector(0, 0), new Vector(r.width, 0), new Vector(r.width, -r.height), new Vector(0, -r.height)};
 		for (int i = 0; i < 4; i++) {
-			rpoints[i] = rpoints[i].rotateRadians(r.angle).add(new Vector(r.x, r.y));
+			rpoints[i].addAngle(r.angle);
+			rpoints[i].add(r.x, r.y);
 		}
 		
 		//check if vertices of either rectangle are in the other one

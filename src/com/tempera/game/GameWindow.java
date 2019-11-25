@@ -31,6 +31,11 @@ public class GameWindow extends JFrame {
 	public GameWindow() {
 		super("Project Tempera");
 		
+		hitbox.x = 752/2;
+		hitbox.y = 407/2;
+		
+		sprite.setOffset(Math.PI / 2);
+		
 		//TODO replace this with Sprite
 		JPanel panel = new JPanel() {
 			private static final long serialVersionUID = -6064113046027500937L;
@@ -39,6 +44,7 @@ public class GameWindow extends JFrame {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				hitbox.draw(g);
+				g.drawRect((int)hitbox.width / 2, -(int)hitbox.height / 2, (int)hitbox.width, (int)hitbox.height);	//remove later
 				sprite.draw(g);
 			}
 		};
@@ -61,9 +67,10 @@ public class GameWindow extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				//TODO this is so bad. Make readable
-				Vector vector = new Vector(MouseData.getX(), MouseData.getY()).subtract(player.position);
+				Vector vector = new Vector(MouseData.getX(), MouseData.getY());
+				vector.subtract(player.position);
 				vector.calculatePolar();
-				vector.setRadius(100);
+				vector.setMagnitude(100);
 				player.velocity.add(vector);
 			}
 
@@ -85,26 +92,26 @@ public class GameWindow extends JFrame {
 		moveCardinal();
 		player.velocity.calculatePolar();
 		
-		sprite.angle = player.velocity.theta;
+		sprite.angle = player.velocity.getAngle();
 		
-		sprite.x = player.position.x;
-		sprite.y = player.position.y;
+		sprite.x = player.position.getX();
+		sprite.y = player.position.getY();
 		
 		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f<br/>TouchingBox: %b</html>",
 				player.position,
 				player.velocity,
-				player.velocity.radius,
-				Math.toDegrees(player.velocity.theta),
+				player.velocity.getMagnitude(),
+				Math.toDegrees(player.velocity.getAngle()),
 				sprite.isIntersecting(hitbox)));
 	}
 	
 	public static void moveAcceleration() {
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT))
-			player.velocity.rotateDegrees(-1);
+			player.velocity.addAngle(-1);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT))
-			player.velocity.rotateDegrees(1);
+			player.velocity.addAngle(1);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
-			player.velocity.addRadius(1);
+			player.velocity.addAngle(1);
 		player.updatePosition();
 	}
 	
