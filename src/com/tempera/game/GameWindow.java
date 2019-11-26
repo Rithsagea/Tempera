@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.tempera.audio.Audio;
 import com.tempera.entity.Player;
 import com.tempera.graphics.Sprite;
 import com.tempera.input.KeyboardData;
@@ -27,7 +28,7 @@ public class GameWindow extends JFrame {
 	
 	private static MouseData mouse = new MouseData();
 	private static KeyboardData keyboard = new KeyboardData();
-	
+	private static Audio soundDemo = new Audio();
 	public GameWindow() {
 		super("Project Tempera");
 		
@@ -72,6 +73,8 @@ public class GameWindow extends JFrame {
 				vector.calculatePolar();
 				vector.setMagnitude(100);
 				player.velocity.add(vector);
+				//play sound demo
+				soundDemo.playSound("src/resources/soundDemo.wav");
 			}
 
 			@Override
@@ -116,11 +119,11 @@ public class GameWindow extends JFrame {
 	}
 	
 	public static void moveCardinal() {
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP)) 
 			player.velocity.add(0, -accelerationRate);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_DOWN)) 
 			player.velocity.add(0, accelerationRate);
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT))
+		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT)) 
 			player.velocity.add(-accelerationRate, 0);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
 			player.velocity.add(accelerationRate, 0);
