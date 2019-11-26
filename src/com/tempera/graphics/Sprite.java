@@ -63,7 +63,7 @@ public class Sprite extends Rectangle {
 		
 		g2d.drawImage(image, position, null);
 		g2d.setTransform(position);
-		g2d.drawRect(-(int)width / 2, -(int)height / 2, (int)width, (int)height);	//change back
+		g2d.drawRect(0, 0, (int)width, (int)height);	//change back
 		
 		position.setToIdentity();
 		g2d.setTransform(position);
