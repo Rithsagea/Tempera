@@ -16,6 +16,9 @@ public class Sprite extends Rectangle {
 	protected Image image;
 	protected double angleOffset;
 	
+	protected int imageHeight;
+	protected int imageWidth;
+	
 	public Sprite(String filePath) {
 		super(0, 0, 0, 0, 0);
 		setImage(filePath);
@@ -35,8 +38,11 @@ public class Sprite extends Rectangle {
 		} catch (IOException e) {
 			System.out.println(filePath + " could not be found.");
 		}
-		width = image.getWidth(null);
-		height = image.getHeight(null);
+		imageWidth = image.getWidth(null);
+		imageHeight = image.getHeight(null);
+		
+		width = imageWidth;
+		height = imageHeight;
 //		System.out.format("(%.2f, %.2f)\n", width, height);
 	}
 	
@@ -53,7 +59,7 @@ public class Sprite extends Rectangle {
 		AffineTransform position = new AffineTransform();
 		
 		position.translate(x, y);
-		
+		rotation.scale(width / imageWidth, height / imageHeight);
 		rotation.rotate(angle + angleOffset);
 		
 		translation.concatenate(rotation);
@@ -61,8 +67,9 @@ public class Sprite extends Rectangle {
 		
 		position.concatenate(translation);
 		
-		g2d.drawImage(image, position, null);
+		
 		g2d.setTransform(position);
+		g2d.drawImage(image, 0, 0, null);
 		g2d.drawRect(0, 0, (int)width, (int)height);	//change back
 		
 		position.setToIdentity();

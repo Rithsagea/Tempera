@@ -1,18 +1,22 @@
 package com.tempera.game;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Main {
 	
 	private static GameWindow window;
+	private static Timer timer;
 	
 	public static void main(String[] args) {
 		window = new GameWindow();
-		long nextTick = System.currentTimeMillis();
-		while(true) {
-			if(nextTick < System.currentTimeMillis()) {
+		timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
 				GameWindow.tick();
-				nextTick = System.currentTimeMillis() + 1000 / 60; //60 ticks per second
+				window.repaint();
 			}
-			window.repaint();
-		}
+		}, 0, 1000 / 60);
 	}
 }

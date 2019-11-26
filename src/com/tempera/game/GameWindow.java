@@ -24,16 +24,24 @@ public class GameWindow extends JFrame {
 	private static final Player player = new Player(new Vector(540, 360));
 	private static final Sprite sprite = new Sprite("src/resources/frog.png");
 	private static final Sprite hitbox = new Sprite("src/resources/background1.png");
+	private static final Sprite backdrop = new Sprite("src/resources/dungeon.png");
 	private static JLabel label;
 	
 	private static MouseData mouse = new MouseData();
 	private static KeyboardData keyboard = new KeyboardData();
 	private static Audio soundDemo = new Audio();
+	
 	public GameWindow() {
 		super("Project Tempera");
 		
 		hitbox.x = 752/2;
 		hitbox.y = 407/2;
+		
+		backdrop.width = 1080;
+		backdrop.height = 720;
+		
+		backdrop.x = backdrop.width / 2;
+		backdrop.y = backdrop.height / 2;
 		
 		sprite.setOffset(Math.PI / 2);
 		
@@ -44,8 +52,8 @@ public class GameWindow extends JFrame {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				hitbox.draw(g);
-//				g.drawRect((int)hitbox.width / 2, -(int)hitbox.height / 2, (int)hitbox.width, (int)hitbox.height);	//remove later
+				backdrop.draw(g);
+//				hitbox.draw(g);
 				sprite.draw(g);
 			}
 		};
@@ -64,7 +72,7 @@ public class GameWindow extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {}
-
+			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				//TODO this is so bad. Make readable
@@ -100,6 +108,14 @@ public class GameWindow extends JFrame {
 		sprite.x = player.position.getX();
 		sprite.y = player.position.getY();
 		
+		//TODO move rectangle code to physics object
+//		if(sprite.isIntersecting(hitbox)) {
+//			player.velocity.multiply(-5);
+//			player.updatePosition();
+//			sprite.x = player.position.getX();
+//			sprite.y = player.position.getY();
+//		}
+//		
 		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f<br/>TouchingBox: %b</html>",
 				player.position,
 				player.velocity,
