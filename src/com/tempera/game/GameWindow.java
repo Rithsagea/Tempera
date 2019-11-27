@@ -82,7 +82,7 @@ public class GameWindow extends JFrame {
 				vector.setMagnitude(100);
 				player.velocity.add(vector);
 				//play sound demo
-				soundDemo.playSound("src/resources/soundDemo.wav");
+				soundDemo.playSound("soundDemo.wav");
 			}
 
 			@Override
