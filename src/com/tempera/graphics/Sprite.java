@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 
 import com.tempera.vector.Rectangle;
 
-public class Sprite extends Rectangle {
+public class Sprite extends Rectangle implements RenderedObject {
 	
 	protected Image image;
 	protected double angleOffset;
