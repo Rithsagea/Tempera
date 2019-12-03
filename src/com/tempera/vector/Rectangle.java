@@ -1,7 +1,5 @@
 package com.tempera.vector;
 
-import java.util.Arrays;
-
 public class Rectangle {
 	//TODO https://gamedevelopment.tutsplus.com/tutorials/collision-detection-using-the-separating-axis-theorem--gamedev-169
 	//use this for collision
