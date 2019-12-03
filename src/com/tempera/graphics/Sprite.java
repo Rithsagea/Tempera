@@ -30,6 +30,9 @@ public class Sprite extends Rectangle implements RenderedObject {
 	
 	/**
 	 * Sets the image for this sprite
+	 * 
+	 * TODO add arguments for resizing the image
+	 * TODO save the image in a form that doesn't require resizing
 	 * @param filePath	The file which contains the image for this sprite
 	 */
 	public void setImage(String filePath) {
