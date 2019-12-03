@@ -1,5 +1,7 @@
 package com.tempera.util;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class WeightedList<T> {
@@ -37,7 +39,7 @@ public class WeightedList<T> {
 	}
 	
 	/**
-	 * 
+	 * Rolls an element from the weighted list
 	 * @return	A randomly chosen element from the weighted list
 	 */
 	public T getElement() {
@@ -51,5 +53,23 @@ public class WeightedList<T> {
 				return temp.element;
 		}
 		throw new NullPointerException("overflow");
+	}
+	
+	/**
+	 * Gets all elements of the weighted list
+	 * 
+	 * TODO test this
+	 * @return	a HashMap containing all elements and their corresponding weights
+	 */
+	public Map<T, Integer> getElements() {
+		Node temp = root;
+		Map<T, Integer> elements = new HashMap<T, Integer>();
+		
+		do {
+			temp = temp.child;
+			elements.put(temp.element, temp.weight);
+		} while(temp.child != null);
+		
+		return elements;
 	}
 }
