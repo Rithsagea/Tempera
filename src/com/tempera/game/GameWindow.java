@@ -1,5 +1,6 @@
 package com.tempera.game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -59,13 +60,13 @@ public class GameWindow extends JFrame {
 		};
 		
 		label = new JLabel("dummytext");
+		label.setForeground(Color.white);
 		
 		pack();
 		setSize(1080, 720);
 		setVisible(true);
 		
 		addKeyListener(keyboard);
-		panel.add(label);
 		panel.addMouseMotionListener(mouse);
 		//TODO add some event handler for keyboard and mouse
 		panel.addMouseListener(new MouseListener() {
@@ -94,6 +95,7 @@ public class GameWindow extends JFrame {
 			@Override
 			public void mouseExited(MouseEvent e) {}
 		});
+		panel.add(label);
 		add(panel);
 	}
 	

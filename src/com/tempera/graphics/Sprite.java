@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.tempera.util.TransformUtil;
 import com.tempera.vector.Rectangle;
 
 public class Sprite extends Rectangle implements RenderedObject {
@@ -56,26 +57,13 @@ public class Sprite extends Rectangle implements RenderedObject {
 	 */
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
+
+		AffineTransform transformation = TransformUtil.getTransformation(this, angleOffset + angle);
 		
-		AffineTransform rotation = new AffineTransform();
-		AffineTransform translation = new AffineTransform();
-		AffineTransform position = new AffineTransform();
-		
-		position.translate(x, y);
-		rotation.scale(width / imageWidth, height / imageHeight);
-		rotation.rotate(angle + angleOffset);
-		
-		translation.concatenate(rotation);
-		translation.translate(-width / 2, -height / 2);
-		
-		position.concatenate(translation);
-		
-		
-		g2d.setTransform(position);
+		g2d.setTransform(transformation);
 		g2d.drawImage(image, 0, 0, null);
 		g2d.drawRect(0, 0, (int)width, (int)height);	//change back
-		
-		position.setToIdentity();
-		g2d.setTransform(position);
+		transformation.setToIdentity();
+		g2d.setTransform(transformation);
 	}
 }
