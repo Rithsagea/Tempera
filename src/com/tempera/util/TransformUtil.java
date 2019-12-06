@@ -10,7 +10,6 @@ public class TransformUtil {
 		AffineTransform rotation = new AffineTransform();
 		AffineTransform translation = new AffineTransform();
 		
-		//scaling here
 		rotation.rotate(angle);
 		
 		translation.concatenate(rotation);
