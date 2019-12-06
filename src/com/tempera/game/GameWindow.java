@@ -38,8 +38,7 @@ public class GameWindow extends JFrame {
 		hitbox.x = 752/2;
 		hitbox.y = 407/2;
 		
-		backdrop.width = 1080;
-		backdrop.height = 720;
+		backdrop.resizeImage(1080, 720);
 		
 		backdrop.x = backdrop.width / 2;
 		backdrop.y = backdrop.height / 2;
@@ -63,7 +62,7 @@ public class GameWindow extends JFrame {
 		label.setForeground(Color.white);
 		
 		pack();
-		setSize(1080, 720);
+		setSize(1080, 740);
 		setVisible(true);
 		
 		addKeyListener(keyboard);
