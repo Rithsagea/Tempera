@@ -17,8 +17,8 @@ public class Sprite extends Rectangle implements RenderedObject {
 	protected Image image;
 	protected double angleOffset;
 	
-	protected int imageHeight;
-	protected int imageWidth;
+	public int imageHeight;
+	public int imageWidth;
 	
 	public Sprite(String filePath) {
 		super(0, 0, 0, 0, 0);
@@ -48,6 +48,12 @@ public class Sprite extends Rectangle implements RenderedObject {
 		width = imageWidth;
 		height = imageHeight;
 //		System.out.format("(%.2f, %.2f)\n", width, height);
+	}
+	
+	public void resizeImage(int scaledWidth, int scaledHeight) {
+		width = scaledWidth;
+		height = scaledHeight;
+		image = image.getScaledInstance(scaledWidth, scaledHeight, 0);
 	}
 	
 	/**
