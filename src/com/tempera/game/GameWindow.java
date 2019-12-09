@@ -118,7 +118,7 @@ public class GameWindow extends JFrame {
 			sprite.x = player.position.getX();
 			sprite.y = player.position.getY();
 		}
-//		
+		
 		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f<br/>TouchingBox: %b</html>",
 				player.position,
 				player.velocity,
