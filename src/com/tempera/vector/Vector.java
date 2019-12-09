@@ -159,4 +159,13 @@ public class Vector extends Point implements Cloneable {
 		x /= scalar;
 		y /= scalar;
 	}
+	
+	/**
+	 * Gets the dot product between this vector and vec
+	 * @param vec	the vector to compare to this one
+	 * @return	the dot product between this vector and vec
+	 */
+	public double dotProduct(Vector vec) {
+		return x * vec.x + y * vec.y;
+	}
 }
