@@ -21,6 +21,46 @@ public class Rectangle {
 	}
 	
 	/**
+	 * Gets the endpoints of this rectangle
+	 * 
+	 * This is the rectangle:
+	 * AB
+	 * DC
+	 * 
+	 * The function returns {A, B, C, D}
+	 * @return	the endpoints of this rectangle
+	 */
+	public Point[] getPoints() {
+		return new Point[] {
+			new Point(x, y),
+			new Point(x + width, y),
+			new Point(x + width, y + height),
+			new Point(x, y + height)
+		};
+	}
+	
+	/**
+	 * Get the line segments that make up
+	 * this rectangle
+	 * 
+	 * This is the rectangle:
+	 * AB
+	 * DC
+	 * 
+	 * The functionr returns {AB, BC, CD, DA}
+	 * @return	all the segments of this rectangle in order
+	 */
+	public Segment[] getSegments() {
+		Point[] points = getPoints();
+		return new Segment[] {
+			new Segment(points[0], points[1]),
+			new Segment(points[1], points[2]),
+			new Segment(points[2], points[3]),
+			new Segment(points[3], points[0])
+		};
+	}
+	
+	/**
 	 * Checks whether 2 rectangles are intersecting
 	 * 
 	 * TODO optimize this god awful abomination
