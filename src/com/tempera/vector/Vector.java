@@ -157,10 +157,12 @@ public class Vector extends Point implements Cloneable {
 	/**
 	 * Multiplies the x and y coordinate by the scalar
 	 * @param scalar	the scalar to multiply the coordinates by
+	 * @return	this vector
 	 */
-	public void multiply(double scalar) {
+	public Vector multiply(double scalar) {
 		x *= scalar;
 		y *= scalar;
+		return this;
 	}
 	
 	/**
@@ -179,5 +181,17 @@ public class Vector extends Point implements Cloneable {
 	 */
 	public double dotProduct(Vector vec) {
 		return x * vec.x + y * vec.y;
+	}
+	
+	/**
+	 * Find the projection of vec onto this vector
+	 * @param vec	the vector to compare to this one
+	 * @return		the projection of vec onto this
+	 */
+	public Vector projection(Vector vec) {
+		return clone()
+				.multiply(
+					dotProduct(vec) /
+					(x * x + y * y));
 	}
 }
