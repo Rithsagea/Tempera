@@ -21,14 +21,8 @@ public class Rectangle {
 	}
 	
 	/**
-	 * Gets the endpoints of this rectangle
-	 * 
-	 * This is the rectangle:
-	 * AB
-	 * DC
-	 * 
-	 * The function returns {A, B, C, D}
-	 * @return	the endpoints of this rectangle
+	 * Gets the end-points of this rectangle from top left clockwise
+	 * @return	the end-points of this rectangle
 	 */
 	public Point[] getPoints() {
 		double hw = width / 2;
@@ -43,14 +37,7 @@ public class Rectangle {
 	}
 	
 	/**
-	 * Get the line segments that make up
-	 * this rectangle
-	 * 
-	 * This is the rectangle:
-	 * AB
-	 * DC
-	 * 
-	 * The function returns {AB, BC, CD, DA}
+	 * Get the line segments that make up this rectangle from top segment clockwise
 	 * @return	all the segments of this rectangle in order
 	 */
 	public Segment[] getSegments() {
