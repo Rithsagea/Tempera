@@ -31,11 +31,14 @@ public class Rectangle {
 	 * @return	the endpoints of this rectangle
 	 */
 	public Point[] getPoints() {
+		double hw = width / 2;
+		double hh = height / 2;
+		
 		return new Point[] {
-			new Point(x, y),
-			new Point(x + width, y),
-			new Point(x + width, y + height),
-			new Point(x, y + height)
+			new Point(x - hw, y - hh),
+			new Point(x + hw, y - hh),
+			new Point(x + hw, y + hh),
+			new Point(x - hw, y + hh)
 		};
 	}
 	
@@ -47,7 +50,7 @@ public class Rectangle {
 	 * AB
 	 * DC
 	 * 
-	 * The functionr returns {AB, BC, CD, DA}
+	 * The function returns {AB, BC, CD, DA}
 	 * @return	all the segments of this rectangle in order
 	 */
 	public Segment[] getSegments() {
@@ -75,9 +78,11 @@ public class Rectangle {
 				new Vector(-hw, -hh),
 				new Vector(hw, -hh)};
 		for (int i = 0; i < 4; i++) {
-			points[i].addAngle(angle);
-			points[i].add(x, y);	//starts polygon at origin, rotates, and back to x,y
+			points[i]
+				.addAngle(angle)
+				.add(x, y);	//starts polygon at origin, rotates, and back to x,y
 		}
+		
 		hw = r.width / 2;
 		hh = r.height / 2;
 		Vector[] rpoints = new Vector[] {
@@ -86,8 +91,9 @@ public class Rectangle {
 				new Vector(-hw, -hh),
 				new Vector(hw, -hh)};
 		for (int i = 0; i < 4; i++) {
-			rpoints[i].addAngle(r.angle);
-			rpoints[i].add(r.x, r.y);
+			rpoints[i]
+				.addAngle(r.angle)
+				.add(r.x, r.y);
 		}
 		
 		//check if vertices of either rectangle are in the other one
