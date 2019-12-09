@@ -23,6 +23,16 @@ public class Vector extends Point implements Cloneable {
 		calculatePolar();
 	}
 	
+	/**
+	 * Creates a vector from point A
+	 * to point B
+	 * @param A	the point A
+	 * @param B	the point B
+	 */
+	public Vector(Point A, Point B) {
+		this(B.x - A.x, B.y - A.y);
+	}
+	
 	//Object Methods
 	public Vector clone() {
 		return new Vector(x, y);
