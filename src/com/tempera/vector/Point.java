@@ -130,4 +130,28 @@ public class Point implements Cloneable {
 	public Point getMidpoint(Point p) {
 		return new Point((x + p.x) / 2, (y + p.y) / 2);
 	}
+	
+	/**
+	 * Checks the orientation of points
+	 * p -> q -> r
+	 * 
+	 * 0 -> p, q and r are collinear
+	 * 1 -> clockwise
+	 * 2 -> counterclockwise
+	 * 
+	 * https://www.geeksforgeeks.org/orientation-3-ordered-points/ 
+	 * 
+	 * @param p
+	 * @param q
+	 * @param r
+	 * @return	the orientation of the points
+	 */
+	public static int orientation(Point p, Point q, Point r) {
+		double val = (q.y - p.y) * (r.x - q.x) -
+				(q.x - p.x) * (r.y - q.y);
+		
+		if(val == 0) return 0;
+		
+		return (val > 0) ? 1 : 2;
+	}
 }
