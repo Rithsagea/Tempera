@@ -39,11 +39,28 @@ public class Segment {
 	 * Checks if a line segment contains a point.
 	 * Source: https://stackoverflow.com/a/328193
 	 * 
+	 * replace with dot product if slow
+	 * 
 	 * @param p	the point to check for
 	 * @return	whether the line segment contains p
 	 */
 	public boolean containsPoint(Point p) {
 		return (A.distanceSquaredFrom(p) + B.distanceFrom(p) == A.distanceSquaredFrom(B));
+	}
+	
+	/**
+	 * Checks if the point r lies on segment pq
+	 * @param p	the point p
+	 * @param q	the point q
+	 * @param r	the point r
+	 * @return	whether r lies on pq
+	 */
+	public static boolean onSegment(Point p, Point q, Point r) {
+		if (r.x <= Math.max(p.x, q.x) && r.x >= Math.min(p.x, q.x) && 
+			r.y <= Math.max(p.y, q.y) && r.y >= Math.min(p.y, q.y))
+			return true;
+		
+		return false;
 	}
 	
 	/**
@@ -59,6 +76,11 @@ public class Segment {
 		
 		if(o1 != o2 && o3 != o4)
 			return true;
+		
+		if(o1 == 0 && onSegment(A, B, seg.A)) return true;
+		if(o2 == 0 && onSegment(A, B, seg.B)) return true;
+		if(o3 == 0 && onSegment(seg.A, seg.B, A)) return true;
+		if(o4 == 0 && onSegment(seg.A, seg.B, B)) return true;
 		
 		return false;
 	}
