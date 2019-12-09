@@ -24,6 +24,15 @@ public class Vector extends Point implements Cloneable {
 	}
 	
 	/**
+	 * Creates a vector from point p
+	 * @param p	the point p
+	 */
+	public Vector(Point p) {
+		super(p.x, p.y);
+		calculatePolar();
+	}
+	
+	/**
 	 * Creates a vector from point A
 	 * to point B
 	 * @param A	the point A
@@ -63,17 +72,20 @@ public class Vector extends Point implements Cloneable {
 	/**
 	 * Sets the angle of this vector
 	 * @param angle	the angle to set this vector to
+	 * @return	this vector
 	 */
-	public void setAngle(double angle) {
+	public Vector setAngle(double angle) {
 		calculatePolar();
 		this.angle = angle;
 		calculateComponent();
+		return this;
 	}
 	
-	public void addAngle(double angle) {	//pretty much duplicate code but shhh
+	public Vector addAngle(double angle) {	//pretty much duplicate code but shhh
 		calculatePolar();
 		this.angle += angle;
 		calculateComponent();
+		return this;
 	}
 	
 	/**
