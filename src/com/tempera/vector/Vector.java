@@ -91,11 +91,13 @@ public class Vector extends Point implements Cloneable {
 	/**
 	 * Sets the magnitude of this vector
 	 * @param magnitude	the magnitude to set this vector to
+	 * @return this vector
 	 */
-	public void setMagnitude(double magnitude) {
+	public Vector setMagnitude(double magnitude) {
 		calculatePolar();
 		this.radius = magnitude;
 		calculateComponent();
+		return this;
 	}
 	
 	//Calculation
@@ -193,5 +195,9 @@ public class Vector extends Point implements Cloneable {
 				.multiply(
 					dotProduct(vec) /
 					(x * x + y * y));
+	}
+	
+	public Vector unitVector() {
+		return this.clone().setMagnitude(1);
 	}
 }
