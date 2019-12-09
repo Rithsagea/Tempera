@@ -68,7 +68,7 @@ public class Sprite extends Rectangle implements RenderedObject {
 		
 		g2d.setTransform(transformation);
 		g2d.drawImage(image, 0, 0, null);
-		g2d.drawRect(0, 0, (int)width, (int)height);	//change back
+//		g2d.drawRect(0, 0, (int)width, (int)height);	//change back
 		transformation.setToIdentity();
 		g2d.setTransform(transformation);
 	}
