@@ -20,6 +20,10 @@ public class Rectangle {
 		this.angle = angle;
 	}
 	
+	public Point getCenter() {
+		return new Point(x, y);
+	}
+	
 	/**
 	 * Gets the end-points of this rectangle from top left clockwise
 	 * @return	the end-points of this rectangle
@@ -116,5 +120,26 @@ public class Rectangle {
 			}
 		}
 		return false;
+	}
+
+	public boolean getIntersecting(Rectangle r) {
+		Point[] points = getPoints();
+		Point[] rpoints = r.getPoints();
+		
+		Vector axis = new Vector(1, -1).unitVector();
+		
+		Vector C = new Vector(r.getCenter(), getCenter());
+		Vector B = new Vector(getCenter(), points[0]);
+		Vector A = new Vector(r.getCenter(), rpoints[0]);
+		
+		double projC = C.dotProduct(axis);
+		double projB = B.dotProduct(axis);
+		double projA = A.dotProduct(axis);
+		
+		double gap = projC - projA + projB;
+		
+		if(gap > 0) return false;
+		else if(gap > 0) return false;
+		else return true;
 	}
 }
