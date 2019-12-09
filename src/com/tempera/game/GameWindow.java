@@ -15,6 +15,8 @@ import com.tempera.entity.Player;
 import com.tempera.graphics.Sprite;
 import com.tempera.input.KeyboardData;
 import com.tempera.input.MouseData;
+import com.tempera.vector.Point;
+import com.tempera.vector.Segment;
 import com.tempera.vector.Vector;
 
 public class GameWindow extends JFrame {
@@ -35,10 +37,10 @@ public class GameWindow extends JFrame {
 	public GameWindow() {
 		super("Project Tempera");
 		
-		hitbox.resizeImage(500, 500);
+		hitbox.resizeImage(100, 100);
 		
-		hitbox.x = 250;
-		hitbox.y = 250;
+		hitbox.x = 300;
+		hitbox.y = 300;
 		
 		backdrop.resizeImage(1080, 720);
 		
@@ -57,6 +59,18 @@ public class GameWindow extends JFrame {
 				backdrop.draw(g);
 				hitbox.draw(g);
 				sprite.draw(g);
+				
+				//Draw intersecting things
+				Segment[] intersects = sprite.getIntersectingSegments(hitbox);
+				
+				for(int x = 0; x < intersects.length; x++) {
+					Point A = intersects[x].getA();
+					Point B = intersects[x].getB();
+					
+					g.setColor(Color.RED);
+					g.drawLine((int)A.getX(), (int)A.getY(),
+							   (int)B.getX(), (int)B.getY());
+				}
 			}
 		};
 		
@@ -112,12 +126,13 @@ public class GameWindow extends JFrame {
 		sprite.y = player.position.getY();
 		
 		//TODO move rectangle code to physics object
-		if(sprite.isIntersecting(hitbox)) {
-			player.velocity.multiply(-5);
-			player.updatePosition();
-			sprite.x = player.position.getX();
-			sprite.y = player.position.getY();
-		}
+//		if(sprite.isIntersecting(hitbox)) {
+			
+//			player.velocity.multiply(-5);
+//			player.updatePosition();
+//			sprite.x = player.position.getX();
+//			sprite.y = player.position.getY();
+//		}
 		
 		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f<br/>TouchingBox: %b</html>",
 				player.position,
