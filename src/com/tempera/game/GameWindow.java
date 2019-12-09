@@ -35,8 +35,10 @@ public class GameWindow extends JFrame {
 	public GameWindow() {
 		super("Project Tempera");
 		
-		hitbox.x = 752/2;
-		hitbox.y = 407/2;
+		hitbox.resizeImage(500, 500);
+		
+		hitbox.x = 250;
+		hitbox.y = 250;
 		
 		backdrop.resizeImage(1080, 720);
 		
@@ -53,7 +55,7 @@ public class GameWindow extends JFrame {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				backdrop.draw(g);
-//				hitbox.draw(g);
+				hitbox.draw(g);
 				sprite.draw(g);
 			}
 		};
@@ -110,12 +112,12 @@ public class GameWindow extends JFrame {
 		sprite.y = player.position.getY();
 		
 		//TODO move rectangle code to physics object
-//		if(sprite.isIntersecting(hitbox)) {
-//			player.velocity.multiply(-5);
-//			player.updatePosition();
-//			sprite.x = player.position.getX();
-//			sprite.y = player.position.getY();
-//		}
+		if(sprite.isIntersecting(hitbox)) {
+			player.velocity.multiply(-5);
+			player.updatePosition();
+			sprite.x = player.position.getX();
+			sprite.y = player.position.getY();
+		}
 //		
 		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f<br/>TouchingBox: %b</html>",
 				player.position,
