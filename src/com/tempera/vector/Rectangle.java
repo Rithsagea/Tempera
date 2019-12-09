@@ -1,5 +1,8 @@
 package com.tempera.vector;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Rectangle {
 	//TODO https://gamedevelopment.tutsplus.com/tutorials/collision-detection-using-the-separating-axis-theorem--gamedev-169
 	//use this for collision
@@ -121,25 +124,22 @@ public class Rectangle {
 		}
 		return false;
 	}
-
-	public boolean getIntersecting(Rectangle r) {
-		Point[] points = getPoints();
-		Point[] rpoints = r.getPoints();
+	
+	public Segment[] getIntersectingSegments(Rectangle r) {
+		Segment[] sides = getSegments();
+		Segment[] rsides = r.getSegments();
+		List<Segment> intersects = new ArrayList<Segment>();
 		
-		Vector axis = new Vector(1, -1).unitVector();
-		
-		Vector C = new Vector(r.getCenter(), getCenter());
-		Vector B = new Vector(getCenter(), points[0]);
-		Vector A = new Vector(r.getCenter(), rpoints[0]);
-		
-		double projC = C.dotProduct(axis);
-		double projB = B.dotProduct(axis);
-		double projA = A.dotProduct(axis);
-		
-		double gap = projC - projA + projB;
-		
-		if(gap > 0) return false;
-		else if(gap > 0) return false;
-		else return true;
+		for(int i = 0; i < sides.length; i++) { //loop through all segments in this rect
+			for(int j = 0; j < rsides.length; j++) { //loop through all segs in r
+				if(sides[i].intersects(rsides[j])) { //check if the 2 segs intersect
+					intersects.add(rsides[j]); //if they do, add them to the list
+					break;					  //well if it intersects, doesn't matter for the rest
+				}
+			}
+		}
+		Segment[] re = new Segment[intersects.size()];
+		intersects.toArray(re);
+		return re;
 	}
 }
