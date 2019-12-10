@@ -39,7 +39,7 @@ public class GameWindow extends JFrame {
 		soundDemo.getSoundFile("songDemo.wav");
 		soundDemo.volumeControl((float).1);
 		soundDemo.playSound();
-		soundDemo.loop(23000,-1);
+		soundDemo.loop(1,-1);
 		hitbox.resizeImage(100, 100);
 		
 		hitbox.x = 300;
