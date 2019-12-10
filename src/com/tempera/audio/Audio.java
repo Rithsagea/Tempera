@@ -24,15 +24,22 @@ public class Audio {
 		}
 	}
 	
+	
+	//Clip controlling stuff
+	/**Note: these can only effect one clip at a time, when getSoundFile runs it switches the clip object to a new file and
+	 * then these methods switch to that data stream.
+	 * Only way to control different clips at the same time is to use more objects or make an arraylist of clips
+	 */
+	
 	/**
-	 * Plays the audio from data stream in clip
+	 * Plays the audio from clip
 	 */
 	public void playSound() {
 		clip.start();
 	}
 	
 	/**
-	 * Stops the current clip from the last sound file
+	 * Stops the current clip
 	 */
 	public void stop() {
 		clip.stop();
