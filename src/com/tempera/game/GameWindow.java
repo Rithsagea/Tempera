@@ -36,7 +36,10 @@ public class GameWindow extends JFrame {
 	
 	public GameWindow() {
 		super("Project Tempera");
-		
+		soundDemo.getSoundFile("songDemo.wav");
+		soundDemo.volumeControl((float)1);
+		soundDemo.playSound();
+		soundDemo.loop(23000,-1);
 		hitbox.resizeImage(100, 100);
 		
 		hitbox.x = 300;
@@ -98,7 +101,8 @@ public class GameWindow extends JFrame {
 				vector.setMagnitude(100);
 				player.velocity.add(vector);
 				//play sound demo
-				soundDemo.playSound("soundDemo.wav");
+				soundDemo.getSoundFile("soundDemo.wav");
+				soundDemo.playSound();
 			}
 
 			@Override
