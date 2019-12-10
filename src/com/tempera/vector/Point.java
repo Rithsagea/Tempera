@@ -28,6 +28,10 @@ public class Point implements Cloneable {
 		return false;
 	}
 	
+	public String toString() {
+		return String.format("(%.2f, %.2f)", x, y);
+	}
+	
 	//Information
 	/**
 	 * Finds the distance squared from this point to another.

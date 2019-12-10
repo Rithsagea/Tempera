@@ -71,7 +71,7 @@ public class Vector extends Point implements Cloneable {
 	//Setters
 	/**
 	 * Sets the angle of this vector
-	 * @param angle	the angle to set this vector to
+	 * @param angle	the angle in radians to set this vector to
 	 * @return	this vector
 	 */
 	public Vector setAngle(double angle) {

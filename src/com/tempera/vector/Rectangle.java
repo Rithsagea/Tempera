@@ -130,8 +130,8 @@ public class Rectangle {
 		Segment[] rsides = r.getSegments();
 		List<Segment> intersects = new ArrayList<Segment>();
 		
-		for(int i = 0; i < sides.length; i++) { //loop through all segments in this rect
-			for(int j = 0; j < rsides.length; j++) { //loop through all segs in r
+		for(int j = 0; j < rsides.length; j++) { //loop through all segments in this rect
+			for(int i = 0; i < sides.length; i++) { //loop through all segs in r
 				if(sides[i].intersects(rsides[j])) { //check if the 2 segs intersect
 					intersects.add(rsides[j]); //if they do, add them to the list
 					break;					  //well if it intersects, doesn't matter for the rest

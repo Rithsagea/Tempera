@@ -22,7 +22,7 @@ import com.tempera.vector.Vector;
 public class GameWindow extends JFrame {
 
 	private static final long serialVersionUID = -7296143310032123444L;
-	private static final long accelerationRate = 3;
+	private static final long accelerationRate = 300 / Main.frameRate;
 	
 	private static final Player player = new Player(new Vector(540, 360));
 	private static final Sprite sprite = new Sprite("src/resources/frog.png");
@@ -126,13 +126,38 @@ public class GameWindow extends JFrame {
 		sprite.y = player.position.getY();
 		
 		//TODO move rectangle code to physics object
-//		if(sprite.isIntersecting(hitbox)) {
-			
+		if(sprite.isIntersecting(hitbox)) {
+			//viscosity here
+			Segment[] segments = sprite.getIntersectingSegments(hitbox);
+			for(int x = 0; x < segments.length; x++) {
+				Vector vec = new Vector(segments[x].getA(), segments[x].getB());
+				vec = vec.addAngle(Math.toRadians(-90))
+						.projection(player.velocity)
+						.addAngle(Math.toRadians(180));
+//				System.out.println("Hitbox: " + hitbox.getCenter());
+//				System.out.println("Player: " + player.position);
+//				System.out.println("Distance: " + player.position.distanceFrom(hitbox.getCenter()));
+//				vec.setMagnitude(player.position.distanceFrom(hitbox.getCenter()));
+				if(segments[x].getLength() == hitbox.width) { //hit top / bottom
+					vec.setMagnitude(
+							hitbox.height / 2 +
+							hitbox.x - 
+							player.position.getX());
+				} else { //hit left / right
+					vec.setMagnitude(
+							hitbox.width / 2 +
+							hitbox.y -
+							player.position.getY());
+				}
+				System.out.println("Vec: " + vec);
+				System.out.println("Vel: " + player.velocity);
+				player.velocity.add(vec);
+			}
 //			player.velocity.multiply(-5);
-//			player.updatePosition();
-//			sprite.x = player.position.getX();
-//			sprite.y = player.position.getY();
-//		}
+			player.updatePosition();
+			sprite.x = player.position.getX();
+			sprite.y = player.position.getY();
+		}
 		
 		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f<br/>TouchingBox: %b</html>",
 				player.position,
@@ -140,6 +165,7 @@ public class GameWindow extends JFrame {
 				player.velocity.getMagnitude(),
 				Math.toDegrees(player.velocity.getAngle()),
 				sprite.isIntersecting(hitbox)));
+		player.updatePosition();
 	}
 	
 	public static void moveAcceleration() {
@@ -149,7 +175,6 @@ public class GameWindow extends JFrame {
 			player.velocity.addAngle(1);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
 			player.velocity.addAngle(1);
-		player.updatePosition();
 	}
 	
 	public static void moveCardinal() {
@@ -161,6 +186,5 @@ public class GameWindow extends JFrame {
 			player.velocity.add(-accelerationRate, 0);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
 			player.velocity.add(accelerationRate, 0);
-		player.updatePosition();
 	}
 }

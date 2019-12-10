@@ -8,6 +8,8 @@ public class Main {
 	private static GameWindow window;
 	private static Timer timer;
 	
+	public static int frameRate = 60;
+	
 	public static void main(String[] args) {
 		window = new GameWindow();
 		timer = new Timer();
@@ -17,6 +19,6 @@ public class Main {
 				GameWindow.tick();
 				window.repaint();
 			}
-		}, 0, 1000 / 60);
+		}, 0, 1000 / 30);
 	}
 }

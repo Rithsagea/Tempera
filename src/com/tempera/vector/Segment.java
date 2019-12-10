@@ -31,6 +31,14 @@ public class Segment {
 		return vec.y / vec.x;
 	}
 	
+	public double getLength() {
+		return A.distanceFrom(B);
+	}
+	
+	public double getLengthSquared() {
+		return A.distanceSquaredFrom(B);
+	}
+	
 	public Vector getVector() {
 		return new Vector(A, B);
 	}
