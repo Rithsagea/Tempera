@@ -66,4 +66,5 @@ public class Audio {
 		FloatControl gainControl =  (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 		gainControl.setValue((float) (Math.log(gain) / Math.log(10.0) * 20.0));
 	}
+	
 }
