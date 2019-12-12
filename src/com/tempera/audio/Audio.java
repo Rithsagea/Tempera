@@ -51,10 +51,11 @@ public class Audio {
 	 * @param end 		the second that the loop ends on
 	 */
 	public void loop(double start,double end) {
+		clip.setFramePosition(6500000);
 		if (end == -1)
-			clip.setLoopPoints(((int)start*1000000)/22,-1);
+			clip.setLoopPoints((int)(start*1000000)/22,-1);
 		else
-			clip.setLoopPoints(((int)start*1000000)/22,((int)end*1000000)/22);
+			clip.setLoopPoints((int)(start*1000000)/22,((int)end*1000000)/22);
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	
