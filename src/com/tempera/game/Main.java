@@ -3,11 +3,11 @@ package com.tempera.game;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
 public class Main {
 	
 	private static GameWindow window;
 	private static Timer timer;
-	
 	public static int frameRate = 60;
 	
 	public static void main(String[] args) {

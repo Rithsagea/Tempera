@@ -47,11 +47,15 @@ public class Audio {
 	
 	/**
 	 * Loops the clip through int start to int end until stopped
-	 * @param start 	the frame that the loop starts on
-	 * @param end 		the frame that the loop ends on
+	 * @param start 	the second that the loop starts on
+	 * @param end 		the second that the loop ends on
 	 */
-	public void loop(int start,int end) {
-		clip.setLoopPoints(start,end);
+	public void loop(double start,double end) {
+		clip.setFramePosition(6500000);
+		if (end == -1)
+			clip.setLoopPoints((int)(start*1000000)/22,-1);
+		else
+			clip.setLoopPoints((int)(start*1000000)/22,((int)end*1000000)/22);
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	
@@ -63,4 +67,5 @@ public class Audio {
 		FloatControl gainControl =  (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 		gainControl.setValue((float) (Math.log(gain) / Math.log(10.0) * 20.0));
 	}
+	
 }
