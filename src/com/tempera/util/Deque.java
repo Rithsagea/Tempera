@@ -1,6 +1,7 @@
 package com.tempera.util;
 
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Deque<T> {
 	
@@ -39,6 +40,56 @@ public class Deque<T> {
 		if(tail != null) tail.child = node;
 		tail = node;
 		if(head == null) head = tail;
+	}
+	
+	/**
+	 * Removes the top element of the deque and returns it
+	 * @return	the top element of the deque
+	 */
+	public T poll() {
+		T element = head.element;
+		head = head.child;
+		return element;
+	}
+	
+	/**
+	 * Gets the top element of the deque
+	 * @return	the top element of the deque
+	 */
+	public T peak() {
+		return head.element;
+	}
+	
+	/**
+	 * Gets the bottom element of the deque
+	 * @return	the bottom element of the deque
+	 */
+	public T peakLast() {
+		return tail.element;
+	}
+	
+	/**
+	 * Removes the bottom element of the deque and returns it
+	 * @return	the bottom element of the deque
+	 */
+	public T pollLast() {
+		T element = tail.element;
+		tail = tail.parent;
+		return element;
+	}
+	
+	/**
+	 * Gets all the elements from top to bottom as an array
+	 * @return	an array with all elements in the deque
+	 */
+	public List<T> toArray() {
+		List<T> array = new ArrayList<T>(size());
+		
+		for(Node node = head; node != null; node = node.child) {
+			array.add(node.element);
+		}
+		
+		return array;
 	}
 	
 	/**

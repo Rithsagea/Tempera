@@ -7,10 +7,13 @@ public class DequeTest {
 		Deque<Integer> deque = new Deque<Integer>();
 		
 		for(int x = 0; x < 10; x++) {
-//			deque.put(x);
-			deque.putLast(x);
+//			System.out.println(x);
+			deque.put(x);
+//			deque.putLast(x);
 		}
-		
-		System.out.println(deque.size());
+		System.out.println();
+		for(int x : deque.toArray()) {
+			System.out.println(x);
+		}
 	}
 }
