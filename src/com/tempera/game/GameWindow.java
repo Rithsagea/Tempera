@@ -36,10 +36,16 @@ public class GameWindow extends JFrame {
 	
 	public GameWindow() {
 		super("Project Tempera");
-		soundDemo.getSoundFile("songDemo.wav");
-		soundDemo.volumeControl((float).1);
-		soundDemo.playSound();
-		soundDemo.loop(0.5,-1);
+//		soundDemo.getSoundFile("songDemo.wav");
+//		soundDemo.volumeControl((float).1,soundDemo.clip);
+//		soundDemo.playSound(soundDemo.clip);
+//		soundDemo.loop(0.5,-1,soundDemo.clip)
+		
+		//add songs to queue
+		soundDemo.queueAdd("songDemo.wav");
+		soundDemo.queueAdd("songdemo2.wav");
+		soundDemo.playSound(soundDemo.queueGetPeak());
+		
 		hitbox.resizeImage(100, 100);
 		
 		hitbox.x = 300;
@@ -102,8 +108,8 @@ public class GameWindow extends JFrame {
 				player.velocity.add(vector);
 				//play sound demo
 				soundDemo.getSoundFile("soundDemo.wav");
-				soundDemo.volumeControl((float).1);
-				soundDemo.playSound();
+				soundDemo.volumeControl((float).1,soundDemo.clip);
+				soundDemo.playSound(soundDemo.clip);
 			}
 
 			@Override
@@ -120,6 +126,14 @@ public class GameWindow extends JFrame {
 	}
 	
 	public static void tick() {
+		//move to next song once head clip is not active
+		if (soundDemo.queueGetSize() > 0) {
+			if (!soundDemo.queueIsPlaying()) {
+				soundDemo.queuePoll();
+				soundDemo.volumeControl((float).3, soundDemo.queueGetPeak());
+				soundDemo.playSound(soundDemo.queueGetPeak());
+			}
+		}
 		//movement
 //		moveAcceleration();
 		moveCardinal();
