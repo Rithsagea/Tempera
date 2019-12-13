@@ -42,8 +42,9 @@ public class GameWindow extends JFrame {
 //		soundDemo.loop(0.5,-1,soundDemo.clip)
 		
 		//add songs to queue
-		soundDemo.queueAdd("songDemo.wav");
-		soundDemo.queueAdd("songdemo2.wav");
+		soundDemo.queueAddToBottom("songDemo.wav");
+		soundDemo.queueAddToBottom("songdemo2.wav");
+		soundDemo.volumeControl((float).3, soundDemo.queueGetPeak());
 		soundDemo.playSound(soundDemo.queueGetPeak());
 		
 		hitbox.resizeImage(100, 100);
@@ -108,7 +109,7 @@ public class GameWindow extends JFrame {
 				player.velocity.add(vector);
 				//play sound demo
 				soundDemo.getSoundFile("soundDemo.wav");
-				soundDemo.volumeControl((float).1,soundDemo.clip);
+				soundDemo.volumeControl((float).3,soundDemo.clip);
 				soundDemo.playSound(soundDemo.clip);
 			}
 

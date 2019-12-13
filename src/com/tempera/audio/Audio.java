@@ -76,11 +76,26 @@ public class Audio {
 	 *Sets a clip to data stream from a .wav file and adds it to the top of queue
 	 *@param file		the audio file that is added to queue
 	 */
-	public void queueAdd(String file) {
+	public void queueAddToTop(String file) {
 		try {
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/resources/"+file).getAbsoluteFile());
 			queue.put(AudioSystem.getClip());
 			queue.peak().open(audioInputStream);
+		} catch(Exception ex) {
+			System.out.println("Error with audio.");
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 *Sets a clip to data stream from a .wav file and adds it to the top of queue
+	 *@param file		the audio file that is added to queue
+	 */
+	public void queueAddToBottom(String file) {
+		try {
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/resources/"+file).getAbsoluteFile());
+			queue.putLast(AudioSystem.getClip());
+			queue.peakLast().open(audioInputStream);
 		} catch(Exception ex) {
 			System.out.println("Error with audio.");
 			ex.printStackTrace();
