@@ -2,6 +2,7 @@ package com.tempera.audio;
 
 import java.io.File;
 
+import com.tempera.util.Deque;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -9,6 +10,8 @@ import javax.sound.sampled.FloatControl;
 
 public class Audio {
 	Clip clip;
+	Deque<Clip> queue = new Deque<Clip>();
+	
 	/**
 	 * Sets clip to data stream from a .wav file
 	 * @param file	the file that clip is set to
@@ -26,11 +29,6 @@ public class Audio {
 	
 	
 	//Clip controlling stuff
-	/**Note: these can only effect one clip at a time, when getSoundFile runs it switches the clip object to a new file and
-	 * then these methods switch to that data stream.
-	 * Only way to control different clips at the same time is to use more objects or make an arraylist of clips
-	 */
-	
 	/**
 	 * Plays the audio from clip
 	 */
@@ -68,4 +66,37 @@ public class Audio {
 		gainControl.setValue((float) (Math.log(gain) / Math.log(10.0) * 20.0));
 	}
 	
+	//Song queue methods
+	/**
+	 * Add the clip from getSoundFile to the queue list
+	 */
+	public void add() {
+		queue.put(clip);
+	}
+	
+	/**
+	 * Removes the top of queue and returns it
+	 */
+	public Clip poll() {
+		return queue.poll();
+	}
+	
+	/**
+	 * checks to see if the song at the top of queue is playing
+	 * @return		whether or not the song is playing or not
+	 */
+	public boolean checkPlaying() {
+		if (queue.peak().isActive()) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * gets the top of the queue
+	 * @return		the top of the queue
+	 */
+	public Clip getPeak() {
+		return queue.peak();
+	}
 }
