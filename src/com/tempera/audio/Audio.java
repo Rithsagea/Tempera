@@ -22,7 +22,7 @@ public class Audio {
 			clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
 		} catch(Exception ex) {
-			System.out.println("Error with playing sound.");
+			System.out.println("Error with audio.");
 			ex.printStackTrace();
 		}
 	}
@@ -66,12 +66,21 @@ public class Audio {
 		gainControl.setValue((float) (Math.log(gain) / Math.log(10.0) * 20.0));
 	}
 	
+	
 	//Song queue methods
 	/**
-	 * Add the clip from getSoundFile to the queue list
+	 *Sets a clip to data stream from a .wav file and adds it to the top of queue
+	 *@param file		the audio file that is added to queue
 	 */
-	public void add() {
-		queue.put(clip);
+	public void add(String file) {
+		try {
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/resources/"+file).getAbsoluteFile());
+			queue.put(AudioSystem.getClip());
+			queue.peak().open(audioInputStream);
+		} catch(Exception ex) {
+			System.out.println("Error with audio.");
+			ex.printStackTrace();
+		}
 	}
 	
 	/**
@@ -85,7 +94,7 @@ public class Audio {
 	 * checks to see if the song at the top of queue is playing
 	 * @return		whether or not the song is playing or not
 	 */
-	public boolean checkPlaying() {
+	public boolean isPlaying() {
 		if (queue.peak().isActive()) {
 			return true;
 		}
