@@ -80,7 +80,7 @@ public class Audio {
 		try {
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/resources/"+file).getAbsoluteFile());
 			queue.put(AudioSystem.getClip());
-			queue.peak().open(audioInputStream);
+			queue.peek().open(audioInputStream);
 		} catch(Exception ex) {
 			System.out.println("Error with audio.");
 			ex.printStackTrace();
@@ -95,7 +95,7 @@ public class Audio {
 		try {
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/resources/"+file).getAbsoluteFile());
 			queue.putLast(AudioSystem.getClip());
-			queue.peakLast().open(audioInputStream);
+			queue.peekLast().open(audioInputStream);
 		} catch(Exception ex) {
 			System.out.println("Error with audio.");
 			ex.printStackTrace();
@@ -113,8 +113,8 @@ public class Audio {
 	 * checks to see if the song at the top of queue is playing
 	 * @return		whether or not the song is playing or not
 	 */
-	public boolean queueIsPlaying() {
-		if (queue.peak().isActive()) {
+	public boolean isPlaying() {
+		if (queue.peek().isActive()) {
 			return true;
 		}
 		return false;
@@ -124,15 +124,15 @@ public class Audio {
 	 * gets the top of the queue
 	 * @return		the top of the queue
 	 */
-	public Clip queueGetPeak() {
-		return queue.peak();
+	public Clip getPlayingSong() {
+		return queue.peek();
 	}
 	
 	/**
 	 * gets the size of the queue
 	 * @return		the size of the queue
 	 */
-	public int queueGetSize() {
+	public int getQueuedSongs() {
 		return queue.size();
 	}
 }

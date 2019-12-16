@@ -44,8 +44,8 @@ public class GameWindow extends JFrame {
 		//add songs to queue
 		soundDemo.queueAddToBottom("songDemo.wav");
 		soundDemo.queueAddToBottom("songdemo2.wav");
-		soundDemo.volumeControl((float).3, soundDemo.queueGetPeak());
-		soundDemo.playSound(soundDemo.queueGetPeak());
+		soundDemo.volumeControl((float).3, soundDemo.getPlayingSong());
+		soundDemo.playSound(soundDemo.getPlayingSong());
 		
 		hitbox.resizeImage(100, 100);
 		
@@ -128,11 +128,11 @@ public class GameWindow extends JFrame {
 	
 	public static void tick() {
 		//move to next song once head clip is not active
-		if (soundDemo.queueGetSize() > 0) {
-			if (!soundDemo.queueIsPlaying()) {
+		if (soundDemo.getQueuedSongs() > 0) {
+			if (!soundDemo.isPlaying()) {
 				soundDemo.queuePoll();
-				soundDemo.volumeControl((float).3, soundDemo.queueGetPeak());
-				soundDemo.playSound(soundDemo.queueGetPeak());
+				soundDemo.volumeControl((float).3, soundDemo.getPlayingSong());
+				soundDemo.playSound(soundDemo.getPlayingSong());
 			}
 		}
 		//movement
