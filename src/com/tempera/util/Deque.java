@@ -56,7 +56,7 @@ public class Deque<T> {
 	 * Gets the top element of the deque
 	 * @return	the top element of the deque
 	 */
-	public T peak() {
+	public T peek() {
 		return head.element;
 	}
 	
@@ -64,7 +64,7 @@ public class Deque<T> {
 	 * Gets the bottom element of the deque
 	 * @return	the bottom element of the deque
 	 */
-	public T peakLast() {
+	public T peekLast() {
 		return tail.element;
 	}
 	
