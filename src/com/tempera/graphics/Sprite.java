@@ -21,7 +21,7 @@ public class Sprite extends Rectangle implements RenderedObject {
 	public int imageWidth;
 	
 	public Sprite(String filePath) {
-		super(0, 0, 0, 0, 0);
+		super(0, 0, 0, 0);
 		setImage(filePath);
 	}
 	

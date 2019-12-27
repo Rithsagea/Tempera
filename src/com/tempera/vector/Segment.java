@@ -15,6 +15,10 @@ public class Segment {
 		this.B = B;
 	}
 	
+	public String toString() {
+		return String.format("%s -> %s", A, B);
+	}
+	
 	//Getters
 	public Point getA() {
 		return A;
@@ -29,6 +33,31 @@ public class Segment {
 	public double getSlope() {
 		Vector vec = getVector();
 		return vec.y / vec.x;
+	}
+	
+/*
+(x1, y1)
+(x2, y2)
+
+m = slope
+
+y - y1 = m(x - x1)
+
+y - y1 = mx - mx1
+
+x intercept is when y = 0
+
+0 - y1 = mx - mx1
+mx = mx1 - y1
+x = x1 - (y1 / m)
+*/
+	/**
+	 * Gets the x-intercept of this segment as if it
+	 * where a line.
+	 * @return	the x-intercept of this segment
+	 */
+	public double getIntercept() {
+		return A.x - A.y / getSlope();
 	}
 	
 	public double getLength() {

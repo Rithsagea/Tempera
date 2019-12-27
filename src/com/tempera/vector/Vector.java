@@ -131,10 +131,13 @@ public class Vector extends Point implements Cloneable {
 	 * Adds another vector to this one
 	 * @param x	the x value to add
 	 * @param y	the y value to add
+	 * @return	this vector
 	 */
-	public void add(double x, double y) {
+	public Vector add(double x, double y) {
 		this.x += x;
 		this.y += y;
+		
+		return this;
 	}
 	
 	/**
