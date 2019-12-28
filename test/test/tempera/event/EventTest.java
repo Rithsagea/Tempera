@@ -1,6 +1,6 @@
 package test.tempera.event;
 
-import com.tempera.event.ListenerRegistry;
+import tempera.event.ListenerRegistry;
 
 public class EventTest {
 	public static void main(String[] args) throws Exception {

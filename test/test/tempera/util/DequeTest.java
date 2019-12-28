@@ -1,6 +1,6 @@
 package test.tempera.util;
 
-import com.tempera.util.Deque;
+import tempera.util.Deque;
 
 public class DequeTest {
 	public static void main(String[] args) {

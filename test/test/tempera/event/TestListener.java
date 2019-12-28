@@ -1,7 +1,7 @@
 package test.tempera.event;
 
-import com.tempera.event.EventHandler;
-import com.tempera.event.Listener;
+import tempera.event.EventHandler;
+import tempera.event.Listener;
 
 public class TestListener implements Listener {
 	@EventHandler
