@@ -9,24 +9,33 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import tempera.entity.PhysicsObject;
 import tempera.util.TransformUtil;
 import tempera.vector.Rectangle;
 
-public class Sprite extends Rectangle implements RenderedObject {
+public class Sprite extends PhysicsObject implements RenderedObject {
 	
-	protected Image image;
-	protected double angleOffset;
+	public Image image;
+	public double angleOffset;
+	public Rectangle boundingBox;
 	
 	public int imageHeight;
 	public int imageWidth;
 	
-	public Sprite(String filePath) {
-		super(0, 0, 0, 0);
+	public Sprite(Rectangle hitbox, String filePath) {
+		super(hitbox);
+		this.boundingBox = (Rectangle) super.boundingBox;
 		setImage(filePath);
+		resizeImage();
 	}
 	
-	public void setOffset(double offset) {
-		angleOffset = offset;
+	public Sprite(String filePath) {
+		super(new Rectangle(0, 0, 0, 0));
+		this.boundingBox = (Rectangle) super.boundingBox;
+		setImage(filePath);
+		
+		boundingBox.width = imageWidth;
+		boundingBox.height = imageHeight;
 	}
 	
 	/**
@@ -45,15 +54,11 @@ public class Sprite extends Rectangle implements RenderedObject {
 		imageWidth = image.getWidth(null);
 		imageHeight = image.getHeight(null);
 		
-		width = imageWidth;
-		height = imageHeight;
 //		System.out.format("(%.2f, %.2f)\n", width, height);
 	}
 	
-	public void resizeImage(int scaledWidth, int scaledHeight) {
-		width = scaledWidth;
-		height = scaledHeight;
-		image = image.getScaledInstance(scaledWidth, scaledHeight, 0);
+	public void resizeImage() {
+		image = image.getScaledInstance((int)boundingBox.width, (int)boundingBox.height, 0);
 	}
 	
 	/**
@@ -64,12 +69,28 @@ public class Sprite extends Rectangle implements RenderedObject {
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 
-		AffineTransform transformation = TransformUtil.getTransformation(this, angleOffset + angle);
+		AffineTransform transformation = TransformUtil.getTransformation(boundingBox, angleOffset + boundingBox.angle);
 		
 		g2d.setTransform(transformation);
 		g2d.drawImage(image, 0, 0, null);
 //		g2d.drawRect(0, 0, (int)width, (int)height);	//change back
 		transformation.setToIdentity();
 		g2d.setTransform(transformation);
+	}
+
+	public void setOffset(double angleOffset) {
+		this.angleOffset = angleOffset;
+	}
+	
+	@Override
+	public void updatePosition() {
+		velocity.multiply(friction); //applies friction
+		position.add(velocity);
+		
+		boundingBox.x = position.getX();
+		boundingBox.y = position.getY();
+		
+		velocity.calculatePolar();
+		boundingBox.angle = velocity.getAngle();
 	}
 }

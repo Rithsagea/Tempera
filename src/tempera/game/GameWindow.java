@@ -11,11 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import tempera.audio.Audio;
-import tempera.entity.Player;
 import tempera.graphics.Sprite;
 import tempera.input.KeyboardData;
 import tempera.input.MouseData;
 import tempera.vector.Polygon;
+import tempera.vector.Rectangle;
 import tempera.vector.Vector;
 
 public class GameWindow extends JFrame {
@@ -23,10 +23,9 @@ public class GameWindow extends JFrame {
 	private static final long serialVersionUID = -7296143310032123444L;
 	private static final long accelerationRate = 300 / Main.frameRate;
 	
-	private static final Player player = new Player(new Vector(540, 360));
 	private static final Sprite sprite = new Sprite("src/resources/frog.png");
-	private static final Sprite hitbox = new Sprite("src/resources/background1.png");
-	private static final Sprite backdrop = new Sprite("src/resources/dungeon.png");
+	private static final Sprite hitbox = new Sprite(new Rectangle(300, 300, 100, 100), "src/resources/background1.png");
+	private static final Sprite backdrop = new Sprite(new Rectangle(0, 0, 1080, 720), "src/resources/dungeon.png");
 	private static JLabel label;
 	
 	private static MouseData mouse = new MouseData();
@@ -46,17 +45,8 @@ public class GameWindow extends JFrame {
 		soundDemo.volumeControl((float).3, soundDemo.getPlayingSong());
 		soundDemo.playSound(soundDemo.getPlayingSong());
 		
-		hitbox.resizeImage(100, 100);
-		
-		hitbox.x = 300;
-		hitbox.y = 300;
-		
-		backdrop.resizeImage(1080, 720);
-		
-		backdrop.x = backdrop.width / 2;
-		backdrop.y = backdrop.height / 2;
-		
 		sprite.setOffset(Math.PI / 2);
+		sprite.friction = 0.9;
 		
 		//TODO replace this with Sprite
 		JPanel panel = new JPanel() {
@@ -90,10 +80,10 @@ public class GameWindow extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				//TODO this is so bad. Make readable
 				Vector vector = new Vector(MouseData.getX(), MouseData.getY());
-				vector.subtract(player.position);
+				vector.subtract(sprite.position);
 				vector.calculatePolar();
 				vector.setMagnitude(100);
-				player.velocity.add(vector);
+				sprite.velocity.add(vector);
 				//play sound demo
 				soundDemo.getSoundFile("soundDemo.wav");
 				soundDemo.volumeControl((float).2,soundDemo.clip);
@@ -125,40 +115,34 @@ public class GameWindow extends JFrame {
 		//movement
 //		moveAcceleration();
 		moveCardinal();
-		player.velocity.calculatePolar();
-		
-		sprite.angle = player.velocity.getAngle();
-		
-		sprite.x = player.position.getX();
-		sprite.y = player.position.getY();
 		
 		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f<br/>Intersecting: %b</html>",
-				player.position,
-				player.velocity,
-				player.velocity.getMagnitude(),
-				Math.toDegrees(player.velocity.getAngle()),
-				Polygon.isIntersecting(sprite, hitbox)
+				sprite.position,
+				sprite.velocity,
+				sprite.velocity.getMagnitude(),
+				Math.toDegrees(sprite.velocity.getAngle()),
+				Polygon.isIntersecting(sprite.boundingBox, hitbox.boundingBox)
 				));
-		player.updatePosition();
+		sprite.updatePosition();
 	}
 	
 	public static void moveAcceleration() {
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT))
-			player.velocity.addAngle(-1);
+			sprite.velocity.addAngle(-1);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT))
-			player.velocity.addAngle(1);
+			sprite.velocity.addAngle(1);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
-			player.velocity.addAngle(1);
+			sprite.velocity.addAngle(1);
 	}
 	
 	public static void moveCardinal() {
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP)) 
-			player.velocity.add(0, -accelerationRate);
+			sprite.velocity.add(0, -accelerationRate);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_DOWN)) 
-			player.velocity.add(0, accelerationRate);
+			sprite.velocity.add(0, accelerationRate);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT)) 
-			player.velocity.add(-accelerationRate, 0);
+			sprite.velocity.add(-accelerationRate, 0);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
-			player.velocity.add(accelerationRate, 0);
+			sprite.velocity.add(accelerationRate, 0);
 	}
 }

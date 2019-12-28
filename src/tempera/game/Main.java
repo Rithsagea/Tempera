@@ -3,7 +3,6 @@ package tempera.game;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 public class Main {
 	
 	private static GameWindow window;

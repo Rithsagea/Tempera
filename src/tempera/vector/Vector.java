@@ -203,4 +203,16 @@ public class Vector extends Point implements Cloneable {
 	public Vector unitVector() {
 		return this.clone().setMagnitude(1);
 	}
+	
+	public Vector rotate(double angle, Vector vector) {
+		x -= vector.x;
+		y -= vector.y;
+		
+		addAngle(angle);
+		
+		x += vector.x;
+		y += vector.y;
+		
+		return this;
+	}
 }

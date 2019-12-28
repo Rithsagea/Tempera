@@ -36,11 +36,13 @@ public class Rectangle implements Polygon {
 		double hh = height / 2;
 		double hw = width / 2;
 		
+		Vector center = new Vector(x, y);
+		
 		return new Point[] {
-				new Point(x - hw, y - hh),
-				new Point(x - hw, y + hh),
-				new Point(x + hw, y + hh),
-				new Point(x + hw, y - hh)
+				new Vector(x - hw, y - hh).rotate(angle, center),
+				new Vector(x - hw, y + hh).rotate(angle, center),
+				new Vector(x + hw, y + hh).rotate(angle, center),
+				new Vector(x + hw, y - hh).rotate(angle, center)
 		};
 	}
 }
