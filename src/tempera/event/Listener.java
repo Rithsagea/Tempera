@@ -1,5 +1,3 @@
 package tempera.event;
 
-public interface Listener {
-	//Literally nothing
-}
+public interface Listener { }

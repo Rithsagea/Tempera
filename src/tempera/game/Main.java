@@ -15,7 +15,7 @@ public class Main {
 		timer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
-				GameWindow.tick();
+				window.tick();
 				window.repaint();
 			}
 		}, 0, 1000 / 30);

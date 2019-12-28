@@ -8,6 +8,10 @@ public class BaseEvent implements Event {
 	private static Set<Handler> handlers = new HashSet<Handler>();
 	
 	public BaseEvent() {
+		
+	}
+	
+	public void executeEvent() {
 		for(Handler handler : handlers) {
 			handler.execute(this);
 		}

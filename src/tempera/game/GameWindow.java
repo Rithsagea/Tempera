@@ -3,59 +3,59 @@ package tempera.game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import tempera.audio.Audio;
+import tempera.event.ListenerRegistry;
+import tempera.events.MousePressedEvent;
 import tempera.graphics.Sprite;
 import tempera.input.KeyboardData;
 import tempera.input.MouseData;
 import tempera.vector.Polygon;
 import tempera.vector.Rectangle;
-import tempera.vector.Vector;
 
 public class GameWindow extends JFrame {
 
 	private static final long serialVersionUID = -7296143310032123444L;
-	private static final long accelerationRate = 300 / Main.frameRate;
+	private final long accelerationRate = 300 / Main.frameRate;
 	
-	private static final Sprite sprite = new Sprite("src/resources/frog.png");
-	private static final Sprite hitbox = new Sprite(new Rectangle(300, 300, 100, 100), "src/resources/background1.png");
-	private static final Sprite backdrop = new Sprite(new Rectangle(0, 0, 1080, 720), "src/resources/dungeon.png");
-	private static JLabel label;
+	private final Sprite sprite = new Sprite(new Rectangle(0, 0, 100, 100), "src/resources/frog.png");
+	private final Sprite hitbox = new Sprite(new Rectangle(300, 300, 100, 100), "src/resources/background1.png");
+	private JLabel label;
 	
-	private static MouseData mouse = new MouseData();
-	private static KeyboardData keyboard = new KeyboardData();
-	private static Audio soundDemo = new Audio();
+	private Audio soundDemo = new Audio();
+	private MouseData mouseData;
+	
+	private GameWindow instance;
 	
 	public GameWindow() {
 		super("Project Tempera");
+		instance = this;
+		mouseData = new MouseData(instance);
+		
 //		soundDemo.getSoundFile("songDemo.wav");
 //		soundDemo.volumeControl((float).1,soundDemo.clip);
 //		soundDemo.playSound(soundDemo.clip);
 //		soundDemo.loop(0.5,-1,soundDemo.clip)
 		
 		//add songs to queue
-		soundDemo.queueAddToBottom("songDemo.wav");
-		soundDemo.queueAddToBottom("songdemo2.wav");
-		soundDemo.volumeControl((float).3, soundDemo.getPlayingSong());
-		soundDemo.playSound(soundDemo.getPlayingSong());
+//		soundDemo.queueAddToBottom("songDemo.wav");
+//		soundDemo.queueAddToBottom("songdemo2.wav");
+//		soundDemo.volumeControl((float).3, soundDemo.getPlayingSong());
+//		soundDemo.playSound(soundDemo.getPlayingSong());
 		
 		sprite.setOffset(Math.PI / 2);
 		sprite.friction = 0.9;
 		
-		//TODO replace this with Sprite
+		//TODO Make it so that this thing
+		//draws a list of sprites
 		JPanel panel = new JPanel() {
-			private static final long serialVersionUID = -6064113046027500937L;
-
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				backdrop.draw(g);
 				hitbox.draw(g);
 				sprite.draw(g);
 			}
@@ -68,50 +68,28 @@ public class GameWindow extends JFrame {
 		setSize(1080, 740);
 		setVisible(true);
 		
-		addKeyListener(keyboard);
-		panel.addMouseMotionListener(mouse);
-		//TODO add some event handler for keyboard and mouse
-		panel.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				//TODO this is so bad. Make readable
-				Vector vector = new Vector(MouseData.getX(), MouseData.getY());
-				vector.subtract(sprite.position);
-				vector.calculatePolar();
-				vector.setMagnitude(100);
-				sprite.velocity.add(vector);
-				//play sound demo
-				soundDemo.getSoundFile("soundDemo.wav");
-				soundDemo.volumeControl((float).2,soundDemo.clip);
-				soundDemo.playSound(soundDemo.clip);
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {}
-
-			@Override
-			public void mouseExited(MouseEvent e) {}
-		});
+		addKeyListener(new KeyboardData());
+		panel.addMouseMotionListener(mouseData);
+		panel.addMouseListener(mouseData);
 		panel.add(label);
 		add(panel);
+		
+		ListenerRegistry.registerEvent(new MousePressedEvent());
+		
+		ListenerRegistry.registerListener(new tempera.listeners.KeyboardListener());
+		
+		ListenerRegistry.finalizeListeners();
 	}
 	
-	public static void tick() {
+	public void tick() {
 		//move to next song once head clip is not active
-		if (soundDemo.getQueuedSongs() > 0) {
-			if (!soundDemo.isPlaying()) {
-				soundDemo.queuePoll();
-				soundDemo.volumeControl((float).3, soundDemo.getPlayingSong());
-				soundDemo.playSound(soundDemo.getPlayingSong());
-			}
-		}
+//		if (soundDemo.getQueuedSongs() > 0) {
+//			if (!soundDemo.isPlaying()) {
+//				soundDemo.queuePoll();
+//				soundDemo.volumeControl((float).3, soundDemo.getPlayingSong());
+//				soundDemo.playSound(soundDemo.getPlayingSong());
+//			}
+//		}
 		//movement
 //		moveAcceleration();
 		moveCardinal();
@@ -126,7 +104,7 @@ public class GameWindow extends JFrame {
 		sprite.updatePosition();
 	}
 	
-	public static void moveAcceleration() {
+	public void moveAcceleration() {
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT))
 			sprite.velocity.addAngle(-1);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT))
@@ -135,7 +113,7 @@ public class GameWindow extends JFrame {
 			sprite.velocity.addAngle(1);
 	}
 	
-	public static void moveCardinal() {
+	public void moveCardinal() {
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP)) 
 			sprite.velocity.add(0, -accelerationRate);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_DOWN)) 
@@ -144,5 +122,13 @@ public class GameWindow extends JFrame {
 			sprite.velocity.add(-accelerationRate, 0);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
 			sprite.velocity.add(accelerationRate, 0);
+	}
+	
+	public Sprite getPlayer() {
+		return sprite;
+	}
+	
+	public MouseData getMouseData() {
+		return mouseData;
 	}
 }
