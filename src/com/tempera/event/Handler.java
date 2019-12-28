@@ -1,7 +1,6 @@
 package com.tempera.event;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 public class Handler {
 	
