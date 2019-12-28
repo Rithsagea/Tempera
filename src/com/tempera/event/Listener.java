@@ -1,3 +1,5 @@
 package com.tempera.event;
 
-public interface Listener { }
+public interface Listener {
+	//Literally nothing
+}

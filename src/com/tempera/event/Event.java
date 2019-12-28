@@ -1,5 +1,5 @@
 package com.tempera.event;
 
 public interface Event {
-	public HandlerList getHandlers();
+	public void addHandler(Handler handler);
 }
