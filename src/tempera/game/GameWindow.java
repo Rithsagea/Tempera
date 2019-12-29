@@ -74,7 +74,7 @@ public class GameWindow extends JFrame {
 		panel.add(label);
 		add(panel);
 		
-		ListenerRegistry.registerEvent(new MousePressedEvent());
+		ListenerRegistry.registerEvent(MousePressedEvent.class);
 		
 		ListenerRegistry.registerListener(new tempera.listeners.KeyboardListener());
 		

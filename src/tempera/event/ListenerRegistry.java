@@ -7,10 +7,10 @@ import java.util.Set;
 
 public class ListenerRegistry {
 	private static Set<Listener> listeners = new HashSet<Listener>();
-	private static Set<Event> events = new HashSet<Event>();
+	private static Set<Class<?>> events = new HashSet<Class<?>>();
 	
-	public static void registerEvent(Event event) {
-		if(!events.add(event)) {
+	public static void registerEvent(Class<?> clazz) {
+		if(!events.add(clazz)) {
 			//error handling
 		}
 	}
@@ -37,10 +37,12 @@ public class ListenerRegistry {
 					params = method.getParameters();
 					if(params.length == 1) {
 						Class<?> clazz = params[0].getType();
-						for(Event event : events) {
-							if(event.getClass().equals(clazz)) {
+						for(Class<?> event : events) {
+							if(event.equals(clazz)) {
 								try {
-									event.addHandler(new Handler(method, listener, annotation.priority()));
+									Method eventMethod = event.getMethod("addHandler", Handler.class);
+									Handler handler = new Handler(method, listener, annotation.priority());
+									eventMethod.invoke(null, handler);
 								} catch(Exception e) { //something happened, not sure why but it happened
 									e.printStackTrace();
 								}

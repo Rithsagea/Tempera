@@ -1,7 +1,7 @@
 package test.tempera.event;
 
-import tempera.event.BaseEvent;
+import tempera.event.Event;
 
-public class TestEvent extends BaseEvent {
+public class TestEvent extends Event {
 	
 }

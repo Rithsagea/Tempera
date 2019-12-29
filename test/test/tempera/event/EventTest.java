@@ -9,7 +9,7 @@ public class EventTest {
 	}
 	
 	private void run() throws Exception {
-		ListenerRegistry.registerEvent(new TestEvent());
+		ListenerRegistry.registerEvent(TestEvent.class);
 		
 		TestListener listener = new TestListener();
 		ListenerRegistry.registerListener(listener);
