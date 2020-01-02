@@ -9,7 +9,6 @@ public class MousePressedEvent extends Event {
 	
 	public MousePressedEvent(GameWindow window) {
 		this.window = window;
-		executeEvent();
 	}
 	
 	public GameWindow getWindow() {
