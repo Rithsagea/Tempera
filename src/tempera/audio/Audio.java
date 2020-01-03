@@ -40,7 +40,7 @@ public class Audio {
 	
 	/**
 	 * Stops the clip
-	 * @param clip		the cllip that is stopped
+	 * @param clip		the clip that is stopped
 	 */
 	public void stop(Clip clip) {
 		clip.stop();
