@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class HandlerList {
-	private Set<Handler> handlers = new HashSet<Handler>();
+	protected Set<Handler> handlers = new HashSet<Handler>();
 	
 	/**
 	 * Removes all handlers that come from the
