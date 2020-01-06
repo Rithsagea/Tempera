@@ -9,11 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import tempera.audio.Audio;
-import tempera.event.ListenerRegistry;
+import tempera.event.EventBus;
 import tempera.events.MousePressedEvent;
 import tempera.graphics.Sprite;
 import tempera.input.KeyboardData;
 import tempera.input.MouseData;
+import tempera.listeners.KeyboardListener;
 import tempera.vector.Polygon;
 import tempera.vector.Rectangle;
 
@@ -74,11 +75,8 @@ public class GameWindow extends JFrame {
 		panel.add(label);
 		add(panel);
 		
-		ListenerRegistry.registerEvent(MousePressedEvent.class);
-		
-		ListenerRegistry.registerListener(new tempera.listeners.KeyboardListener());
-		
-		ListenerRegistry.finalizeListeners();
+		EventBus.registerEvent(MousePressedEvent.class);
+		EventBus.registerListener(new KeyboardListener());
 	}
 	
 	public void tick() {

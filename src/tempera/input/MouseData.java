@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import tempera.event.EventBus;
 import tempera.events.MousePressedEvent;
 import tempera.game.GameWindow;
 
@@ -31,7 +32,7 @@ public class MouseData implements MouseMotionListener, MouseListener {
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		new MousePressedEvent(instance);
+		EventBus.callEvent(new MousePressedEvent(instance));
 		
 		//play sound demo
 //		soundDemo.getSoundFile("soundDemo.wav");
