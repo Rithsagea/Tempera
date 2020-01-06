@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class RegisteredListener {
 	
-	private final Map<Class<?>, HandlerList> handlers = new HashMap<>();
-	private final Listener listener; //this will be used somewhere, I think. Remove it in the future if it isn't necessary
+	protected final Map<Class<?>, HandlerList> handlers = new HashMap<>();
+	protected final Listener listener; //this will be used somewhere, I think. Remove it in the future if it isn't necessary
 	
 	public RegisteredListener(Listener listener) {
 		this.listener = listener;
