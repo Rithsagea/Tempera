@@ -37,9 +37,9 @@ public class EventBus {
 		return false;
 	}
 	
-	//Starting events
+	//Calling events
 	
-	public void callEvent(Event event) {
+	public static void callEvent(Event event) {
 		if(!registeredEvents.contains(event.getClass()))
 			throw new RuntimeException("The event " + event.getClass() + " has not been registered");
 		
