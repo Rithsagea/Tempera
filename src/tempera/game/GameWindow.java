@@ -32,7 +32,7 @@ public class GameWindow extends JFrame {
 		super("Project Tempera");
 		
 		registerListeners();
-		
+		EventBus.finalizeHandlers();
 		EventBus.callEvent(new GameStartEvent(this));
 	}
 	
