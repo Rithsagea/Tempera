@@ -31,16 +31,9 @@ public class GameWindow extends JFrame {
 	public GameWindow() {
 		super("Project Tempera");
 		
-		registerEvents();
 		registerListeners();
 		
 		EventBus.callEvent(new GameStartEvent(this));
-	}
-	
-	public void registerEvents() {
-		EventBus.registerEvent(GameStartEvent.class);
-		EventBus.registerEvent(GameTickEvent.class);
-		EventBus.registerEvent(MousePressedEvent.class);
 	}
 	
 	public void registerListeners() {

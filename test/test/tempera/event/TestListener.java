@@ -1,6 +1,7 @@
 package test.tempera.event;
 
 import tempera.event.EventHandler;
+import tempera.event.EventPriority;
 import tempera.event.Listener;
 
 public class TestListener implements Listener {
@@ -9,8 +10,8 @@ public class TestListener implements Listener {
 		System.out.println("Test Listener has fired. Value: " + event.getVal());
 	}
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onSecondEvent(TestEvent2 event) {
-		System.out.println("The Second test event has been called");
+		System.out.println("Listener 1");
 	}
 }

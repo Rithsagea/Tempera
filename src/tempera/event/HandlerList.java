@@ -1,21 +1,30 @@
 package tempera.event;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 public class HandlerList {
-	protected Set<Handler> handlers = new HashSet<Handler>();
+	protected List<Handler> handlers = new ArrayList<Handler>();
 	
-	/**
-	 * Removes all handlers that come from the
-	 * given listener
-	 * @param listener	the listener to unregister
-	 */
+	public Iterator<Handler> getIterator() {
+		return handlers.iterator();
+	}
+	
+	public boolean containsHandler(Handler handler) {
+		return handlers.contains(handler);
+	}
+	
 	public void removeHandler(Handler handler) {
 		handlers.remove(handler);
 	}
 	
 	public void addHandler(Handler handler) {
 		handlers.add(handler);
+	}
+	
+	public void sortHandlers() {
+		Collections.sort(handlers);
 	}
 }

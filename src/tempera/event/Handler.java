@@ -2,7 +2,7 @@ package tempera.event;
 
 import java.lang.reflect.Method;
 
-public class Handler {
+public class Handler implements Comparable<Handler> {
 	
 	protected Method eventMethod;
 	protected Listener eventListener;
@@ -22,5 +22,13 @@ public class Handler {
 			//there was an error
 			//do some handling later
 		}
+	}
+
+	@Override
+	public int compareTo(Handler handler) {
+		if(handler.priority == priority)
+			return eventMethod.getName().compareTo(handler.eventMethod.getName());
+		
+		return priority.ordinal() - handler.priority.ordinal();
 	}
 }
