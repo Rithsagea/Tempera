@@ -14,7 +14,8 @@ public class EventTest {
 		
 		EventBus.registerListener(listener2);
 		EventBus.registerListener(listener1);
-		
+
+		EventBus.finalizeHandlers();
 		
 //		EventBus.callEvent(new TestEvent(5));
 //		EventBus.callEvent(new TestEvent(6));
