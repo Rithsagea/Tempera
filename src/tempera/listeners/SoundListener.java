@@ -12,10 +12,6 @@ public class SoundListener implements Listener {
 	
 	@EventHandler
 	public void onGameStart(GameStartEvent event) {
-		audio.getSoundFile("songDemo.wav");
-		audio.volumeControl((float).1,audio.clip);
-		audio.playSound(audio.clip);
-		audio.loop(0.5,-1,audio.clip);
 		
 		//add songs to queue
 		audio.queueAddToBottom("songDemo.wav");
@@ -27,7 +23,7 @@ public class SoundListener implements Listener {
 	@EventHandler
 	public void onGameTick(GameTickEvent event) {
 		//move to next song once head clip is not active
-		if (audio.getQueuedSongs() > 0) {
+		if (audio.getQueuedSongs() > 1) {
 			if (!audio.isPlaying()) {
 				audio.queuePoll();
 				audio.volumeControl((float).3, audio.getPlayingSong());
