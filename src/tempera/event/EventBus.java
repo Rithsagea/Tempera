@@ -1,32 +1,50 @@
 package tempera.event;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class EventBus {
 	
-	private Map<Class<?>, HandlerList> registeredEvents = new HashMap<Class<?>, HandlerList>();
-	private Set<Listener> registeredListeners = new HashSet<Listener>();
+	private static Set<Class<?>> registeredEvents = new HashSet<>();
+	private static Set<RegisteredListener> registeredListeners = new HashSet<>();
 	
-	public void registerEvent(Class<?> eventClass) {
-		if(registeredEvents.containsKey(eventClass))
+	//Registering and unregistering things
+	
+	public static void registerEvent(Class<?> eventClass) {
+		if(registeredEvents.contains(eventClass))
 			throw new RuntimeException("The event " + eventClass + " has already been registered.");
-		registeredEvents.put(eventClass, new HandlerList());
+		registeredEvents.add(eventClass);
 	}
 	
-	public void unregisterEvent(Class<?> eventClass) {
-		if(!registeredEvents.containsKey(eventClass))
+	public static void unregisterEvent(Class<?> eventClass) {
+		if(!registeredEvents.contains(eventClass))
 			throw new RuntimeException("The event " + eventClass + " has not been registered yet");
 		registeredEvents.remove(eventClass);
 	}
 	
-	public void registerListener(Listener listener) {
-		registeredListeners.add(listener);
+	public static void registerListener(Listener listener) {
+		registeredListeners.add(new RegisteredListener(listener));
 	}
 	
-	public void unregisterListener(Listener listener) {
-		registeredListeners.remove(listener);
+	public static boolean unregisterListener(Listener listener) {
+		for(RegisteredListener registeredListener : registeredListeners) {
+			if(registeredListener.listener == listener) {
+				registeredListeners.remove(registeredListener);
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	//Starting events
+	
+	public void callEvent(Event event) {
+		if(!registeredEvents.contains(event.getClass()))
+			throw new RuntimeException("The event " + event.getClass() + " has not been registered");
+		
+		for(RegisteredListener registeredListener : registeredListeners) {
+			registeredListener.executeEvent(event);
+		}
 	}
 }
