@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 import tempera.event.EventBus;
 import tempera.events.GameStartEvent;
 import tempera.events.GameTickEvent;
-import tempera.events.MousePressedEvent;
 import tempera.graphics.Sprite;
 import tempera.input.KeyboardData;
 import tempera.input.MouseData;
