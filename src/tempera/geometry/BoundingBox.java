@@ -13,6 +13,13 @@ public class BoundingBox implements Cloneable {
 	private double halfLength;
 	private double halfWidth;
 	
+	/**
+	 * Creates a new bounding box with a point defined
+	 * as it's center, and it's length and width
+	 * @param center	the center of the rectangle
+	 * @param length	the horizontal size of the bounding box
+	 * @param width		the vertical size of the bounding box
+	 */
 	public BoundingBox(Point center, double length, double width) {
 		setLength(length);
 		setWidth(width);
@@ -24,15 +31,21 @@ public class BoundingBox implements Cloneable {
 	 * Creates a new bounding box with the
 	 * top left point being (x, y), while 
 	 * also defining the length and height
-	 * @param x
-	 * @param y
-	 * @param length		the horizontal size of the bounding box
+	 * @param x			the x coordinate of the top left corner
+	 * @param y			the y coordinate of the top left corner
+	 * @param length	the horizontal size of the bounding box
 	 * @param width		the vertical size of the bounding box
 	 */
 	public BoundingBox(double x, double y, double length, double width) {
 		this(null, length, width);
 		
 		center = new Point(x + halfLength, y - halfWidth);
+	}
+	
+	public BoundingBox(Point A, Point B) {
+		this(new Point((A.x + B.x) / 2 , (A.y + B.y) / 2),
+				Math.abs(A.x - B.x),
+				Math.abs(A.y - B.y));
 	}
 	
 	//Convenience

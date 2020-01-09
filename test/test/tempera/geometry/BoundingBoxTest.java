@@ -25,5 +25,14 @@ public class BoundingBoxTest {
 		for(Point p : box.getPoints())
 			System.out.println(p);
 		
+		Point A = new Point(5, 5);
+		Point B = new Point(-5, -5);
+		
+		box = new BoundingBox(A, B);
+		
+		System.out.println("" + A + " to " + B);
+		
+		for(Point p : box.getPoints())
+			System.out.println(p);
 	}
 }
