@@ -1,10 +1,11 @@
 package tempera.geometry;
 
-public class Point {
+public class Point implements Cloneable {
+	
 	protected double x;
 	protected double y;
 	
-	public Point(int x, int y) {
+	public Point(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -18,9 +19,17 @@ public class Point {
 		y = vec.magnitude * Math.sin(vec.angle);
 	}
 	
+	//Convenience
+	
+	public Point clone() {
+		return new Point(x, y);
+	}
+	
 	public String toString() {
 		return String.format("(%f, %f)", x, y);
 	}
+	
+	//Getters
 	
 	public double getX() {
 		return x;
@@ -30,6 +39,8 @@ public class Point {
 		return y;
 	}
 	
+	//Setters
+	
 	public Point setX(double x) {
 		this.x = x;
 		return this;
@@ -38,5 +49,27 @@ public class Point {
 	public Point setY(double y) {
 		this.y = y;
 		return this;
+	}
+	
+	//Processing
+	
+	public Point add(Point p) {
+		x += p.x;
+		y += p.y;
+		
+		return this;
+	}
+	
+	public Point subtract(Point p) {
+		x -= p.x;
+		y -= p.y;
+		
+		return this;
+	}
+	
+	public Point shift(Vector v) {
+		Point shift = new Point(v);
+		
+		return add(shift);
 	}
 }

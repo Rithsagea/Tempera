@@ -1,6 +1,6 @@
 package tempera.geometry;
 
-public class Vector {
+public class Vector implements Cloneable {
 	protected double magnitude;
 	protected double angle;
 	
@@ -18,9 +18,17 @@ public class Vector {
 		magnitude = Math.sqrt(p.y * p.y + p.x * p.x);
 	}
 	
-	public String toString() {
-		return String.format("[%f, %f]", magnitude, angle);
+	//Convenience
+	
+	public Vector clone() {
+		return new Vector(magnitude, angle);
 	}
+	
+	public String toString() {
+		return String.format("[%f, %f rad]", magnitude, angle);
+	}
+	
+	//Getters
 	
 	public double getMagnitude() {
 		return magnitude;
@@ -29,6 +37,8 @@ public class Vector {
 	public double getAngle() {
 		return angle;
 	}
+	
+	//Setters
 	
 	public Vector setMagnitude(double magnitude) {
 		this.magnitude = magnitude;
@@ -40,6 +50,8 @@ public class Vector {
 		return this;
 	}
 	
+	//Processing
+	
 	public Vector multiply(double scalar) {
 		magnitude *= scalar;
 		return this;
@@ -48,5 +60,15 @@ public class Vector {
 	public Vector divide(double scalar) {
 		magnitude /= scalar;
 		return this;
+	}
+	
+	//Macros
+	
+	public Vector inverse() {
+		return this.clone().setMagnitude(-magnitude);
+	}
+	
+	public Vector unit() {
+		return this.clone().setMagnitude(1);
 	}
 }
