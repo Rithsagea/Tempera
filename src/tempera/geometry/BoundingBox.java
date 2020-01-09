@@ -94,20 +94,45 @@ public class BoundingBox implements Cloneable {
 		return center;
 	}
 	
-	public List<Point> getPoints() {
+	/**
+	 * Gets all the edges of this rectangle
+	 * in the form of min-x, max-x, min-y, max-y
+	 * @return
+	 */
+	public double[] getEdges() {
+		
 		double x = center.x;
 		double y = center.y;
 		
-		double left = x - halfLength;
-		double right = x + halfLength;
+		return new double[] {
+				x - halfLength,
+				x + halfLength,
+				y - halfWidth,
+				y + halfWidth
+		};
+	}
+	
+	public Point[] getPoints() {
 		
-		double up = y + halfWidth;
-		double down = y - halfWidth;
+		double[] edges = getEdges();
 		
-		return Arrays.asList(
-				new Point(left, up),
-				new Point(right, up),
-				new Point(right, down),
-				new Point(left, down));
+		return new Point[] {
+				new Point(edges[0], edges[3]),
+				new Point(edges[1], edges[3]),
+				new Point(edges[1], edges[2]),
+				new Point(edges[0], edges[2])
+		};
+	}
+	
+	//Processing
+	
+	public boolean intersects(BoundingBox box) {
+		double[] edges1 = getEdges();
+		double[] edges2 = box.getEdges();
+		
+		//check sideways
+		
+		
+		return true;
 	}
 }
