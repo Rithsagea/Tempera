@@ -1,6 +1,6 @@
 package tempera.util;
 
-public class MathUtils {
+public class MathUtil {
 	//TODO make overloading for the following functions
 	//converting ints to doubles might be bad
 	

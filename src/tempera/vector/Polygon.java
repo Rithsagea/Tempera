@@ -1,6 +1,6 @@
 package tempera.vector;
 
-import tempera.util.MathUtils;
+import tempera.util.MathUtil;
 
 public interface Polygon {
 	
@@ -59,7 +59,7 @@ public interface Polygon {
 			if(proj > maxProj2) maxProj2 = proj;
 		}
 		
-		return MathUtils.rangeIntercept(minProj1, maxProj1, minProj2, maxProj2);
+		return MathUtil.rangeIntercept(minProj1, maxProj1, minProj2, maxProj2);
 	}
 	
 	public static boolean isIntersecting(Polygon p1, Polygon p2) {

@@ -34,5 +34,11 @@ public class BoundingBoxTest {
 		
 		for(Point p : box.getPoints())
 			System.out.println(p);
+		
+		BoundingBox boxA = new BoundingBox(0, 0, 100, 100);
+		BoundingBox boxB = new BoundingBox(-100, -100, 100, 100);
+		
+		System.out.println("" + boxA + " collides with " + boxB);
+		System.out.println(boxA.intersects(boxB));
 	}
 }

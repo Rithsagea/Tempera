@@ -1,7 +1,6 @@
 package tempera.geometry;
 
-import java.util.Arrays;
-import java.util.List;
+import tempera.util.MathUtil;
 
 public class BoundingBox implements Cloneable {
 	
@@ -131,7 +130,10 @@ public class BoundingBox implements Cloneable {
 		double[] edges2 = box.getEdges();
 		
 		//check sideways
-		
+		if(!MathUtil.rangeIntercept(edges1[0], edges1[1], edges2[0], edges2[1]))
+			return false;
+		if(!MathUtil.rangeIntercept(edges1[2], edges1[3], edges2[2], edges2[3]))
+			return false;
 		
 		return true;
 	}
