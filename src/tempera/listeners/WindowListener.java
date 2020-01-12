@@ -2,12 +2,16 @@ package tempera.listeners;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import tempera.event.EventBus;
 import tempera.event.EventHandler;
 import tempera.event.Listener;
+import tempera.events.GameRenderEvent;
 import tempera.events.GameStartEvent;
 import tempera.game.GameWindow;
 import tempera.graphics.Sprite;
@@ -15,6 +19,8 @@ import tempera.input.KeyboardData;
 import tempera.input.MouseData;
 
 public class WindowListener implements Listener {
+	
+	private static List<Sprite> sprites = new ArrayList<Sprite>();
 	
 	@EventHandler
 	public void onGameStart(GameStartEvent event) {
@@ -33,6 +39,9 @@ public class WindowListener implements Listener {
 		player.setOffset(Math.PI / 2);
 		player.friction = 0.9;
 		
+		sprites.add(player);
+		sprites.add(hitbox);
+		
 		//TODO Make it so that this thing
 		//draws a list of sprites
 		@SuppressWarnings("serial")
@@ -40,8 +49,7 @@ public class WindowListener implements Listener {
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				hitbox.draw(g);
-				player.draw(g);
+				EventBus.callEvent(new GameRenderEvent(g));
 			}
 		};
 		
@@ -55,5 +63,9 @@ public class WindowListener implements Listener {
 		window.pack();
 		window.setSize(1080, 720);
 		window.setVisible(true);
+	}
+	
+	public static List<Sprite> getSprites() {
+		return sprites;
 	}
 }

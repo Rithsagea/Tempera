@@ -12,6 +12,7 @@ import tempera.graphics.Sprite;
 import tempera.input.KeyboardData;
 import tempera.input.MouseData;
 import tempera.listeners.KeyboardListener;
+import tempera.listeners.RenderListener;
 import tempera.listeners.SoundListener;
 import tempera.listeners.WindowListener;
 import tempera.vector.Polygon;
@@ -37,13 +38,13 @@ public class GameWindow extends JFrame {
 	
 	public void registerListeners() {
 		EventBus.registerListener(new WindowListener());
+		EventBus.registerListener(new RenderListener());
 		EventBus.registerListener(new SoundListener());
 		EventBus.registerListener(new KeyboardListener());
 	}
 	
 	public void tick() {
 		EventBus.callEvent(new GameTickEvent(this));
-		
 		//movement
 //		moveAcceleration();
 		moveCardinal();
