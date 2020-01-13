@@ -8,23 +8,24 @@ import javax.swing.JLabel;
 import tempera.event.EventBus;
 import tempera.events.GameStartEvent;
 import tempera.events.GameTickEvent;
+import tempera.events.PhysicsCollideEvent;
+import tempera.geometry.BoundingBox;
 import tempera.graphics.Sprite;
 import tempera.input.KeyboardData;
 import tempera.input.MouseData;
+import tempera.listeners.CollisionListener;
 import tempera.listeners.KeyboardListener;
 import tempera.listeners.RenderListener;
 import tempera.listeners.SoundListener;
 import tempera.listeners.WindowListener;
-import tempera.vector.Polygon;
-import tempera.vector.Rectangle;
 
 public class GameWindow extends JFrame {
 
 	private static final long serialVersionUID = -7296143310032123444L;
 	private final long accelerationRate = 300 / Main.frameRate;
 	
-	private final Sprite sprite = new Sprite(new Rectangle(0, 0, 100, 100), "src/resources/frog.png");
-	private final Sprite hitbox = new Sprite(new Rectangle(300, 300, 100, 100), "src/resources/background1.png");
+	private final Sprite sprite = new Sprite(new BoundingBox(0, 0, 100, 100), "src/resources/frog.png");
+	private final Sprite hitbox = new Sprite(new BoundingBox(300, 300, 100, 100), "src/resources/background1.png");
 	private MouseData mouseData;
 	private JLabel label;
 	
@@ -41,6 +42,7 @@ public class GameWindow extends JFrame {
 		EventBus.registerListener(new RenderListener());
 		EventBus.registerListener(new SoundListener());
 		EventBus.registerListener(new KeyboardListener());
+		EventBus.registerListener(new CollisionListener());
 	}
 	
 	public void tick() {
@@ -54,10 +56,12 @@ public class GameWindow extends JFrame {
 				sprite.velocity,
 				sprite.velocity.getMagnitude(),
 				Math.toDegrees(sprite.velocity.getAngle()),
-				Polygon.isIntersecting(sprite.boundingBox, hitbox.boundingBox)
+				sprite.boundingBox.intersects(hitbox.boundingBox)
 				));
 		
 		sprite.updatePosition();
+		if(sprite.boundingBox.intersects(hitbox.boundingBox))
+			EventBus.callEvent(new PhysicsCollideEvent(sprite, hitbox));
 	}
 	
 	public void moveAcceleration() {

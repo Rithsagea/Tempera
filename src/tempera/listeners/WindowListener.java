@@ -37,6 +37,7 @@ public class WindowListener implements Listener {
 		window.setLabel(label);
 		
 		player.setOffset(Math.PI / 2);
+		player.weight = 60; // weight in kilograms
 		player.friction = 0.9;
 		
 		sprites.add(player);
