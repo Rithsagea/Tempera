@@ -38,6 +38,14 @@ public class Vector implements Cloneable {
 		return angle;
 	}
 	
+	public double getX() {
+		return Math.cos(angle) * magnitude;
+	}
+	
+	public double getY() {
+		return Math.sin(angle) * magnitude;
+	}
+	
 	//Setters
 	
 	public Vector setMagnitude(double magnitude) {
@@ -62,6 +70,36 @@ public class Vector implements Cloneable {
 		return this;
 	}
 	
+	//Compat
+	
+	public Vector add(Vector vec) {
+		return add(new Point(vec));
+	}
+	
+	public Vector add(double x, double y) {
+		return add(new Point(x, y));
+	}
+	
+	public Vector add(Point p) {
+		magnitude = p.getMagnitude();
+		angle = Math.atan2(getY() + p.getY(), getX() + p.getX());
+		return this;
+	}
+	
+	public Vector subtract(Vector vec) {
+		return subtract(new Point(vec));
+	}
+	
+	public Vector subtract(double x, double y) {
+		return subtract(new Point(x, y));
+	}
+	
+	public Vector subtract(Point p) {
+		magnitude = p.getMagnitude();
+		angle = Math.atan2(getY() - p.getY(), getX() - p.getX());
+		return this;
+	}
+	
 	//Macros
 	
 	public Vector inverse() {
@@ -70,5 +108,10 @@ public class Vector implements Cloneable {
 	
 	public Vector unit() {
 		return this.clone().setMagnitude(1);
+	}
+	
+	public Vector addAngle(double angle) {
+		angle += angle;
+		return this;
 	}
 }

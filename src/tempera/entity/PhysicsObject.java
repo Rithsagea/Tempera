@@ -1,11 +1,12 @@
 package tempera.entity;
 
 import tempera.geometry.BoundingBox;
-import tempera.vector.Vector;
+import tempera.geometry.Vector;
+import tempera.geometry.Point;
 
 public class PhysicsObject {
 	
-	public Vector position = new Vector(0, 0);
+	public Point position = new Point(0, 0);
 	public Vector velocity = new Vector(0, 0);
 	public final BoundingBox boundingBox;
 	public double friction; //coefficient that's multiplied to the velocity. slows down the physics object over time.

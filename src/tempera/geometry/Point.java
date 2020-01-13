@@ -72,4 +72,18 @@ public class Point implements Cloneable {
 		
 		return add(shift);
 	}
+	
+	//Compat
+	
+	public Point add(Vector vec) {
+		return add(new Point(vec));
+	}
+	
+	public Point subtract(Vector vec) {
+		return subtract(new Point(vec));
+	}
+	
+	public double getMagnitude() {
+		return Math.sqrt(x * x + y * y);
+	}
 }

@@ -4,8 +4,8 @@ import tempera.event.EventHandler;
 import tempera.event.Listener;
 import tempera.events.MousePressedEvent;
 import tempera.game.GameWindow;
+import tempera.geometry.Vector;
 import tempera.input.MouseData;
-import tempera.vector.Vector;
 
 public class KeyboardListener implements Listener {
 	
@@ -16,7 +16,6 @@ public class KeyboardListener implements Listener {
 		
 		Vector vector = new Vector(mouseData.getX(), mouseData.getY());
 		vector.subtract(window.getPlayer().position);
-		vector.calculatePolar();
 		vector.setMagnitude(100);
 		window.getPlayer().velocity.add(vector);
 	}

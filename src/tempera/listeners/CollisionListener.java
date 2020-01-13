@@ -21,7 +21,7 @@ public class CollisionListener implements Listener {
 		if(Double.isFinite(bForce))
 			totalForce += bForce;
 		
-		a.velocity.setMagnitude(-totalForce / 2);
-		b.velocity.setMagnitude(-totalForce / 2);
+		a.velocity.setMagnitude(totalForce / 2);
+		b.velocity.setMagnitude(totalForce / 2);
 	}
 }
