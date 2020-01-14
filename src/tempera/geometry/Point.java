@@ -14,11 +14,6 @@ public class Point implements Cloneable {
 		this(0, 0);
 	}
 	
-	public Point(Vector vec) {
-		x = vec.magnitude * Math.cos(vec.angle);
-		y = vec.magnitude * Math.sin(vec.angle);
-	}
-	
 	//Convenience
 	
 	public Point clone() {
@@ -53,9 +48,23 @@ public class Point implements Cloneable {
 	
 	//Processing
 	
+	public Point add(double x, double y) {
+		this.x += x;
+		this.y += y;
+		
+		return this;
+	}
+	
 	public Point add(Point p) {
 		x += p.x;
 		y += p.y;
+		
+		return this;
+	}
+	
+	public Point subtract(double x, double y) {
+		this.x -= x;
+		this.y -= y;
 		
 		return this;
 	}
@@ -65,25 +74,5 @@ public class Point implements Cloneable {
 		y -= p.y;
 		
 		return this;
-	}
-	
-	public Point shift(Vector v) {
-		Point shift = new Point(v);
-		
-		return add(shift);
-	}
-	
-	//Compat
-	
-	public Point add(Vector vec) {
-		return add(new Point(vec));
-	}
-	
-	public Point subtract(Vector vec) {
-		return subtract(new Point(vec));
-	}
-	
-	public double getMagnitude() {
-		return Math.sqrt(x * x + y * y);
 	}
 }

@@ -1,106 +1,67 @@
 package tempera.game;
 
-import java.awt.event.KeyEvent;
+import java.awt.Graphics;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import tempera.event.EventBus;
+import tempera.events.GameRenderEvent;
 import tempera.events.GameStartEvent;
 import tempera.events.GameTickEvent;
-import tempera.events.PhysicsCollideEvent;
-import tempera.geometry.BoundingBox;
+import tempera.geometry.Point;
 import tempera.graphics.Sprite;
-import tempera.input.KeyboardData;
-import tempera.input.MouseData;
-import tempera.listeners.CollisionListener;
-import tempera.listeners.KeyboardListener;
-import tempera.listeners.RenderListener;
-import tempera.listeners.SoundListener;
-import tempera.listeners.WindowListener;
+
+import tempera.listeners.*;
 
 public class GameWindow extends JFrame {
 
 	private static final long serialVersionUID = -7296143310032123444L;
-	private final long accelerationRate = 300 / Main.frameRate;
 	
-	private final Sprite sprite = new Sprite(new BoundingBox(0, 0, 100, 100), "src/resources/frog.png");
-	private final Sprite hitbox = new Sprite(new BoundingBox(300, 300, 100, 100), "src/resources/background1.png");
-	private MouseData mouseData;
-	private JLabel label;
+	private JPanel renderPanel;
+	private Sprite playerSprite;
 	
+	@SuppressWarnings("serial")
 	public GameWindow() {
 		super("Project Tempera");
+		
+		renderPanel = new JPanel() {
+			public void paint(Graphics g) {
+				EventBus.callEvent(new GameRenderEvent(g));
+			}
+		};
+		
+		setContentPane(renderPanel);
+		setSize(1080, 720);
 		
 		registerListeners();
 		EventBus.finalizeHandlers();
 		EventBus.callEvent(new GameStartEvent(this));
+		
+		setVisible(true);
 	}
 	
 	public void registerListeners() {
-		EventBus.registerListener(new WindowListener());
 		EventBus.registerListener(new RenderListener());
+		EventBus.registerListener(new InputListener());
+		EventBus.registerListener(new PlayerListener());
 		EventBus.registerListener(new SoundListener());
-		EventBus.registerListener(new KeyboardListener());
-		EventBus.registerListener(new CollisionListener());
 	}
 	
 	public void tick() {
+		//not used (yet)
 		EventBus.callEvent(new GameTickEvent(this));
-		//movement
-//		moveAcceleration();
-		moveCardinal();
-		
-		label.setText(String.format("<html>Position: %s<br/>Velocity: %s<br/>Magnitude: %f<br/>Angle: %f<br/>Intersecting: %b</html>",
-				sprite.position,
-				sprite.velocity,
-				sprite.velocity.getMagnitude(),
-				Math.toDegrees(sprite.velocity.getAngle()),
-				sprite.boundingBox.intersects(hitbox.boundingBox)
-				));
-		
-		sprite.updatePosition();
-		if(sprite.boundingBox.intersects(hitbox.boundingBox))
-			EventBus.callEvent(new PhysicsCollideEvent(sprite, hitbox));
 	}
 	
-	public void moveAcceleration() {
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT))
-			sprite.velocity.addAngle(-1);
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT))
-			sprite.velocity.addAngle(1);
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP))
-			sprite.velocity.addAngle(1);
+	public Point getCenter() {
+		return new Point(this.getWidth() / 2, this.getHeight() / 2);
 	}
 	
-	public void moveCardinal() {
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP)) 
-			sprite.velocity.add(0, -accelerationRate);
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_DOWN)) 
-			sprite.velocity.add(0, accelerationRate);
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT)) 
-			sprite.velocity.add(-accelerationRate, 0);
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
-			sprite.velocity.add(accelerationRate, 0);
+	public void setPlayerSprite(Sprite sprite) {
+		playerSprite = sprite;
 	}
 	
-	public Sprite getPlayer() {
-		return sprite;
-	}
-	
-	public Sprite getHitbox() {
-		return hitbox;
-	}
-	
-	public void setLabel(JLabel label) {
-		this.label = label;
-	}
-	
-	public void setMouseData(MouseData mouseData) {
-		this.mouseData = mouseData;
-	}
-	
-	public MouseData getMouseData() {
-		return mouseData;
+	public Sprite getPlayerSprite() {
+		return playerSprite;
 	}
 }

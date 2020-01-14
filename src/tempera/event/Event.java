@@ -1,7 +1,6 @@
 package tempera.event;
 
 public class Event {
-	public Event() {
-		//execute the event
-	}
+	//Add a constructor getters and setters
+	//if the event contains actual information
 }

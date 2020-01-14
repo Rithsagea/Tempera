@@ -82,8 +82,10 @@ public class EventBus {
 	//Calling events
 	
 	public static void callEvent(Event event) {
-		if(!registeredHandlers.containsKey(event.getClass()))
-			throw new RuntimeException("The event " + event.getClass() + " has not been registered");
+		if(!registeredHandlers.containsKey(event.getClass())) {
+			System.err.println("The event " + event.getClass() + " is not currently being used by any listeners");
+			return;
+		}
 		
 		HandlerList handlers = registeredHandlers.get(event.getClass());
 		

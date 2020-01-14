@@ -12,6 +12,10 @@ public class BoundingBox implements Cloneable {
 	private double halfLength;
 	private double halfWidth;
 	
+	public BoundingBox(double length, double width) {
+		this(0, 0, length, width);
+	}
+	
 	/**
 	 * Creates a new bounding box with a point defined
 	 * as it's center, and it's length and width

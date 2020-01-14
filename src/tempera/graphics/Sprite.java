@@ -1,44 +1,63 @@
 package tempera.graphics;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import tempera.entity.PhysicsObject;
-import tempera.geometry.BoundingBox;
-import tempera.geometry.Point;
-
-public class Sprite extends PhysicsObject implements RenderedObject {
+public class Sprite implements RenderedObject {
 	
-	public Image image;
-	public double angleOffset;
+	private int renderLevel;
+	private int drawLevel;
 	
-	public int imageHeight;
-	public int imageWidth;
+	private Image image;
+	private Image display;
 	
-	public Sprite(BoundingBox hitbox, String filePath) {
-		super(hitbox, Double.POSITIVE_INFINITY);
-		setImage(filePath);
-		resizeImage();
+	private int width;
+	private int length;
+	
+	private int x;
+	private int y;
+	
+	public Sprite(int renderLevel, int drawLevel, Image image) {
+		this.renderLevel = renderLevel;
+		this.drawLevel = drawLevel;
+		
+		this.image = image;
+		
+		length = image.getWidth(null);
+		width = image.getHeight(null);
+		
+		display = image;
 	}
 	
-	public Sprite(String filePath) {
-		super(new BoundingBox(0, 0, 0, 0), Double.POSITIVE_INFINITY);
-		setImage(filePath);
+	public Sprite(Image image) {
+		this(0, 0, image);
+	}
+	
+	public Sprite(int renderLevel, int drawLevel, int length, int width, Image image) {
+		this(renderLevel, drawLevel, image);
 		
-		boundingBox.setLength(imageWidth);
-		boundingBox.setWidth(imageHeight);
+		resizeImage(length, width);
+	}
+	
+	public String toString() {
+		return String.format("(%d, %d) %d x %d", x, y, width, length);
+	}
+	
+	public void resizeImage(int length, int width) {
+		this.length = length;
+		this.width = width;
+		
+		display = image.getScaledInstance(length, width, 0);
 	}
 	
 	/**
 	 * Sets the image for this sprite
 	 * 
-	 * TODO add arguments for resizing the image
-	 * TODO save the image in a form that doesn't require resizing
 	 * @param filePath	The file which contains the image for this sprite
 	 */
 	public void setImage(String filePath) {
@@ -47,18 +66,37 @@ public class Sprite extends PhysicsObject implements RenderedObject {
 		} catch (IOException e) {
 			System.out.println(filePath + " could not be found.");
 		}
-		imageWidth = image.getWidth(null);
-		imageHeight = image.getHeight(null);
 		
-//		System.out.format("(%.2f, %.2f)\n", width, height);
+		length = image.getWidth(null);
+		width = image.getHeight(null);
+		
+		display = image;
 	}
 	
-	public void resizeImage() {
-		image = image
-				.getScaledInstance(
-						(int)boundingBox.getLength(),
-						(int)boundingBox.getWidth(),
-						0);
+	//Getters for dimensions
+	public int getLength() {
+		return length;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	//Setters and Getters for the top left corner
+	public int getX() {
+		return x;
+	}
+	
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
+	public void setY(int y) {
+		this.y = y;
 	}
 	
 	/**
@@ -66,28 +104,31 @@ public class Sprite extends PhysicsObject implements RenderedObject {
 	 * 
 	 * TODO make it not resize the image each time it gets drawn
 	 */
-	public void draw(Graphics g) {
-		Graphics2D g2d = (Graphics2D)g;
-
-//		AffineTransform transformation = TransformUtil.getTransformation(boundingBox, angleOffset + boundingBox.angle);
+	public void draw(Graphics2D g2d) {
+		AffineTransform original = g2d.getTransform();
 		
-//		g2d.setTransform(transformation);
-		Point topLeft = boundingBox.getPoints()[0];
-		g2d.drawImage(image, (int)topLeft.getX(), (int)topLeft.getY(), null);
+		AffineTransform position = new AffineTransform();
+		
+		position.concatenate(original);
+		position.translate(x, -y);
+		
+		g2d.setTransform(position);
+		
+		g2d.drawImage(display, 0, 0, null);
+		g2d.setTransform(original);
 //		g2d.drawRect(0, 0, (int)width, (int)height);	//change back
 //		transformation.setToIdentity();
 //		g2d.setTransform(transformation);
 	}
-
-	public void setOffset(double angleOffset) {
-		this.angleOffset = angleOffset;
-	}
 	
+	//TODO add something for these
 	@Override
-	public void updatePosition() {
-		velocity.multiply(friction); //applies friction
-		position.add(velocity);
-		
-		boundingBox.getCenter().setX(position.getX()).setY(position.getY());
+	public int getRenderLevel() {
+		return renderLevel;
+	}
+
+	@Override
+	public int getDrawLevel() {
+		return drawLevel;
 	}
 }

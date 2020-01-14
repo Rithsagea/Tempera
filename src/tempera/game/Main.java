@@ -7,7 +7,7 @@ public class Main {
 	
 	private static GameWindow window;
 	private static Timer timer;
-	public static int frameRate = 60;
+	public static int frameRate = 30;
 	
 	public static void main(String[] args) {
 		window = new GameWindow();
@@ -18,6 +18,6 @@ public class Main {
 				window.tick();
 				window.repaint();
 			}
-		}, 0, 1000 / 30);
+		}, 0, 1000 / frameRate);
 	}
 }
