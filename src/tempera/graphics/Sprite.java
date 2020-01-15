@@ -22,6 +22,8 @@ public class Sprite implements RenderedObject {
 	private int x;
 	private int y;
 	
+	public boolean isHidden = false;
+	
 	public Sprite(int renderLevel, int drawLevel, Image image) {
 		this.renderLevel = renderLevel;
 		this.drawLevel = drawLevel;
@@ -82,9 +84,9 @@ public class Sprite implements RenderedObject {
 		return width;
 	}
 	
-	//Setters and Getters for the top left corner
+	//Setters and Getters for the center
 	public int getX() {
-		return x;
+		return x - length / 2;
 	}
 	
 	public void setX(int x) {
@@ -92,11 +94,15 @@ public class Sprite implements RenderedObject {
 	}
 	
 	public int getY() {
-		return y;
+		return y + width / 2;
 	}
 	
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+	public void setHidden(boolean hidden) {
+		isHidden = hidden;
 	}
 	
 	/**
@@ -105,12 +111,14 @@ public class Sprite implements RenderedObject {
 	 * TODO make it not resize the image each time it gets drawn
 	 */
 	public void draw(Graphics2D g2d) {
+		if(isHidden)
+			return;
 		AffineTransform original = g2d.getTransform();
 		
 		AffineTransform position = new AffineTransform();
 		
 		position.concatenate(original);
-		position.translate(x, -y);
+		position.translate(getX(), -getY());
 		
 		g2d.setTransform(position);
 		

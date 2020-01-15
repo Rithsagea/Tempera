@@ -1,6 +1,5 @@
 package tempera.graphics;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
@@ -28,8 +27,7 @@ public class RenderEngine {
 		renderedObjects.clear();
 	}
 	
-	public void renderObjects(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
+	public void renderObjects(Graphics2D g2d) {
 		g2d.transform(transformation);
 		
 		Collections.sort(renderedObjects, comparator);

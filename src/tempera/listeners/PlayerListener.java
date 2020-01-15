@@ -8,7 +8,7 @@ import tempera.event.EventPriority;
 import tempera.event.Listener;
 import tempera.events.GameStartEvent;
 import tempera.events.GameTickEvent;
-import tempera.geometry.Point;
+import tempera.geometry.BoundingBox;
 import tempera.graphics.Sprite;
 import tempera.input.KeyboardData;
 
@@ -17,12 +17,12 @@ public class PlayerListener implements Listener {
 	private final double accelerationRate = 5;
 	
 	public Sprite playerSprite;
-	public PhysicsObject player;
+	public static PhysicsObject player;
 	
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onGameStart(GameStartEvent event) {
 		playerSprite = event.getWindow().getPlayerSprite();
-		player = new PhysicsObject(null, 1);
+		player = new PhysicsObject(new BoundingBox(20, 20), 1);
 		player.friction = 0.9;
 	}
 	
@@ -40,11 +40,11 @@ public class PlayerListener implements Listener {
 		
 		player.updatePosition();
 		
-		Point position = player.position.clone();
-		
-		position.add(-playerSprite.getLength() / 2, playerSprite.getWidth() / 2);
-		
-		playerSprite.setX((int)position.getX());
-		playerSprite.setY((int)position.getY());
+		playerSprite.setX((int)player.position.getX());
+		playerSprite.setY((int)player.position.getY());
+	}
+	
+	public static PhysicsObject getPlayer() {
+		return player;
 	}
 }

@@ -6,7 +6,7 @@ import tempera.geometry.Point;
 
 public class PhysicsObject {
 	
-	public Point position = new Point(0, 0);
+	public Point position;
 	public Vector velocity = new Vector(0, 0);
 	public final BoundingBox boundingBox;
 	public double friction; //coefficient that's multiplied to the velocity. slows down the physics object over time.
@@ -16,6 +16,8 @@ public class PhysicsObject {
 	public PhysicsObject(BoundingBox boundingBox, double weight) {
 		this.boundingBox = boundingBox;
 		this.weight = weight;
+		
+		position = boundingBox.getCenter();
 	}
 	
 	/**

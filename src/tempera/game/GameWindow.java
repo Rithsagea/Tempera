@@ -1,6 +1,7 @@
 package tempera.game;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,8 +12,10 @@ import tempera.events.GameStartEvent;
 import tempera.events.GameTickEvent;
 import tempera.geometry.Point;
 import tempera.graphics.Sprite;
-
-import tempera.listeners.*;
+import tempera.listeners.InputListener;
+import tempera.listeners.PlayerListener;
+import tempera.listeners.RenderListener;
+import tempera.listeners.SoundListener;
 
 public class GameWindow extends JFrame {
 
@@ -27,7 +30,7 @@ public class GameWindow extends JFrame {
 		
 		renderPanel = new JPanel() {
 			public void paint(Graphics g) {
-				EventBus.callEvent(new GameRenderEvent(g));
+				EventBus.callEvent(new GameRenderEvent((Graphics2D)g));
 			}
 		};
 		
