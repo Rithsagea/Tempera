@@ -19,6 +19,9 @@ public class Sprite implements RenderedObject {
 	private int width;
 	private int length;
 	
+	private int halfLength;
+	private int halfWidth;
+	
 	private int x;
 	private int y;
 	
@@ -32,6 +35,9 @@ public class Sprite implements RenderedObject {
 		
 		length = image.getWidth(null);
 		width = image.getHeight(null);
+		
+		halfLength = length / 2;
+		halfWidth = width / 2;
 		
 		display = image;
 	}
@@ -53,6 +59,9 @@ public class Sprite implements RenderedObject {
 	public void resizeImage(int length, int width) {
 		this.length = length;
 		this.width = width;
+		
+		halfLength = length / 2;
+		halfWidth = width / 2;
 		
 		display = image.getScaledInstance(length, width, 0);
 	}
@@ -86,7 +95,7 @@ public class Sprite implements RenderedObject {
 	
 	//Setters and Getters for the center
 	public int getX() {
-		return x - length / 2;
+		return x;
 	}
 	
 	public void setX(int x) {
@@ -94,7 +103,7 @@ public class Sprite implements RenderedObject {
 	}
 	
 	public int getY() {
-		return y + width / 2;
+		return y;
 	}
 	
 	public void setY(int y) {
@@ -118,7 +127,7 @@ public class Sprite implements RenderedObject {
 		AffineTransform position = new AffineTransform();
 		
 		position.concatenate(original);
-		position.translate(getX(), -getY());
+		position.translate(x - halfLength, -y - halfWidth);
 		
 		g2d.setTransform(position);
 		
