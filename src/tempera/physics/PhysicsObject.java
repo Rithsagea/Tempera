@@ -1,4 +1,4 @@
-package tempera.entity;
+package tempera.physics;
 
 import tempera.geometry.BoundingBox;
 import tempera.geometry.Vector;
