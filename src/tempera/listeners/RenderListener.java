@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
-import tempera.entity.PhysicsObject;
 import tempera.event.EventHandler;
 import tempera.event.EventPriority;
 import tempera.event.Listener;
@@ -16,6 +15,7 @@ import tempera.geometry.BoundingBox;
 import tempera.geometry.Point;
 import tempera.graphics.RenderEngine;
 import tempera.graphics.Sprite;
+import tempera.physics.PhysicsObject;
 import tempera.util.FileUtil;
 
 public class RenderListener implements Listener {

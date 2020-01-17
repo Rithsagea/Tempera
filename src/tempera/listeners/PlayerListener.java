@@ -2,7 +2,6 @@ package tempera.listeners;
 
 import java.awt.event.KeyEvent;
 
-import tempera.entity.PhysicsObject;
 import tempera.event.EventHandler;
 import tempera.event.EventPriority;
 import tempera.event.Listener;
@@ -12,6 +11,7 @@ import tempera.geometry.BoundingBox;
 import tempera.geometry.Point;
 import tempera.graphics.Sprite;
 import tempera.input.KeyboardData;
+import tempera.physics.PhysicsObject;
 
 public class PlayerListener implements Listener {
 	
