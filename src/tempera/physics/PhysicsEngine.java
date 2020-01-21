@@ -3,6 +3,11 @@ package tempera.physics;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.util.Pair;
+import tempera.event.EventBus;
+import tempera.events.PhysicsCollideEvent;
+import tempera.util.ListUtil;
+
 public class PhysicsEngine {
 	private final List<PhysicsObject> physicsObjects = new ArrayList<PhysicsObject>();
 	
@@ -15,6 +20,12 @@ public class PhysicsEngine {
 	}
 	
 	public void tick() {
-		//check collisions and move things forward here
+		for(Pair<?, ?> pair : ListUtil.getPairs(physicsObjects)) {
+			PhysicsObject A = (PhysicsObject) pair.getKey();
+			PhysicsObject B = (PhysicsObject) pair.getValue();
+			
+			if(A.boundingBox.intersects(B.boundingBox))
+				EventBus.callEvent(new PhysicsCollideEvent(A, B));
+		}
 	}
 }
