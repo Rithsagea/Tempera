@@ -47,6 +47,8 @@ public class RenderListener implements Listener {
 		engine.addObject(box2);
 		engine.addObject(sprite);
 		
+		PhysicsListener.engine.addObject(box);
+		
 		engine.printObjects();
 		
 		window.setPlayerSprite(sprite);

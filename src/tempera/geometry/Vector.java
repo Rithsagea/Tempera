@@ -12,6 +12,10 @@ public class Vector extends Point implements Cloneable {
 	
 	//Convenience
 	
+	public Vector(Point p1, Point p2) {
+		super(p2.x - p1.x, p2.y - p1.y);
+	}
+
 	public Vector clone() {
 		return new Vector(x, y);
 	}
