@@ -12,6 +12,7 @@ import tempera.events.GameStartEvent;
 import tempera.events.GameTickEvent;
 import tempera.geometry.Point;
 import tempera.graphics.Sprite;
+import tempera.listeners.CollisionListener;
 import tempera.listeners.InputListener;
 import tempera.listeners.PlayerListener;
 import tempera.listeners.RenderListener;
@@ -49,6 +50,7 @@ public class GameWindow extends JFrame {
 		EventBus.registerListener(new InputListener());
 		EventBus.registerListener(new PlayerListener());
 		EventBus.registerListener(new SoundListener());
+		EventBus.registerListener(new CollisionListener());
 	}
 	
 	public void tick() {
