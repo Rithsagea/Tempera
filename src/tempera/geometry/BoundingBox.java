@@ -100,6 +100,7 @@ public class BoundingBox implements Cloneable {
 	/**
 	 * Gets all the edges of this rectangle
 	 * in the form of min-x, max-x, min-y, max-y
+	 * (left, right, down, up)
 	 * @return
 	 */
 	public double[] getEdges() {
