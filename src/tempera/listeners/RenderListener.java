@@ -38,7 +38,7 @@ public class RenderListener implements Listener {
 		
 		Sprite sprite = new Sprite(1, 0, 20, 20, FileUtil.readImageFile("src/resources/frog.png"));
 		
-		box = new PhysicsObject(new BoundingBox(100, 100), 0);
+		box = new PhysicsObject(new BoundingBox(100, 100), 1);
 		
 		box.position.setX(50);
 		box.position.setY(50);
@@ -70,6 +70,9 @@ public class RenderListener implements Listener {
 	
 	@EventHandler
 	public void onGameTick(GameTickEvent event) {
+		
+		box.updatePosition();
+		
 		if(box.boundingBox.intersects(PlayerListener.getPlayer().boundingBox)) {
 			box1.setHidden(true);
 			box2.setHidden(false);
