@@ -17,6 +17,7 @@ import tempera.listeners.InputListener;
 import tempera.listeners.PhysicsListener;
 import tempera.listeners.PlayerListener;
 import tempera.listeners.RenderListener;
+import tempera.listeners.SoundListener;
 
 public class GameWindow extends JFrame {
 
@@ -49,7 +50,7 @@ public class GameWindow extends JFrame {
 		EventBus.registerListener(new RenderListener());
 		EventBus.registerListener(new InputListener());
 		EventBus.registerListener(new PlayerListener());
-//		EventBus.registerListener(new SoundListener());
+		EventBus.registerListener(new SoundListener());
 		EventBus.registerListener(new CollisionListener());
 		EventBus.registerListener(new PhysicsListener());
 	}

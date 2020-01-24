@@ -23,7 +23,7 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void initializePlayer(GameStartEvent event) {
 		playerSprite = event.getWindow().getPlayerSprite();
-		player = new PhysicsObject(new BoundingBox(new Point(0, 0), 20, 20), 10);
+		player = new PhysicsObject(new BoundingBox(new Point(250, 250), 20, 20), 10);
 		player.friction = 0.9;
 		
 		PhysicsListener.engine.addObject(player);

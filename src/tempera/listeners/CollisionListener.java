@@ -40,7 +40,7 @@ public class CollisionListener implements Listener {
 			A.velocity.add(horizontalForce / A.weight, 0);
 			B.velocity.add(-horizontalForce / B.weight, 0);
 			
-			System.out.println("H: " + horizontalForce);
+//			System.out.println("H: " + horizontalForce);
 		} else { //the collision is vertical
 			double verticalForce = A.weight * A.velocity.getY()
 					+B.weight * B.velocity.getY();
@@ -55,7 +55,7 @@ public class CollisionListener implements Listener {
 			A.velocity.add(0, verticalForce / A.weight);
 			B.velocity.add(0, -verticalForce / B.weight);
 			
-			System.out.println("V: " + verticalForce);
+//			System.out.println("V: " + verticalForce);
 		}
 	}
 }

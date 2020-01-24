@@ -28,7 +28,7 @@ public class RenderEngine {
 	}
 	
 	public void renderObjects(Graphics2D g2d) {
-		g2d.transform(transformation);
+		g2d.setTransform(transformation);
 		
 		Collections.sort(renderedObjects, comparator);
 		for(RenderedObject obj : renderedObjects) {
