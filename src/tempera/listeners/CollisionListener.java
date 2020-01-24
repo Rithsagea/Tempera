@@ -3,8 +3,6 @@ package tempera.listeners;
 import tempera.event.EventHandler;
 import tempera.event.Listener;
 import tempera.events.PhysicsCollideEvent;
-import tempera.geometry.Point;
-import tempera.geometry.Vector;
 import tempera.physics.PhysicsObject;
 
 public class CollisionListener implements Listener {
@@ -25,34 +23,39 @@ public class CollisionListener implements Listener {
 		
 		double weightSum = A.weight + B.weight;
 		
-		double horizontalDiff = (Math.min(edgesA[1] - edgesB[0], edgesB[1] - edgesA[0])) / weightSum;
-		double verticalDiff = (Math.min(edgesA[3] - edgesB[2], edgesB[3] - edgesA[2])) / weightSum;
+		double horizontalDiff = (Math.min(edgesA[1] - edgesB[0], edgesB[1] - edgesA[0]) + 1) / weightSum;
+		double verticalDiff = (Math.min(edgesA[3] - edgesB[2], edgesB[3] - edgesA[2]) + 1) / weightSum;
 		
 		if(horizontalDiff < verticalDiff) {	//the collision is horizontal
 			//velocity
 			double horizontalForce = A.weight * A.velocity.getX()
 									+B.weight * B.velocity.getX();
-			horizontalForce *= -1;
+			horizontalForce /= 2;
 			
-			if(A.position.getX() > B.position.getX())
+			if(A.position.getX() < B.position.getX())
 				horizontalDiff *= -1;
 			
-			A.position.add(-horizontalDiff * A.weight, 0);
-			B.position.add(horizontalDiff * B.weight, 0);
-			A.velocity.add(-horizontalForce * A.weight, 0);
-			B.velocity.add(horizontalForce * B.weight, 0);
+			A.position.add(horizontalDiff * A.weight, 0);
+			B.position.add(-horizontalDiff * B.weight, 0);
+			A.velocity.add(horizontalForce / A.weight, 0);
+			B.velocity.add(-horizontalForce / B.weight, 0);
+			
+			System.out.println("H: " + horizontalForce);
 		} else { //the collision is vertical
 			double verticalForce = A.weight * A.velocity.getY()
 					+B.weight * B.velocity.getY();
-			verticalForce *= -1;
 			
-			if(A.position.getY() > B.position.getY())
+			verticalForce /= 2;
+			
+			if(A.position.getY() < B.position.getY())
 				verticalDiff *= -1;
 			
-			A.position.add(0, -verticalDiff * A.weight);
-			B.position.add(0, verticalDiff * B.weight);
-			A.velocity.add(0, -verticalForce * A.weight);
-			B.velocity.add(0, verticalForce * B.weight);
+			A.position.add(0, verticalDiff * A.weight);
+			B.position.add(0, -verticalDiff * B.weight);
+			A.velocity.add(0, verticalForce / A.weight);
+			B.velocity.add(0, -verticalForce / B.weight);
+			
+			System.out.println("V: " + verticalForce);
 		}
 	}
 }
