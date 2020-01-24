@@ -44,6 +44,9 @@ public class RenderListener implements Listener {
 		box.position.setX(50);
 		box.position.setY(50);
 		
+		box1.bind(box.position);
+		box2.bind(box.position);
+		
 		engine.addObject(box1);
 		engine.addObject(box2);
 		engine.addObject(sprite);
@@ -79,11 +82,6 @@ public class RenderListener implements Listener {
 			box1.setHidden(false);
 			box2.setHidden(true);
 		}
-		
-		box1.setX((int)box.position.getX());
-		box1.setY((int)box.position.getY());
-		box2.setX((int)box.position.getX());
-		box2.setY((int)box.position.getY());
 	}
 	
 	public Point getCamera() {

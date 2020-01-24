@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import tempera.geometry.Point;
+
 public class Sprite implements RenderedObject {
 	
 	private int renderLevel;
@@ -22,8 +24,7 @@ public class Sprite implements RenderedObject {
 	private int halfLength;
 	private int halfWidth;
 	
-	private int x;
-	private int y;
+	private Point center;
 	
 	public boolean isHidden = false;
 	
@@ -39,6 +40,8 @@ public class Sprite implements RenderedObject {
 		halfLength = length / 2;
 		halfWidth = width / 2;
 		
+		center = new Point();
+		
 		display = image;
 	}
 	
@@ -53,7 +56,7 @@ public class Sprite implements RenderedObject {
 	}
 	
 	public String toString() {
-		return String.format("(%d, %d) %d x %d", x, y, width, length);
+		return String.format("(%f, %f) %d x %d", center.getX(), center.getY(), width, length);
 	}
 	
 	public void resizeImage(int length, int width) {
@@ -95,29 +98,31 @@ public class Sprite implements RenderedObject {
 	
 	//Setters and Getters for the center
 	public int getX() {
-		return x;
+		return (int) center.getX();
 	}
 	
 	public void setX(int x) {
-		this.x = x;
+		center.setX(x);
 	}
 	
 	public int getY() {
-		return y;
+		return (int) center.getY();
 	}
 	
 	public void setY(int y) {
-		this.y = y;
+		center.setY(y);
 	}
 	
 	public void setHidden(boolean hidden) {
 		isHidden = hidden;
 	}
 	
+	public void bind(Point center) {
+		this.center = center;
+	}
+	
 	/**
 	 * Draws this sprite on a graphics object
-	 * 
-	 * TODO make it not resize the image each time it gets drawn
 	 */
 	public void draw(Graphics2D g2d) {
 		if(isHidden)
@@ -127,18 +132,14 @@ public class Sprite implements RenderedObject {
 		AffineTransform position = new AffineTransform();
 		
 		position.concatenate(original);
-		position.translate(x - halfLength, -y - halfWidth);
+		position.translate(center.getX() - halfLength, -center.getY() - halfWidth);
 		
 		g2d.setTransform(position);
 		
 		g2d.drawImage(display, 0, 0, null);
 		g2d.setTransform(original);
-//		g2d.drawRect(0, 0, (int)width, (int)height);	//change back
-//		transformation.setToIdentity();
-//		g2d.setTransform(transformation);
 	}
 	
-	//TODO add something for these
 	@Override
 	public int getRenderLevel() {
 		return renderLevel;
