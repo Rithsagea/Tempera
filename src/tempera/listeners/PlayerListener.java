@@ -23,7 +23,7 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onGameStart(GameStartEvent event) {
 		playerSprite = event.getWindow().getPlayerSprite();
-		player = new PhysicsObject(new BoundingBox(new Point(0, 0), 20, 20), 100);
+		player = new PhysicsObject(new BoundingBox(new Point(0, 0), 20, 20), 10);
 		player.friction = 0.9;
 		
 		PhysicsListener.engine.addObject(player);
@@ -39,9 +39,6 @@ public class PlayerListener implements Listener {
 			player.velocity.add(-accelerationRate, 0);
 		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
 			player.velocity.add(accelerationRate, 0);
-		
-		
-		player.updatePosition();
 		
 		playerSprite.setX((int)player.position.getX());
 		playerSprite.setY((int)player.position.getY());

@@ -20,6 +20,11 @@ public class PhysicsEngine {
 	}
 	
 	public void tick() {
+		
+		for(PhysicsObject obj: physicsObjects) {
+			obj.updatePosition();
+		}
+		
 		for(Pair<?, ?> pair : ListUtil.getPairs(physicsObjects)) {
 			PhysicsObject A = (PhysicsObject) pair.getKey();
 			PhysicsObject B = (PhysicsObject) pair.getValue();
