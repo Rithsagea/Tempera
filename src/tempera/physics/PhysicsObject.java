@@ -1,8 +1,9 @@
 package tempera.physics;
 
+import tempera.events.PhysicsCollideEvent;
 import tempera.geometry.BoundingBox;
-import tempera.geometry.Vector;
 import tempera.geometry.Point;
+import tempera.geometry.Vector;
 
 public class PhysicsObject {
 	
@@ -26,5 +27,9 @@ public class PhysicsObject {
 	public void updatePosition() {
 		velocity.multiply(friction); //applies friction
 		position.add(velocity);
+	}
+	
+	public void onCollide(PhysicsCollideEvent event) {
+		//do nothing
 	}
 }
