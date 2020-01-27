@@ -14,12 +14,9 @@ public class Entity extends PhysicsObject {
 		super(boundingBox, weight);
 	}
 	
-	public void registerPhysics(PhysicsEngine engine) {
-		engine.addObject(this);
-	}
-	
-	public void registerGraphics(RenderEngine engine) {
-		engine.addObject(sprite);
+	public void registerEntity(PhysicsEngine physEngine, RenderEngine rendEngine) {
+		physEngine.addObject(this);
+		rendEngine.addObject(sprite);
 	}
 	
 	public void setSprite(Sprite sprite) {

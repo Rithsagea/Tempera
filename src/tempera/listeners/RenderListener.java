@@ -20,7 +20,7 @@ import tempera.util.FileUtil;
 
 public class RenderListener implements Listener {
 	
-	private RenderEngine engine = new RenderEngine();
+	public static RenderEngine engine = new RenderEngine();
 	private Point camera = new Point(0, 0);
 	private PhysicsObject box;
 	
@@ -36,8 +36,6 @@ public class RenderListener implements Listener {
 		box1 = new Sprite(0, 0, 100, 100, FileUtil.readImageFile("src/resources/background1.png"));
 		box2 = new Sprite(0, 0, 100, 100, FileUtil.readImageFile("src/resources/background2.png"));
 		
-		Sprite sprite = new Sprite(1, 0, 20, 20, FileUtil.readImageFile("src/resources/frog.png"));
-		
 		box = new PhysicsObject(new BoundingBox(100, 100), 10);
 		box.friction = 0.9;
 		
@@ -49,13 +47,10 @@ public class RenderListener implements Listener {
 		
 		engine.addObject(box1);
 		engine.addObject(box2);
-		engine.addObject(sprite);
 		
 		PhysicsListener.engine.addObject(box);
 		
 		engine.printObjects();
-		
-		window.setPlayerSprite(sprite);
 		
 		System.out.println(event.getWindow().getCenter());
 	}

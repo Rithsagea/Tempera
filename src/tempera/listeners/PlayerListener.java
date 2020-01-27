@@ -7,28 +7,28 @@ import tempera.event.EventPriority;
 import tempera.event.Listener;
 import tempera.events.GameStartEvent;
 import tempera.events.GameTickEvent;
+import tempera.game.Entity;
 import tempera.geometry.BoundingBox;
 import tempera.geometry.Point;
 import tempera.graphics.Sprite;
 import tempera.input.KeyboardData;
 import tempera.physics.PhysicsObject;
+import tempera.util.FileUtil;
 
 public class PlayerListener implements Listener {
 	
 	private final double accelerationRate = 5;
 	
-	public Sprite playerSprite;
-	public static PhysicsObject player;
+	public static Entity player;
 	
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void initializePlayer(GameStartEvent event) {
-		playerSprite = event.getWindow().getPlayerSprite();
-		player = new PhysicsObject(new BoundingBox(new Point(250, 250), 20, 20), 10);
+		Sprite sprite = new Sprite(1, 0, 20, 20, FileUtil.readImageFile("src/resources/frog.png"));
+		player = new Entity(new BoundingBox(new Point(250, 250), 20, 20), 10);
+		player.setSprite(sprite);
 		player.friction = 0.9;
 		
-		PhysicsListener.engine.addObject(player);
-		
-		playerSprite.bind(player.position);
+		player.registerEntity(PhysicsListener.engine, RenderListener.engine);
 	}
 	
 	@EventHandler
