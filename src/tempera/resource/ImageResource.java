@@ -37,16 +37,4 @@ public class ImageResource implements TemperaResource<BufferedImage> {
 			loadResource();
 		return image;
 	}
-	
-	public boolean createResource(File path, BufferedImage image) {
-		try {
-			ImageIO.write(image, "png", path);
-			return true;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return false;
-	}
 }

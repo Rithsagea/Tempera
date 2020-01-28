@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.util.Pair;
 
 public class ListUtil {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static List<Pair<?, ?>> getPairs(List<?> list) {
 		List<Pair<?, ?>> pairs = new ArrayList<>();
 		
