@@ -11,18 +11,22 @@ import tempera.events.GameRenderEvent;
 import tempera.events.GameStartEvent;
 import tempera.events.GameTickEvent;
 import tempera.geometry.Point;
+import tempera.graphics.RenderEngine;
 import tempera.listeners.CollisionListener;
 import tempera.listeners.InputListener;
 import tempera.listeners.PhysicsListener;
 import tempera.listeners.PlayerListener;
 import tempera.listeners.RenderListener;
 import tempera.listeners.SoundListener;
+import tempera.physics.PhysicsEngine;
 
 public class GameWindow extends JFrame {
 
 	private static final long serialVersionUID = -7296143310032123444L;
 	
 	private JPanel renderPanel;
+	private PhysicsEngine physicsEngine = new PhysicsEngine();
+	private RenderEngine renderEngine = new RenderEngine();
 	
 	@SuppressWarnings("serial")
 	public GameWindow() {
@@ -60,5 +64,13 @@ public class GameWindow extends JFrame {
 	
 	public Point getCenter() {
 		return new Point(this.getWidth() / 2, this.getHeight() / 2);
+	}
+	
+	public PhysicsEngine getPhysics() {
+		return physicsEngine;
+	}
+	
+	public RenderEngine getRender() {
+		return renderEngine;
 	}
 }

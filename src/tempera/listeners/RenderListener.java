@@ -15,12 +15,15 @@ import tempera.geometry.BoundingBox;
 import tempera.geometry.Point;
 import tempera.graphics.RenderEngine;
 import tempera.graphics.Sprite;
+import tempera.physics.PhysicsEngine;
 import tempera.physics.PhysicsObject;
 import tempera.util.FileUtil;
 
 public class RenderListener implements Listener {
 	
-	public static RenderEngine engine = new RenderEngine();
+	private PhysicsEngine physicsEngine = new PhysicsEngine();
+	private RenderEngine renderEngine = new RenderEngine();
+	
 	private Point camera = new Point(0, 0);
 	private PhysicsObject box;
 	
@@ -31,7 +34,10 @@ public class RenderListener implements Listener {
 	public void onGameStart(GameStartEvent event) {
 		GameWindow window = event.getWindow();
 		
-		engine.setOffset(camera, window);
+		physicsEngine = window.getPhysics();
+		renderEngine = window.getRender();
+		
+		renderEngine.setOffset(camera, window);
 		
 		box1 = new Sprite(0, 0, 100, 100, FileUtil.readImageFile("src/resources/background1.png"));
 		box2 = new Sprite(0, 0, 100, 100, FileUtil.readImageFile("src/resources/background2.png"));
@@ -45,19 +51,19 @@ public class RenderListener implements Listener {
 		box1.bind(box.position);
 		box2.bind(box.position);
 		
-		engine.addObject(box1);
-		engine.addObject(box2);
+		renderEngine.addObject(box1);
+		renderEngine.addObject(box2);
 		
-		PhysicsListener.engine.addObject(box);
+		physicsEngine.addObject(box);
 		
-		engine.printObjects();
+		renderEngine.printObjects();
 		
 		System.out.println(event.getWindow().getCenter());
 	}
 	
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onGameRender(GameRenderEvent event) {
-		engine.renderObjects(event.getGraphics());
+		renderEngine.renderObjects(event.getGraphics());
 	}
 	
 	@EventHandler(priority = EventPriority.LOWEST)

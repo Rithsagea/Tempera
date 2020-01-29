@@ -10,25 +10,34 @@ import tempera.events.GameTickEvent;
 import tempera.game.Entity;
 import tempera.geometry.BoundingBox;
 import tempera.geometry.Point;
+import tempera.graphics.RenderEngine;
 import tempera.graphics.Sprite;
 import tempera.input.KeyboardData;
+import tempera.physics.PhysicsEngine;
 import tempera.physics.PhysicsObject;
 import tempera.util.FileUtil;
 
 public class PlayerListener implements Listener {
 	
-	private final double accelerationRate = 5;
+	private static final double accelerationRate = 5;
 	
 	public static Entity player;
 	
+	private PhysicsEngine physicsEngine;
+	private RenderEngine renderEngine;
+	
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void initializePlayer(GameStartEvent event) {
+		
+		physicsEngine = event.getWindow().getPhysics();
+		renderEngine = event.getWindow().getRender();
+		
 		Sprite sprite = new Sprite(1, 0, 20, 20, FileUtil.readImageFile("src/resources/frog.png"));
 		player = new Entity(new BoundingBox(new Point(250, 250), 20, 20), 10);
 		player.setSprite(sprite);
 		player.friction = 0.9;
 		
-		player.registerEntity(PhysicsListener.engine, RenderListener.engine);
+		player.registerEntity(physicsEngine, renderEngine);
 	}
 	
 	@EventHandler
