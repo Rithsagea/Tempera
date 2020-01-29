@@ -10,16 +10,27 @@ public class ImageResource implements TemperaResource<BufferedImage> {
 	
 	protected File file;
 	protected BufferedImage image;
+	protected String name;
 	
-	public ImageResource(File file) {
+	public ImageResource(File file, String name) {
 		this.file = file;
+		this.name = name;
+		
+		loadResource();
 	}
 	
-	public ImageResource(String path) {
+	public ImageResource(String path, String name) {
+		this(new File(path), name);
+	}
+	
+	public ImageResource(File file) throws IOException {
+		this(file, file.getCanonicalPath());
+	}
+	
+	public ImageResource(String path) throws IOException {
 		this(new File(path));
 	}
 
-	@Override
 	public void loadResource() {
 		try {
 			image = ImageIO.read(file);
@@ -28,13 +39,13 @@ public class ImageResource implements TemperaResource<BufferedImage> {
 		}
 	}
 	
-	public File getFile() {
-		return file;
-	}
-	
 	public BufferedImage getResource() {
 		if(image == null)
 			loadResource();
 		return image;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }
