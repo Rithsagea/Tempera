@@ -19,7 +19,7 @@ public class AudioResource implements TemperaResource<Clip> {
 	}
 	
 	public AudioResource(String path, String name) {
-		this(new File(path), name);
+		this(new File(ResourceRegistry.getResourcePath() + path), name);
 	}
 	
 	public AudioResource(File file) throws IOException {
@@ -27,7 +27,7 @@ public class AudioResource implements TemperaResource<Clip> {
 	}
 	
 	public AudioResource(String path) throws IOException {
-		this(new File(path));
+		this(new File(ResourceRegistry.getResourcePath() + path));
 	}
 
 	public void loadResource() {

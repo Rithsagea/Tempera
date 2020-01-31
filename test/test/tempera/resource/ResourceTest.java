@@ -9,13 +9,13 @@ import tempera.resource.ResourceRegistry;
 public class ResourceTest {
 	public static void main(String[] args) throws IOException {
 		
-		ResourceRegistry registry = new ResourceRegistry();
-		ImageResource sans = new ImageResource("src/resources/sans.png");
-		ImageResource bg1 = new ImageResource("src/resources/background1.png");
-		ImageResource bg2 = new ImageResource("src/resources/background2.png");
+		ResourceRegistry registry = new ResourceRegistry("src/resources/");
+		ImageResource sans = new ImageResource("sans.png");
+		ImageResource bg1 = new ImageResource("background1.png");
+		ImageResource bg2 = new ImageResource("background2.png");
 		
-		AudioResource sd1 = new AudioResource("src/resources/songDemo.wav");
-		AudioResource sd2 = new AudioResource("src/resources/songdemo2.wav");
+		AudioResource sd1 = new AudioResource("songDemo.wav");
+		AudioResource sd2 = new AudioResource("songdemo2.wav");
 		
 		registry.registerResource(sans);
 		registry.registerResource(bg1);
