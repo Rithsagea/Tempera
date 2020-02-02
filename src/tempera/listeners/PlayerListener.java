@@ -20,6 +20,7 @@ import tempera.util.FileUtil;
 public class PlayerListener implements Listener {
 	
 	private static final double accelerationRate = 5;
+	private static final double friction = 0.9;
 	
 	public static Entity player;
 	
@@ -35,7 +36,7 @@ public class PlayerListener implements Listener {
 		Sprite sprite = new Sprite(1, 0, 20, 20, FileUtil.readImageFile("src/resources/frog.png"));
 		player = new Entity(new BoundingBox(new Point(250, 250), 20, 20), 10);
 		player.setSprite(sprite);
-		player.friction = 0.9;
+		player.friction = friction;
 		
 		player.registerEntity(physicsEngine, renderEngine);
 	}
