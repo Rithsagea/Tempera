@@ -16,11 +16,12 @@ public class AudioTest {
 		AudioClip clip3 = new AudioClip(new File("src/resources/songdemo2.wav"));
 		
 		
-		AudioPlayer player = new AudioPlayer();
-		player.play(clip1);
+		AudioPlayer player1 = new AudioPlayer();
+		player1.play(clip1);
 		
-		Thread.sleep(1000);
+		AudioPlayer player2 = new AudioPlayer();
 		
-		player.stop();
+		Thread.sleep(3000);
+		player2.play(clip1);
 	}
 }
