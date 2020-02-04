@@ -6,20 +6,17 @@ import java.awt.Graphics2D;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.tempera.listeners.CollisionListener;
-import com.tempera.listeners.InputListener;
-import com.tempera.listeners.PhysicsListener;
-import com.tempera.listeners.PlayerListener;
-import com.tempera.listeners.RenderListener;
-import com.tempera.listeners.SoundListener;
-
 import api.tempera.event.EventBus;
 import api.tempera.events.GameRenderEvent;
 import api.tempera.events.GameStartEvent;
 import api.tempera.events.GameTickEvent;
 import api.tempera.geometry.Point;
 import api.tempera.graphics.RenderEngine;
+import api.tempera.graphics.RenderListener;
+import api.tempera.input.InputListener;
+import api.tempera.physics.CollisionListener;
 import api.tempera.physics.PhysicsEngine;
+import api.tempera.physics.PhysicsListener;
 
 public class TemperaWindow extends JFrame {
 
@@ -41,6 +38,13 @@ public class TemperaWindow extends JFrame {
 		
 		setContentPane(renderPanel);
 		setSize(1080, 720);
+		
+		EventBus.registerListener(new InputListener());
+		
+		EventBus.registerListener(new CollisionListener());
+		EventBus.registerListener(new PhysicsListener());
+		
+		EventBus.registerListener(new RenderListener());
 		
 		registerListeners();
 		EventBus.finalizeHandlers();

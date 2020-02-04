@@ -27,6 +27,8 @@ public class PlayerListener implements Listener {
 	private PhysicsEngine physicsEngine;
 	private RenderEngine renderEngine;
 	
+	private KeyboardData keyboardData;
+	
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void initializePlayer(GameStartEvent event) {
 		
@@ -39,17 +41,19 @@ public class PlayerListener implements Listener {
 		player.friction = friction;
 		
 		player.registerEntity(physicsEngine, renderEngine);
+		
+		keyboardData = KeyboardData.getInstance();
 	}
 	
 	@EventHandler
 	public void checkPlayerControls(GameTickEvent event) {
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_UP)) 
+		if(keyboardData.isKeyPressed(KeyEvent.VK_UP)) 
 			player.velocity.add(0, accelerationRate);
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_DOWN)) 
+		if(keyboardData.isKeyPressed(KeyEvent.VK_DOWN)) 
 			player.velocity.add(0, -accelerationRate);
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_LEFT)) 
+		if(keyboardData.isKeyPressed(KeyEvent.VK_LEFT)) 
 			player.velocity.add(-accelerationRate, 0);
-		if(KeyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
+		if(keyboardData.isKeyPressed(KeyEvent.VK_RIGHT)) 
 			player.velocity.add(accelerationRate, 0);
 	}
 	

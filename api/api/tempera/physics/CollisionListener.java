@@ -1,12 +1,12 @@
-package com.tempera.listeners;
+package api.tempera.physics;
 
 import api.tempera.event.EventHandler;
+import api.tempera.event.EventPriority;
 import api.tempera.event.Listener;
 import api.tempera.events.PhysicsCollideEvent;
-import api.tempera.physics.PhysicsObject;
 
 public class CollisionListener implements Listener {
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onCollide(PhysicsCollideEvent event) {
 		PhysicsObject A = event.getObjectA();
 		PhysicsObject B = event.getObjectB();

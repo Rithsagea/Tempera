@@ -12,6 +12,16 @@ public class MouseData implements MouseMotionListener, MouseListener {
 	private int mouseX = 0;
 	private int mouseY = 0;
 	
+	private static MouseData instance = new MouseData();
+	
+	private MouseData() {
+		
+	}
+	
+	public static MouseData getInstance() {
+		return instance;
+	}
+	
 	@Override
 	public void mouseDragged(MouseEvent e) { }
 
@@ -27,11 +37,6 @@ public class MouseData implements MouseMotionListener, MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		EventBus.callEvent(new MousePressEvent(this));
-		
-		//play sound demo
-//		soundDemo.getSoundFile("soundDemo.wav");
-//		soundDemo.volumeControl((float).2,soundDemo.clip);
-//		soundDemo.playSound(soundDemo.clip);
 	}
 
 	@Override

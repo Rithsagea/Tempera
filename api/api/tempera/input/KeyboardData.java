@@ -6,7 +6,17 @@ import java.util.HashMap;
 
 public class KeyboardData implements KeyListener {
 	
-	private static final HashMap<Integer, Boolean> keyData = new HashMap<Integer, Boolean>();
+	private HashMap<Integer, Boolean> keyData;
+	
+	private static KeyboardData instance = new KeyboardData();
+	
+	private KeyboardData() {
+		keyData = new HashMap<Integer, Boolean>();
+	}
+	
+	public static KeyboardData getInstance() {
+		return instance;
+	}
 	
 	@Override
 	public void keyTyped(KeyEvent e) { }
@@ -20,7 +30,7 @@ public class KeyboardData implements KeyListener {
 		keyData.put(e.getKeyCode(), false);
 	}
 	
-	public static boolean isKeyPressed(int keyCode) {
+	public boolean isKeyPressed(int keyCode) {
 		if(keyData.containsKey(keyCode))
 			return keyData.get(keyCode);
 		return false;

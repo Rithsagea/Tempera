@@ -1,8 +1,5 @@
 package com.tempera;
 
-import com.tempera.listeners.CollisionListener;
-import com.tempera.listeners.InputListener;
-import com.tempera.listeners.PhysicsListener;
 import com.tempera.listeners.PlayerListener;
 import com.tempera.listeners.RenderListener;
 import com.tempera.listeners.SoundListener;
@@ -16,10 +13,7 @@ public class GameWindow extends TemperaWindow {
 	
 	public void registerListeners() {
 		EventBus.registerListener(new RenderListener());
-		EventBus.registerListener(new InputListener());
 		EventBus.registerListener(new PlayerListener());
 		EventBus.registerListener(new SoundListener());
-		EventBus.registerListener(new CollisionListener());
-		EventBus.registerListener(new PhysicsListener());
 	}
 }

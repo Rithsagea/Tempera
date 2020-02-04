@@ -14,6 +14,7 @@ public class RenderEngine {
 	private List<RenderedObject> renderedObjects = new ArrayList<RenderedObject>();
 	private Comparator<RenderedObject> comparator = new RenderedObjectComparator();
 	private AffineTransform transformation;
+	private Point camera = new Point(0, 0);
 	
 	public void addObject(RenderedObject obj) {
 		renderedObjects.add(obj);
@@ -38,7 +39,7 @@ public class RenderEngine {
 	
 	//Setup
 	//TODO add a zoom factor
-	public void setOffset(Point camera, TemperaWindow window) {
+	public void updateOffset(TemperaWindow window) {
 		Point center = window.getCenter();
 		
 		transformation = new AffineTransform();
@@ -55,5 +56,9 @@ public class RenderEngine {
 		for(RenderedObject obj : renderedObjects) {
 			System.out.println("" + obj.getRenderLevel() + ": " + obj.getDrawLevel() + " - " + obj);
 		}
+	}
+	
+	public Point getCamera() {
+		return camera;
 	}
 }
