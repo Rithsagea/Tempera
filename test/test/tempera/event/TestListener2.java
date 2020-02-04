@@ -1,8 +1,8 @@
 package test.tempera.event;
 
-import tempera.event.EventHandler;
-import tempera.event.EventPriority;
-import tempera.event.Listener;
+import api.tempera.event.EventHandler;
+import api.tempera.event.EventPriority;
+import api.tempera.event.Listener;
 
 public class TestListener2 implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)

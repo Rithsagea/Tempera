@@ -1,8 +1,8 @@
 package test.tempera.vector;
 
-import tempera.vector.Point;
-import tempera.vector.Polygon;
-import tempera.vector.Rectangle;
+import api.tempera.vector.Point;
+import api.tempera.vector.Polygon;
+import api.tempera.vector.Rectangle;
 
 public class PolygonTest {
 	public static void main(String[] args) {

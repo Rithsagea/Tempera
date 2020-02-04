@@ -2,7 +2,7 @@ package test.tempera.graphics;
 
 import java.awt.Graphics2D;
 
-import tempera.graphics.RenderedObject;
+import api.tempera.graphics.RenderedObject;
 
 public class TestRender implements RenderedObject {
 	

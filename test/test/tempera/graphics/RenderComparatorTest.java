@@ -2,7 +2,7 @@ package test.tempera.graphics;
 
 import java.util.Random;
 
-import tempera.graphics.RenderEngine;
+import api.tempera.graphics.RenderEngine;
 
 public class RenderComparatorTest {
 	public static void main(String[] args) {

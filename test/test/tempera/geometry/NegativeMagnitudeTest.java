@@ -1,6 +1,6 @@
 package test.tempera.geometry;
 
-import tempera.geometry.Vector;
+import api.tempera.geometry.Vector;
 
 public class NegativeMagnitudeTest {
 	public static void main(String[] args) {

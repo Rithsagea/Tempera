@@ -3,8 +3,8 @@ package test.tempera.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import api.tempera.util.ListUtil;
 import javafx.util.Pair;
-import tempera.util.ListUtil;
 
 public class CombinationTest {
 	public static void main(String[] args) {

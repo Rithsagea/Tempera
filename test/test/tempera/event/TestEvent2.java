@@ -1,6 +1,6 @@
 package test.tempera.event;
 
-import tempera.event.Event;
+import api.tempera.event.Event;
 
 public class TestEvent2 extends Event {
 

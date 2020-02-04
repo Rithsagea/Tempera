@@ -1,6 +1,6 @@
 package test.tempera.event;
 
-import tempera.event.EventBus;
+import api.tempera.event.EventBus;
 
 public class EventTest {
 	public static void main(String[] args) throws Exception {

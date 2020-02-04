@@ -7,7 +7,7 @@ import com.rithsagea.tempera.registry.MonsterRegistry;
 import com.rithsagea.tempera.stat.Monster;
 import com.rithsagea.tempera.stat.StatContainer;
 
-import tempera.util.WeightedList;
+import api.tempera.util.WeightedList;
 
 public class DataManager {
 	//Items
