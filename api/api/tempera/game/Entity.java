@@ -10,8 +10,9 @@ public class Entity extends PhysicsObject {
 	
 	private Sprite sprite;
 	
-	public Entity(BoundingBox boundingBox, double weight) {
+	public Entity(BoundingBox boundingBox, double weight, Sprite sprite) {
 		super(boundingBox, weight);
+		setSprite(sprite);
 	}
 	
 	public void registerEntity(PhysicsEngine physEngine, RenderEngine rendEngine) {

@@ -6,12 +6,12 @@ import java.util.HashMap;
 
 public class KeyboardData implements KeyListener {
 	
-	private HashMap<Integer, Boolean> keyData;
+	private HashMap<Integer, Boolean> keyData = new HashMap<Integer, Boolean>();;
 	
 	private static KeyboardData instance = new KeyboardData();
 	
 	private KeyboardData() {
-		keyData = new HashMap<Integer, Boolean>();
+		
 	}
 	
 	public static KeyboardData getInstance() {

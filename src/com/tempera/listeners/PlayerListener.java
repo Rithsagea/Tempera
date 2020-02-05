@@ -35,9 +35,7 @@ public class PlayerListener implements Listener {
 		physicsEngine = event.getWindow().getPhysics();
 		renderEngine = event.getWindow().getRender();
 		
-		Sprite sprite = new Sprite(1, 0, 20, 20, FileUtil.readImageFile("src/resources/frog.png"));
-		player = new Entity(new BoundingBox(new Point(250, 250), 20, 20), 10);
-		player.setSprite(sprite);
+		player = new Entity(new BoundingBox(new Point(250, 250), 20, 20), 10, new Sprite(1, 0, 20, 20, FileUtil.readImageFile("src/resources/frog.png")));
 		player.friction = friction;
 		
 		player.registerEntity(physicsEngine, renderEngine);
