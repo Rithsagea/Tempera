@@ -10,18 +10,28 @@ public class Entity extends PhysicsObject {
 	
 	private Sprite sprite;
 	
+	private RenderEngine render;
+	
 	public Entity(BoundingBox boundingBox, double weight, Sprite sprite) {
 		super(boundingBox, weight);
 		setSprite(sprite);
 	}
 	
 	public void registerEntity(PhysicsEngine physEngine, RenderEngine rendEngine) {
+		render = rendEngine;
+		
 		physEngine.addObject(this);
 		rendEngine.addObject(sprite);
 	}
 	
 	public void setSprite(Sprite sprite) {
+		if(render != null) render.removeObject(this.sprite);
+		
 		this.sprite = sprite;
-		sprite.bind(position);
+		
+		if(sprite != null) {
+			sprite.bind(position);
+			if(render != null)  render.addObject(sprite);
+		}
 	}
 }

@@ -1,6 +1,5 @@
 package api.tempera.physics;
 
-import api.tempera.events.PhysicsCollideEvent;
 import api.tempera.geometry.BoundingBox;
 import api.tempera.geometry.Point;
 import api.tempera.geometry.Vector;
@@ -29,7 +28,7 @@ public class PhysicsObject {
 		position.add(velocity);
 	}
 	
-	public void onCollide(PhysicsCollideEvent event) {
+	public void onCollide(PhysicsObject obj) {
 		//do nothing
 	}
 }

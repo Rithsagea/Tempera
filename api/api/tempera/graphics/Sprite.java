@@ -55,6 +55,19 @@ public class Sprite implements RenderedObject {
 		resizeImage(length, width);
 	}
 	
+	public Sprite() {
+		this.renderLevel = 0;
+		this.drawLevel = 0;
+		
+		length = 0;
+		width = 0;
+		
+		halfLength = 0;
+		halfWidth = 0;
+		center = new Point();
+		display = null;
+	}
+
 	public String toString() {
 		return String.format("(%f, %f) %d x %d", center.getX(), center.getY(), width, length);
 	}

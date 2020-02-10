@@ -8,10 +8,20 @@ import com.tempera.listeners.SoundListener;
 import api.tempera.event.EventBus;
 import api.tempera.game.TemperaWindow;
 
-public class GameWindow extends TemperaWindow {
+//Note to self: figure out whether serial is important or not
 
-	private static final long serialVersionUID = 1L;
+@SuppressWarnings("serial")
+public class GameWindow extends TemperaWindow {
 	
+	//Register Listeners
+	//Listeners are pretty much things that
+	//"listen" to events. Methods in a listener
+	//with "@EventHandler" before them are called
+	//handlers, whenever the event in the parameter
+	//is called, that method will be called.
+	//
+	//Make sure to register listeners here, or they
+	//will do literally nothing
 	public void registerListeners() {
 		EventBus.registerListener(new ResourceListener());
 		EventBus.registerListener(new RenderListener());

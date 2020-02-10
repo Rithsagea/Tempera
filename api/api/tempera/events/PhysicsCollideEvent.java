@@ -11,8 +11,8 @@ public class PhysicsCollideEvent extends Event {
 		this.objectA = objectA;
 		this.objectB = objectB;
 		
-		objectA.onCollide(this);
-		objectB.onCollide(this);
+		objectA.onCollide(objectB);
+		objectB.onCollide(objectA);
 	}
 	
 	public PhysicsObject getObjectA() {
