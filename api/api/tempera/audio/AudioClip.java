@@ -17,27 +17,57 @@ public class AudioClip {
 	private int bytes;
 	private byte[] data;
 	
-	public AudioClip(File audioFile) throws UnsupportedAudioFileException, IOException {
-		AudioInputStream ais = AudioSystem.getAudioInputStream(audioFile);
-		AudioFileFormat aff = AudioSystem.getAudioFileFormat(audioFile);
+	/**
+	 * Creates an audio clip from a file.
+	 * @param audioFile	The file where the audio is stored
+	 */
+	public AudioClip(File audioFile){
+		AudioInputStream ais = null;
+		AudioFileFormat aff = null;
 		
+		try {
+			ais = AudioSystem.getAudioInputStream(audioFile);
+			aff = AudioSystem.getAudioFileFormat(audioFile);
+		} catch (UnsupportedAudioFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		format = ais.getFormat();
 		frames = aff.getFrameLength();
 		frameSize = format.getFrameSize();
 		bytes = frames * frameSize;
 		
 		data = new byte[bytes];
-		ais.read(data);
+		try {
+			ais.read(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
+	/**
+	 * Gets the audio data in a byte array
+	 * @return	the audio data in a byte array
+	 */
 	public byte[] getData() {
 		return data;
 	}
 	
+	/**
+	 * Gets the format of the audio
+	 * @return	the format of the audio
+	 */
 	public AudioFormat getFormat() {
 		return format;
 	}
 	
+	/**
+	 * Gets the length of the audio clip in bytes
+	 * @return	the length of the audio clip in bytes
+	 */
 	public int getLengthInBytes() {
 		return bytes;
 	}
