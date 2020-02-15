@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+//you shouldn't need to use this
+
 public class HandlerList {
 	protected List<Handler> handlers = new ArrayList<Handler>();
 	

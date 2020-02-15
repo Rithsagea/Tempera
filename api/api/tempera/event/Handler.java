@@ -2,6 +2,8 @@ package api.tempera.event;
 
 import java.lang.reflect.Method;
 
+//you shouldn't need to use this
+
 public class Handler implements Comparable<Handler> {
 	
 	protected Method eventMethod;

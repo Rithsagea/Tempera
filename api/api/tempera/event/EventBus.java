@@ -14,6 +14,10 @@ public class EventBus {
 	
 	private static Map<Class<?>, HandlerList> registeredHandlers = new HashMap<>();
 	
+	/**
+	 * Register a listener, so events that are called will run the listener's handlers
+	 * @param listener	the listener to be registered.
+	 */
 	public static void registerListener(Listener listener) {
 		if(registeredListeners.contains(listener))
 			throw new RuntimeException("The listener " + listener + " has already been registered");
@@ -22,7 +26,11 @@ public class EventBus {
 		registerHandlers(listener);
 	}
 	
-	public static boolean unregisterListener(Listener listener) {
+	/**
+	 * Unregisters a listener, so events that are called will no longer run the listener's handlers
+	 * @param listener	the listener to unregister
+	 */
+	public static void unregisterListener(Listener listener) {
 		if(!registeredListeners.contains(listener))
 			throw new RuntimeException("The listener " + listener + " has not yet been registered");
 		
@@ -42,11 +50,10 @@ public class EventBus {
 		}
 		
 		registeredListeners.remove(listener);
-		
-		return false;
 	}
 	
-	public static void registerHandlers(Listener listener) {
+	//you should not try to run this. Just.. don't
+	private static void registerHandlers(Listener listener) {
 		Method[] methods = listener.getClass().getDeclaredMethods();
 		
 		for(Method method : methods) {
@@ -73,17 +80,22 @@ public class EventBus {
 		}
 	}
 	
+	/**
+	 * This gets the handlers from all the registered listeners. It refreshes the registry,
+	 * so newly registered and unregistered listeners are accounted for.
+	 */
 	public static void finalizeHandlers() {
 		for(HandlerList handlers : registeredHandlers.values()) {
 			handlers.sortHandlers();
 		}
 	}
 	
-	//Calling events
-	
+	/**
+	 * This runs all handlers associated with the called event
+	 * @param event	the event to call
+	 */
 	public static void callEvent(Event event) {
 		if(!registeredHandlers.containsKey(event.getClass())) {
-//			System.err.println("The event " + event.getClass() + " is not currently being used by any listeners");
 			return;
 		}
 		
